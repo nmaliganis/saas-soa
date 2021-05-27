@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    soa.api:
+        image: ${REGISTRY:soa.api:${PLATFORM:-linux}-${TAG:-latest}
+        ports:
+            - "6200:80"
+        container_name: soa
+        build:
+            context: ../back-end/api
+            dockerfile: Dockerfile
