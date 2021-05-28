@@ -19,3 +19,4 @@ api/soa-common.dtos/obj
 api/soa-common.infrastructure/bin/Debug/netcoreapp3.1
 api/soa-common.infrastructure/obj/Debug/netcoreapp3.1
 api/soa-common.infrastructure/obj
+.vs/soa-be/DesignTimeBuild/.dtbcache.v2
