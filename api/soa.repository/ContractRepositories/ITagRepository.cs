@@ -6,7 +6,6 @@ namespace soa.repository.ContractRepositories
 {
     public interface ITagRepository : IRepository<Tag, int>
     {
-        QueryResult<Tag> FindAllTagsPagedOf(int? pageNum = -1, int? pageSize = -1);
         int FindCountTotals();
         Tag FindTagByNumPlate(string numPlate);
     }

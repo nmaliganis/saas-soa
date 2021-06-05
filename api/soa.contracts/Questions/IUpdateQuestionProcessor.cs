@@ -6,6 +6,6 @@ namespace soa.contracts.Questions
 {
     public interface IUpdateQuestionProcessor
     {
-        Task<QuestionUiModel> UpdateQuestionAsync(Guid idQuestionToBeUpdated, QuestionForModificationUiModel updatedQuestion);
+        Task<QuestionUiModel> UpdateQuestionAsync(int idQuestionToBeUpdated, QuestionForModificationUiModel updatedQuestion);
     }
 }

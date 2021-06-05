@@ -14,31 +14,9 @@ namespace soa.repository.Repositories
 {
   public class QuestionRepository : RepositoryBase<Question, int>, IQuestionRepository
   {
-    private readonly WKTReader _wkt;
-
     public QuestionRepository(ISession session)
       : base(session)
     {
-      _wkt = new WKTReader();
-    }
-
-    public QueryResult<Question> FindAllQuestionsPagedOf(int? pageNum, int? pageSize)
-    {
-      var query = Session.QueryOver<Question>();
-
-      if (pageNum == -1 & pageSize == -1)
-      {
-        return new QueryResult<Question>(query?
-          .List()
-          .AsQueryable());
-      }
-
-      return new QueryResult<Question>(query
-            .Skip(ResultsPagingUtility.CalculateStartIndex((int)pageNum, (int)pageSize))
-            .Take((int)pageSize).List().AsQueryable(),
-          query.ToRowCountQuery().RowCount(),
-          (int)pageSize)
-        ;
     }
 
     public int FindCountTotals()
@@ -64,12 +42,12 @@ namespace soa.repository.Repositories
       return count;
     }
 
-    public Question FindQuestionByNumPlate(string numPlate)
+    public Question FindQuestionByTitle(string title)
     {
       return
         (Question)
         Session.CreateCriteria(typeof(Question))
-          .Add(Expression.Eq("NumPlate", numPlate))
+          .Add(Expression.Eq("Title", title))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

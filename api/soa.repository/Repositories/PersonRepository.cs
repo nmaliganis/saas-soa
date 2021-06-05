@@ -18,25 +18,6 @@ namespace soa.repository.Repositories
     {
     }
 
-    public QueryResult<Person> FindAllPersonsPagedOf(int? pageNum, int? pageSize)
-    {
-      var query = Session.QueryOver<Person>();
-
-      if (pageNum == -1 & pageSize == -1)
-      {
-        return new QueryResult<Person>(query?
-          .List()
-          .AsQueryable());
-      }
-
-      return new QueryResult<Person>(query
-            .Skip(ResultsPagingUtility.CalculateStartIndex((int)pageNum, (int)pageSize))
-            .Take((int)pageSize).List().AsQueryable(),
-          query.ToRowCountQuery().RowCount(),
-          (int)pageSize)
-        ;
-    }
-
     public int FindCountTotals()
     {
       int count = 0;
@@ -60,12 +41,12 @@ namespace soa.repository.Repositories
       return count;
     }
 
-    public Person FindPersonByNumPlate(string numPlate)
+    public Person FindPersonByEmail(string email)
     {
       return
         (Person)
         Session.CreateCriteria(typeof(Person))
-          .Add(Expression.Eq("NumPlate", numPlate))
+          .Add(Expression.Eq("Email", email))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

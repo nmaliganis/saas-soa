@@ -18,7 +18,7 @@ namespace soa.services.Questions
         _autoMapper = autoMapper;
         _questionRepository = questionRepository;
       }
-        public Task<QuestionUiModel> GetQuestionAsync(Guid id)
+        public Task<QuestionUiModel> GetQuestionAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -28,14 +28,14 @@ namespace soa.services.Questions
           return Task.Run(() => _questionRepository.FindCountTotals());
         }
 
-        public Task<QuestionUiModel> GetQuestionByIdAsync(Guid id)
+        public Task<QuestionUiModel> GetQuestionByIdAsync(int id)
         {
-          throw new NotImplementedException();
+          return Task.Run(() =>_autoMapper.Map<QuestionUiModel>(_questionRepository.FindBy(id)));
         }
 
-        public Task<QuestionUiModel> GetQuestionByNumPlateAsync(string numPlate)
+        public Task<QuestionUiModel> GetQuestionByTitleAsync(string title)
         {
-          throw new NotImplementedException();
+          return Task.Run(() =>_autoMapper.Map<QuestionUiModel>(_questionRepository.FindQuestionByTitle(title)));
         }
     }
 }

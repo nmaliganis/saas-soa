@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using soa.common.infrastructure.Domain;
+using soa.common.infrastructure.Vms.Categories;
+using soa.model.Questions;
 
 namespace soa.model.Categories
 {
@@ -12,10 +15,13 @@ namespace soa.model.Categories
     public virtual string Name { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
+    public virtual ISet<Question> Questions { get; set; }
 
     private void OnCreated()
     {
       this.Active = true;
+      this.CreatedDate = DateTime.Now;
+      this.Questions = new HashSet<Question>();
     }
 
 
@@ -26,6 +32,16 @@ namespace soa.model.Categories
 
     protected override void Validate()
     {
+    }
+
+    public virtual void InjectWithInitialAttributes(CategoryForCreationUiModel newCategoryUiModel)
+    {
+      this.Name = newCategoryUiModel.Name;
+    }
+
+    public virtual void InjectWithInitialModifiedAttributes(CategoryForModificationUiModel updatedCategory)
+    {
+      this.Name = updatedCategory.Name;
     }
   }
 }

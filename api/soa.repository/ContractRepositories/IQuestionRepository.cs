@@ -6,8 +6,7 @@ namespace soa.repository.ContractRepositories
 {
     public interface IQuestionRepository : IRepository<Question, int>
     {
-        QueryResult<Question> FindAllQuestionsPagedOf(int? pageNum = -1, int? pageSize = -1);
         int FindCountTotals();
-        Question FindQuestionByNumPlate(string numPlate);
+        Question FindQuestionByTitle(string title);
     }
 }

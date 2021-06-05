@@ -1,4 +1,4 @@
-﻿api/soa.api/bin/Debug
+api/soa.api/bin/Debug
 api/soa.api/obj
 api/soa.api/wwwroot
 api/soa.contracts/bin
@@ -20,3 +20,9 @@ api/soa-common.infrastructure/bin/Debug/netcoreapp3.1
 api/soa-common.infrastructure/obj/Debug/netcoreapp3.1
 api/soa-common.infrastructure/obj
 .vs/soa-be/DesignTimeBuild/.dtbcache.v2
+.idea/.idea.soa-be/.idea
+api/soa.api/\logs-20210529.txt
+api/soa.model/bin/Debug/netcoreapp3.1
+api/soa.repository/bin/Debug/netcoreapp3.1
+api/soa.services/bin/Debug/netcoreapp3.1
+*.txt

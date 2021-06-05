@@ -29,7 +29,7 @@ namespace soa.services.Questions
       _uOf.Commit();
     }
 
-    public Task<QuestionUiModel> UpdateQuestionAsync(Guid idQuestionToBeUpdated, QuestionForModificationUiModel updatedQuestion)
+    public Task<QuestionUiModel> UpdateQuestionAsync(int idQuestionToBeUpdated, QuestionForModificationUiModel updatedQuestion)
     {
       throw new NotImplementedException();
     }

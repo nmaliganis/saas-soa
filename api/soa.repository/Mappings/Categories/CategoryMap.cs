@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 using soa.model.Categories;
+using soa.model.Questions;
 
 namespace soa.repository.Mappings.Categories
 {
@@ -47,25 +48,17 @@ namespace soa.repository.Mappings.Categories
         .Not.Nullable()
         ;
 
-      //References(x => x.Owner)
-      //  .Class<Owner>()
-      //  .Access.Property()
-      //  .Cascade.None()
-      //  .LazyLoad()
-      //  .Columns("`owner_id`")
-      //  ;
-
-      //HasMany<Session>(x => x.Sessions)
-      //  .Access.Property()
-      //  .AsSet()
-      //  .Cascade.All()
-      //  .LazyLoad()
-      //  .Inverse()
-      //  .Generic()
-      //  .KeyColumns.Add("`CategoryId`", mapping => mapping.Name("`CategoryId`")
-      //    .SqlType("uuid")
-      //    .Not.Nullable())
-      //  ;
+      HasMany<Question>(x => x.Questions)
+        .Access.Property()
+        .AsSet()
+        .Cascade.All()
+        .LazyLoad()
+        .Inverse()
+        .Generic()
+        .KeyColumns.Add("`category_id`", mapping => mapping.Name("`category_id`")
+          .SqlType("uuid")
+          .Not.Nullable())
+        ;
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 using soa.model.Persons;
+using soa.model.Questions;
 
 namespace soa.repository.Mappings.Persons
 {
@@ -30,7 +31,7 @@ namespace soa.repository.Mappings.Persons
         ;
 
       Map(x => x.Lastname)
-        .Column("`lastname`")
+        .Column("`lastName`")
         .CustomType("string")
         .Access.Property()
         .Generated.Never()
@@ -38,7 +39,7 @@ namespace soa.repository.Mappings.Persons
         ;
 
       Map(x => x.Firstname)
-        .Column("`firstname`")
+        .Column("`firstName`")
         .CustomType("string")
         .Access.Property()
         .Generated.Never()
@@ -79,6 +80,18 @@ namespace soa.repository.Mappings.Persons
         .Default("true")
         .CustomSqlType("boolean")
         .Not.Nullable()
+        ;
+      
+      HasMany<Question>(x => x.Questions)
+        .Access.Property()
+        .AsSet()
+        .Cascade.All()
+        .LazyLoad()
+        .Inverse()
+        .Generic()
+        .KeyColumns.Add("`person_id`", mapping => mapping.Name("`person_id`")
+          .SqlType("int")
+          .Not.Nullable())
         ;
     }
   }

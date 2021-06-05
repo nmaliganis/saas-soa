@@ -57,10 +57,6 @@
     <ProjectReference Include="..\soa.services\soa.services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
   <PropertyGroup> 
     <ServerGarbageCollection>false</ServerGarbageCollection>
   </PropertyGroup>

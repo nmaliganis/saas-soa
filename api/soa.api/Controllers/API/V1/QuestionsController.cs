@@ -112,7 +112,7 @@ namespace soa.api.Controllers.API.V1
     /// <response code="404">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpGet("{id}", Name = "GetQuestion")]
-    public async Task<IActionResult> GetQuestionAsync(Guid id)
+    public async Task<IActionResult> GetQuestionAsync(int id)
     {
       var questionFromRepo = await _inquiryQuestionProcessor.GetQuestionByIdAsync(id);
 
@@ -139,9 +139,9 @@ namespace soa.api.Controllers.API.V1
     /// <response code="500">Internal Server Error.</response>
     [HttpPut("{id}", Name = "UpdateQuestionRoot")]
     [ValidateModel]
-    public async Task<IActionResult> UpdateQuestionAsync(Guid id, [FromBody] QuestionForModificationUiModel updatedQuestion)
+    public async Task<IActionResult> UpdateQuestionAsync(int id, [FromBody] QuestionForModificationUiModel updatedQuestion)
     {
-      if (id == Guid.Empty || String.IsNullOrEmpty(updatedQuestion.Title))
+      if (id == 0 || String.IsNullOrEmpty(updatedQuestion.Title))
         return BadRequest();
 
       await _updateQuestionProcessor.UpdateQuestionAsync(id, updatedQuestion);
@@ -158,7 +158,7 @@ namespace soa.api.Controllers.API.V1
     /// <response code="400">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpDelete("{id}", Name = "DeleteQuestionRoot")]
-    public async Task<IActionResult> DeleteQuestionRoot(Guid id)
+    public async Task<IActionResult> DeleteQuestionRoot(int id)
     {
       //var userAudit = await _inquiryUserProcessor.GetUserByLoginAsync(GetEmailFromClaims());
 
@@ -201,9 +201,7 @@ namespace soa.api.Controllers.API.V1
       var questionsQueryable =
         await _inquiryAllQuestionsProcessor.GetQuestionsAsync();
 
-      var questions = Mapper.Map<IEnumerable<QuestionUiModel>>(questionsQueryable);
-
-      return Ok(questions);
+      return Ok(questionsQueryable);
     }
   }
 }

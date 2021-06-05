@@ -102,8 +102,7 @@ namespace soa.api
             ValidAudience = Configuration.GetSection("TokenAuthentication:Audience").Value,
           };
         });
-
-
+      
       services.AddMvc(
           options =>
           {
@@ -274,6 +273,7 @@ namespace soa.api
         cfg.AddProfile<AnswerEntityToAnswerUiAutoMapperProfile>();
         cfg.AddProfile<QuestionEntityToQuestionUiAutoMapperProfile>();
         cfg.AddProfile<CategoryEntityToCategoryUiAutoMapperProfile>();
+        cfg.AddProfile<PersonEntityToPersonUiAutoMapperProfile>();
       });
 
       app.UseEndpoints(endpoints => {

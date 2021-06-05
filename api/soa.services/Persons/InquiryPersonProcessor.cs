@@ -27,12 +27,12 @@ namespace soa.services.Persons
 
     public Task<PersonUiModel> GetPersonByIdAsync(int id)
     {
-      throw new NotImplementedException();
+      return Task.Run(() =>_autoMapper.Map<PersonUiModel>(_personRepository.FindBy(id)));
     }
 
-    public Task<PersonUiModel> GetPersonByTitleAsync(string title)
+    public Task<PersonUiModel> GetPersonByEmailAsync(string email)
     {
-      throw new NotImplementedException();
+      return Task.Run(() =>_autoMapper.Map<PersonUiModel>(_personRepository.FindPersonByEmail(email)));
     }
   }
 }

@@ -20,15 +20,6 @@ namespace soa.repository.Mappings.Answers
         .Increment()
         ;
 
-      Map(x => x.Title)
-        .Column("`title`")
-        .CustomType("string")
-        .Unique()
-        .Access.Property()
-        .Generated.Never()
-        .Not.Nullable()
-        ;
-
       Map(x => x.Body)
         .Column("`body`")
         .CustomType("string")

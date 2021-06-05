@@ -19,7 +19,9 @@ using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
 using soa.contracts.Answers;
 using soa.contracts.Categories;
+using soa.contracts.Persons;
 using soa.contracts.Questions;
+using soa.contracts.Tags;
 using soa.contracts.V1;
 using soa.repository.ContractRepositories;
 using soa.repository.Mappings.Questions;
@@ -27,7 +29,10 @@ using soa.repository.NhUnitOfWork;
 using soa.repository.Repositories;
 using soa.services.Answers;
 using soa.services.Categories;
+using soa.services.Categorys;
+using soa.services.Persons;
 using soa.services.Questions;
+using soa.services.Tags;
 using soa.services.V1;
 
 namespace soa.api.Configurations
@@ -80,6 +85,22 @@ namespace soa.api.Configurations
       services.AddScoped<IDeleteCategoryProcessor, DeleteCategoryProcessor>();
       services.AddScoped<ICategoryRepository, CategoryRepository>();
       services.AddScoped<ICategoriesControllerDependencyBlock, CategoriesControllerDependencyBlock>();
+      
+      services.AddScoped<IInquiryPersonProcessor, InquiryPersonProcessor>();
+      services.AddScoped<IInquiryAllPersonsProcessor, InquiryAllPersonsProcessor>();
+      services.AddScoped<ICreatePersonProcessor, CreatePersonProcessor>();
+      services.AddScoped<IUpdatePersonProcessor, UpdatePersonProcessor>();
+      services.AddScoped<IDeletePersonProcessor, DeletePersonProcessor>();
+      services.AddScoped<IPersonRepository, PersonRepository>();
+      services.AddScoped<IPersonsControllerDependencyBlock, PersonsControllerDependencyBlock>();
+      
+      services.AddScoped<IInquiryTagProcessor, InquiryTagProcessor>();
+      services.AddScoped<IInquiryAllTagsProcessor, InquiryAllTagsProcessor>();
+      services.AddScoped<ICreateTagProcessor, CreateTagProcessor>();
+      services.AddScoped<IUpdateTagProcessor, UpdateTagProcessor>();
+      services.AddScoped<IDeleteTagProcessor, DeleteTagProcessor>();
+      services.AddScoped<ITagRepository, TagRepository>();
+      services.AddScoped<ITagsControllerDependencyBlock, TagsControllerDependencyBlock>();
     }
 
     public static void ConfigureAutoMapper(IServiceCollection services)

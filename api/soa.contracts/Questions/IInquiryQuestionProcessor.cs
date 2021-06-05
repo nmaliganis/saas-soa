@@ -6,7 +6,7 @@ namespace soa.contracts.Questions
 {
     public interface IInquiryQuestionProcessor
     {
-        Task<QuestionUiModel> GetQuestionByIdAsync(Guid id);
-        Task<QuestionUiModel> GetQuestionByNumPlateAsync(string numPlate);
+        Task<QuestionUiModel> GetQuestionByIdAsync(int id);
+        Task<QuestionUiModel> GetQuestionByTitleAsync(string title);
     }
 }

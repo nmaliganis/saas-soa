@@ -18,25 +18,6 @@ namespace soa.repository.Repositories
     {
     }
 
-    public QueryResult<Category> FindAllCategoriesPagedOf(int? pageNum, int? pageSize)
-    {
-      var query = Session.QueryOver<Category>();
-
-      if (pageNum == -1 & pageSize == -1)
-      {
-        return new QueryResult<Category>(query?
-          .List()
-          .AsQueryable());
-      }
-
-      return new QueryResult<Category>(query
-            .Skip(ResultsPagingUtility.CalculateStartIndex((int)pageNum, (int)pageSize))
-            .Take((int)pageSize).List().AsQueryable(),
-          query.ToRowCountQuery().RowCount(),
-          (int)pageSize)
-        ;
-    }
-
     public int FindCountTotals()
     {
       int count = 0;

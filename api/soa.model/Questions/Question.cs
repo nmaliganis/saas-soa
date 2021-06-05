@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using soa.common.infrastructure.Domain;
+using soa.common.infrastructure.Vms.Questions;
+using soa.model.Categories;
+using soa.model.Persons;
+using soa.model.Tags;
 
 namespace soa.model.Questions
 {
@@ -16,10 +21,22 @@ namespace soa.model.Questions
     public virtual int Votes { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
+    public virtual Person Person { get; set; }
+    public virtual Category Category { get; set; }
+    
+    public virtual ISet<QuestionAnswer> QuestionAnswers { get; set; }
+    public virtual ISet<TagQuestion> TagQuestions { get; set; }
 
+    
     private void OnCreated()
     {
       this.Active = true;
+      this.Views = 0;
+      this.Flags = 0;
+      this.Votes = 0;
+      this.CreatedDate = DateTime.Now;
+      this.QuestionAnswers = new HashSet<QuestionAnswer>();
+      this.TagQuestions = new HashSet<TagQuestion>();
     }
 
 
@@ -30,6 +47,24 @@ namespace soa.model.Questions
 
     protected override void Validate()
     {
+    }
+
+    public virtual void InjectWithInitialAttributes(QuestionForCreationUiModel newQuestionUiModel)
+    {
+      this.Title = newQuestionUiModel.Title;
+      this.Body = newQuestionUiModel.Body;
+    }
+
+    public virtual void InjectWithCategory(Category categoryToBeInjected)
+    {
+      this.Category = categoryToBeInjected;
+      categoryToBeInjected.Questions.Add(this);
+    }
+
+    public virtual void InjectWithPerson(Person personToBeInjected)
+    {
+      this.Person = personToBeInjected;
+      personToBeInjected.Questions.Add(this);
     }
   }
 }

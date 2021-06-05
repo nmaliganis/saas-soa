@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using soa.common.infrastructure.Domain;
 
 namespace soa.model.Tags
@@ -13,12 +14,14 @@ namespace soa.model.Tags
     public virtual string Description { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
+    public virtual ISet<TagQuestion> TagQuestions { get; set; }
 
 
     private void OnCreated()
     {
       this.Active = true;
       this.CreatedDate = DateTime.Now;
+      this.TagQuestions = new HashSet<TagQuestion>();
     }
 
 

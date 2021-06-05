@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\soa-common.dtos\soa-common.dtos.csproj" />
     <ProjectReference Include="..\soa-common.infrastructure\soa-common.infrastructure.csproj" />
   </ItemGroup>
 

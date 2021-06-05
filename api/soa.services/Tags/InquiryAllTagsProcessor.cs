@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.Vms.Tags;
@@ -20,7 +21,7 @@ namespace soa.services.Tags
 
     public Task<List<TagUiModel>> GetTagsAsync()
     {
-      throw new System.NotImplementedException();
+      return Task.Run(() => _tagRepository.FindAll().Select(x => _autoMapper.Map<TagUiModel>(x)).ToList());
     }
   }
 }

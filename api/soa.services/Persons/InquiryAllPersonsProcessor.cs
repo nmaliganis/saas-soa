@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using soa.common.infrastructure.TypeMappings;
+using soa.common.infrastructure.Vms.Categories;
 using soa.common.infrastructure.Vms.Persons;
 using soa.contracts.Persons;
 using soa.repository.ContractRepositories;
@@ -20,7 +22,7 @@ namespace soa.services.Persons
 
     public Task<List<PersonUiModel>> GetPersonsAsync()
     {
-      throw new System.NotImplementedException();
+      return Task.Run(() => _personRepository.FindAll().Select(x => _autoMapper.Map<PersonUiModel>(x)).ToList());
     }
   }
 }

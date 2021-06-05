@@ -63,37 +63,37 @@ namespace soa.api.Controllers.API.V1
         case ("SUCCESS_CREATION"):
         {
           Log.Information(
-            $"--Method:PostPersonRouteAsync -- Message:Person_CREATION_SUCCESSFULLY -- Datetime:{DateTime.Now}" +
+            $"--Method:PostPersonRouteAsync -- Message:PERSON_CREATION_SUCCESSFULLY -- Datetime:{DateTime.Now}" +
             $" -- PersonInfo:{personForCreationDto.Email}");
           return Created(nameof(PostPersonRouteAsync), newCreatedPerson);
         }
-        case ("ERROR_Person_MULTIPLE_ALREADY_EXISTS"):
+        case ("ERROR_PERSON_MULTIPLE_ALREADY_EXISTS"):
         {
           Log.Error(
-            $"--Method:PostPersonRouteAsync -- Message:ERROR_Person_MULTIPLE_ALREADY_EXISTS -- Datetime:{DateTime.UtcNow} " +
+            $"--Method:PostPersonRouteAsync -- Message:ERROR_PERSON_MULTIPLE_ALREADY_EXISTS -- Datetime:{DateTime.UtcNow} " +
             $"-- PersonInfo:{personForCreationDto.Email}");
-          return BadRequest(new {errorMessage = "Person_MULTIPLE_ENTRIES_ALREADY_EXISTS"});
+          return BadRequest(new {errorMessage = "PERSON_MULTIPLE_ENTRIES_ALREADY_EXISTS"});
         }
-        case ("ERROR_Person_ALREADY_EXISTS"):
+        case ("ERROR_PERSON_ALREADY_EXISTS"):
         {
           Log.Error(
-            $"--Method:PostPersonRouteAsync -- Message:ERROR_Person_ALREADY_EXISTS -- Datetime:{DateTime.UtcNow} " +
+            $"--Method:PostPersonRouteAsync -- Message:ERROR_PERSON_ALREADY_EXISTS -- Datetime:{DateTime.UtcNow} " +
             $"-- PersonInfo:{personForCreationDto.Email}");
-          return BadRequest(new {errorMessage = "Person_ALREADY_EXISTS"});
+          return BadRequest(new {errorMessage = "PERSON_ALREADY_EXISTS"});
         }
-        case ("ERROR_Person_MADE_PERSISTENT"):
+        case ("ERROR_PERSON_MADE_PERSISTENT"):
         {
           Log.Error(
-            $"--Method:PostPersonRouteAsync -- Message:ERROR_Person_MADE_PERSISTENT -- Datetime:{DateTime.UtcNow} " +
+            $"--Method:PostPersonRouteAsync -- Message:ERROR_PERSON_MADE_PERSISTENT -- Datetime:{DateTime.UtcNow} " +
             $"-- PersonInfo:{personForCreationDto.Email}");
-          return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_Person"});
+          return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_PERSON"});
         }
         case ("UNKNOWN_ERROR"):
         {
           Log.Error(
-            $"--Method:PostPersonRouteAsync -- Message:ERROR_CREATION_NEW_Person -- Datetime:{DateTime.UtcNow} " +
+            $"--Method:PostPersonRouteAsync -- Message:ERROR_CREATION_NEW_PERSON -- Datetime:{DateTime.UtcNow} " +
             $"-- PersonInfo:{personForCreationDto.Email}");
-          return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_Person"});
+          return BadRequest(new {errorMessage = "ERROR_CREATION_NEW_PERSON"});
         }
       }
 
@@ -157,7 +157,7 @@ namespace soa.api.Controllers.API.V1
     /// <response code="400">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpDelete("{id}", Name = "DeletePersonRoot")]
-    public async Task<IActionResult> DeletePersonRoot(Guid id)
+    public async Task<IActionResult> DeletePersonRoot(int id)
     {
       //var userAudit = await _inquiryUserProcessor.GetUserByLoginAsync(GetEmailFromClaims());
 

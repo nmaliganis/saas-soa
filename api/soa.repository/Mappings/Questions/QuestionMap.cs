@@ -1,4 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
+using soa.model.Categories;
+using soa.model.Persons;
 using soa.model.Questions;
 
 namespace soa.repository.Mappings.Questions
@@ -83,25 +85,33 @@ namespace soa.repository.Mappings.Questions
         .Not.Nullable()
         ;
 
-      //References(x => x.Owner)
-      //  .Class<Owner>()
-      //  .Access.Property()
-      //  .Cascade.None()
-      //  .LazyLoad()
-      //  .Columns("`owner_id`")
-      //  ;
+      References(x => x.Person)
+        .Class<Person>()
+        .Access.Property()
+        .Cascade.None()
+        .LazyLoad()
+        .Columns("`person_id`")
+        ;
+      
+      References(x => x.Category)
+        .Class<Category>()
+        .Access.Property()
+        .Cascade.None()
+        .LazyLoad()
+        .Columns("`category_id`")
+        ;
 
-      //HasMany<Session>(x => x.Sessions)
-      //  .Access.Property()
-      //  .AsSet()
-      //  .Cascade.All()
-      //  .LazyLoad()
-      //  .Inverse()
-      //  .Generic()
-      //  .KeyColumns.Add("`QuestionId`", mapping => mapping.Name("`QuestionId`")
-      //    .SqlType("uuid")
-      //    .Not.Nullable())
-      //  ;
+      HasMany<QuestionAnswer>(x => x.QuestionAnswers)
+        .Access.Property()
+        .AsSet()
+        .Cascade.All()
+        .LazyLoad()
+        .Inverse()
+        .Generic()
+        .KeyColumns.Add("`question_id`", mapping => mapping.Name("`question_id`")
+          .SqlType("int")
+          .Not.Nullable())
+        ;
     }
   }
 }

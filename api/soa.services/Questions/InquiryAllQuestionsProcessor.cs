@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using soa.common.infrastructure.TypeMappings;
+using soa.common.infrastructure.Vms.Answers;
 using soa.common.infrastructure.Vms.Questions;
 using soa.contracts.Questions;
 using soa.repository.ContractRepositories;
@@ -20,7 +22,7 @@ namespace soa.services.Questions
 
     public Task<List<QuestionUiModel>> GetQuestionsAsync()
     {
-      throw new System.NotImplementedException();
+      return Task.Run(() => _questionRepository.FindAll().Select(x => _autoMapper.Map<QuestionUiModel>(x)).ToList());
     }
   }
 }

@@ -8,8 +8,7 @@ namespace soa.api
   {
     public static void Main(string[] args)
     {
-            NHibernateProfilerBootstrapper.PreStart();
-
+      NHibernateProfilerBootstrapper.PreStart();
       CreateWebHostBuilder(args).Build().Run();
     }
 

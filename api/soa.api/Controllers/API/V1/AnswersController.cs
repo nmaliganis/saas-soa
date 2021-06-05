@@ -158,7 +158,7 @@ namespace soa.api.Controllers.API.V1
     /// <response code="400">Resource Not Found</response>
     /// <response code="500">Internal Server Error.</response>
     [HttpDelete("{id}", Name = "DeleteAnswerRoot")]
-    public async Task<IActionResult> DeleteAnswerRoot(Guid id)
+    public async Task<IActionResult> DeleteAnswerRoot(int id)
     {
       //var userAudit = await _inquiryUserProcessor.GetUserByLoginAsync(GetEmailFromClaims());
 

@@ -7,6 +7,6 @@ namespace soa.contracts.Persons
     public interface IInquiryPersonProcessor
     {
         Task<PersonUiModel> GetPersonByIdAsync(int id);
-        Task<PersonUiModel> GetPersonByTitleAsync(string title);
+        Task<PersonUiModel> GetPersonByEmailAsync(string email);
     }
 }
