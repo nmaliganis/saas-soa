@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ms\common\ms-common.dtos\ms-common.dtos.csproj" />
+    <ProjectReference Include="..\..\common\soa-common.infrastructure\soa-common.infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

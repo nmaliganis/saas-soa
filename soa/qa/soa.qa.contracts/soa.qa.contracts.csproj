@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="V1\IUsersControllerDependencyBlock.cs~RF145c641.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ms\common\ms-common.dtos\soa-common.dtos.csproj" />
+    <ProjectReference Include="..\..\common\soa-common.dtos\soa-common.dtos.csproj" />
+  </ItemGroup>
+
+</Project>

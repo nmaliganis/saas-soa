@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\soa-common.infrastructure\soa-common.infrastructure.csproj" />
+    <ProjectReference Include="..\soa.qa.contracts\soa.qa.contracts.csproj" />
+    <ProjectReference Include="..\soa.qa.repository\soa.qa.repository.csproj" />
+  </ItemGroup>
+
+</Project>
