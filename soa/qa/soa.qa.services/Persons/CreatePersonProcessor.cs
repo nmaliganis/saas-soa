@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Serilog;
+using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.Exceptions.Domain.Persons;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.common.infrastructure.Vms.Persons;
 using soa.qa.contracts.Persons;
 using soa.qa.model.Persons;
 using soa.qa.repository.ContractRepositories;

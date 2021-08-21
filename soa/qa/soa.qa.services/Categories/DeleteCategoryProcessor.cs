@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Serilog;
+using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.Exceptions.Domain.Categories;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.common.infrastructure.Vms.Categories;
 using soa.qa.contracts.Categories;
 using soa.qa.model.Categories;
 using soa.qa.repository.ContractRepositories;

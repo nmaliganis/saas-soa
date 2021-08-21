@@ -2,7 +2,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 
-namespace soa.api
+namespace soa.auth.api
 {
   public class Program
   {

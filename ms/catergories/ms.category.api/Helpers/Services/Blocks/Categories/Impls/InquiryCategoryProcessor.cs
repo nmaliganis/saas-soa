@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.category.api.Helpers.Repositories;
+using ms.category.api.Helpers.Services.Blocks.Categories.Contracts;
 using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.TypeMappings;
-using soa.qa.contracts.Categories;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Categories
+namespace ms.category.api.Helpers.Services.Blocks.Categories.Impls
 {
   public class InquiryCategoryProcessor : IInquiryCategoryProcessor
   {

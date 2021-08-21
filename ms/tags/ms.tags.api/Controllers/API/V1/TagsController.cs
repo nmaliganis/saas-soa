@@ -4,21 +4,21 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ms.tag.api.Helpers.Services.Blocks.Tags;
+using ms.tag.api.Helpers.Services.Blocks.Tags.Contracts;
 using Serilog;
-using soa.api.Controllers.API.Base;
-using soa.api.Validators;
+using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.PropertyMappings.TypeHelpers;
-using soa.common.infrastructure.Vms.Tags;
-using soa.contracts.Tags;
-using soa.contracts.V1;
+using soa.statistics.api.Controllers.API.Base;
+using soa.statistics.api.Validators;
 
-namespace soa.api.Controllers.API.V1
+namespace ms.tag.api.Controllers.API.V1
 {
   [Produces("application/json")]
   [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
   [Route("api/[controller]")]
   [ApiController]
-  //[Authorize]
+  [Authorize]
   public class TagsController : BaseController
   {
     private readonly IUrlHelper _urlHelper;
@@ -169,24 +169,6 @@ namespace soa.api.Controllers.API.V1
       //return Ok(TagToBeSoftDeleted);
       return Ok();
     }
-
-    /// <summary>
-    /// Delete - Delete an existing Tag 
-    /// </summary>
-    /// <param name="id">Tag Id for Deletion</param>
-    /// <remarks>Delete Existing Tag </remarks>
-    /// <response code="200">Resource retrieved correctly</response>
-    /// <response code="400">Resource Not Found</response>
-    /// <response code="500">Internal Server Error.</response>
-    [HttpDelete("hard/{id}", Name = "DeleteHardTagRoot")]
-    [Authorize]
-    public async Task<IActionResult> DeleteHardTagRoot(int id)
-    {
-      var tagToBeDeleted = await _deleteTagProcessor.HardDeleteTagAsync(id);
-
-      return Ok(tagToBeDeleted);
-    }
-
 
     /// <summary>
     /// Get : Retrieve All/or Partial Paged Stored Tags 

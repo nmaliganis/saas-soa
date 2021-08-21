@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.question.api.Helpers.Repositories;
+using ms.question.api.Helpers.Services.Blocks.Question.Contracts;
 using Serilog;
 using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.Exceptions.Domain.Questions;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.qa.contracts.Questions;
-using soa.qa.model.Questions;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Questions
+namespace ms.question.api.Helpers.Services.Blocks.Question.Impls
 {
   public class DeleteQuestionProcessor : IDeleteQuestionProcessor
   {
@@ -94,7 +93,7 @@ namespace soa.qa.services.Questions
       return Task.Run(() => response);
     }
 
-    private QuestionForDeletionUiModel ThrowExcIfQuestionWasNotBeMadePersistent(Question questionToBeSoftDeleted)
+    private QuestionForDeletionUiModel ThrowExcIfQuestionWasNotBeMadePersistent(Models.Question questionToBeSoftDeleted)
     {
       var retrievedQuestion =
         _questionRepository.FindBy(questionToBeSoftDeleted.Id);
@@ -103,7 +102,7 @@ namespace soa.qa.services.Questions
       throw new QuestionDoesNotExistAfterMadeTransientException(questionToBeSoftDeleted.Id);
     }
 
-    private bool ThrowExcIfQuestionWasNotBeMadeTransient(Question questionToBeSoftDeleted)
+    private bool ThrowExcIfQuestionWasNotBeMadeTransient(Models.Question questionToBeSoftDeleted)
     {
       var retrievedQuestion =
         _questionRepository.FindBy(questionToBeSoftDeleted.Id);
@@ -112,14 +111,14 @@ namespace soa.qa.services.Questions
         : true;
     }
 
-    private void MakeQuestionPersistent(Question questionToBeUpdated)
+    private void MakeQuestionPersistent(Models.Question questionToBeUpdated)
     {
       _questionRepository.Save(questionToBeUpdated);
       _uOf.Commit();
     }
 
 
-    private void MakeQuestionTransient(Question questionToBeSoftDeleted)
+    private void MakeQuestionTransient(Models.Question questionToBeSoftDeleted)
     {
       _questionRepository.Remove(questionToBeSoftDeleted);
       _uOf.Commit();

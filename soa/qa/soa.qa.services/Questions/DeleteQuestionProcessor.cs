@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Serilog;
+using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.Exceptions.Domain.Questions;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.common.infrastructure.Vms.Questions;
 using soa.qa.contracts.Questions;
 using soa.qa.model.Questions;
 using soa.qa.repository.ContractRepositories;

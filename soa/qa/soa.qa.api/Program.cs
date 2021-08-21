@@ -16,7 +16,7 @@ namespace soa.qa.api
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
       WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseUrls(urls: "http://0.0.0.0:9200")
+        .UseUrls(urls: "http://0.0.0.0:9210")
         .UseSerilog();
   }
 }

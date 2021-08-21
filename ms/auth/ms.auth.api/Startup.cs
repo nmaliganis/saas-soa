@@ -18,18 +18,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ms.auth.api.Configurations;
+using ms.auth.api.Configurations.AutoMappingProfiles.Answers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using Npgsql;
 using Serilog;
 using Serilog.Events;
-using soa.api.Configurations;
-using soa.api.Configurations.AutoMappingProfiles.Answers;
-using soa.api.Configurations.AutoMappingProfiles.Category;
-using soa.api.Configurations.AutoMappingProfiles.Questions;
 
-namespace soa.api
+namespace ms.auth.api
 {
   public class Startup
   {
@@ -160,9 +157,9 @@ namespace soa.api
       {
         c.SwaggerDoc("v1", new OpenApiInfo()
         {
-          Title = "soa.api - HTTP API",
+          Title = "ms.auth.qa99.api - HTTP API",
           Version = "v1",
-          Description = "The Catalog Microservice HTTP API for soa.api service",
+          Description = "The Catalog Microservice HTTP API for ms.auth.qa99.api service",
         });
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
         {
@@ -255,7 +252,7 @@ namespace soa.api
       });
 
       app.UseSwagger()
-        .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "soa.api - API V1"); });
+        .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "ms.auth.qa99.api - API V1"); });
 
       app.UseCors(CorsPolicyName);
       app.UseResponseCaching();
@@ -270,10 +267,7 @@ namespace soa.api
 
       AutoMapper.Mapper.Initialize(cfg =>
       {
-        cfg.AddProfile<AnswerEntityToAnswerUiAutoMapperProfile>();
-        cfg.AddProfile<QuestionEntityToQuestionUiAutoMapperProfile>();
-        cfg.AddProfile<CategoryEntityToCategoryUiAutoMapperProfile>();
-        cfg.AddProfile<PersonEntityToPersonUiAutoMapperProfile>();
+        cfg.AddProfile<AccountEntityToAccountUiAutoMapperProfile>();
       });
 
       app.UseEndpoints(endpoints => {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using soa.common.infrastructure.Domain;
 
-namespace soa.qa.model.Tags
+namespace ms.tag.api.Helpers.Models
 {
   public class Tag : EntityBase<int>, IAggregateRoot
   {
@@ -14,14 +14,13 @@ namespace soa.qa.model.Tags
     public virtual string Description { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
-    public virtual ISet<TagQuestion> TagQuestions { get; set; }
 
+    public virtual int QuestionId { get; set; }
 
     private void OnCreated()
     {
       this.Active = true;
       this.CreatedDate = DateTime.Now;
-      this.TagQuestions = new HashSet<TagQuestion>();
     }
 
 

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.tag.api.Helpers.Models;
+using ms.tag.api.Helpers.Repositories;
+using ms.tag.api.Helpers.Services.Blocks.Tags.Contracts;
 using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.qa.contracts.Tags;
-using soa.qa.model.Tags;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Tags
+namespace ms.tag.api.Helpers.Services.Blocks.Tags.Impls
 {
   public class UpdateTagProcessor : IUpdateTagProcessor
   {

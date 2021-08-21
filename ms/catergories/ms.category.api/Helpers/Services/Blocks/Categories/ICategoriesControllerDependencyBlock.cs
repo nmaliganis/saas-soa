@@ -1,6 +1,6 @@
-﻿using soa.qa.contracts.Categories;
+﻿using ms.category.api.Helpers.Services.Blocks.Categories.Contracts;
 
-namespace soa.qa.contracts.V1
+namespace ms.category.api.Helpers.Services.Blocks.Categories
 {
   public interface ICategoriesControllerDependencyBlock
   {

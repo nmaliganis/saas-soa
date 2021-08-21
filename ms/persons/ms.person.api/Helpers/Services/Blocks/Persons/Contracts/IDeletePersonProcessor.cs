@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using soa.common.dtos.Vms.Persons;
 
-namespace soa.qa.contracts.Persons
+namespace ms.person.api.Helpers.Services.Blocks.Persons.Contracts
 {
   public interface IDeletePersonProcessor
   {

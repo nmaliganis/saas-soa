@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.Domain;
-using soa.common.infrastructure.Vms.Persons;
 using soa.qa.model.Questions;
 
 namespace soa.qa.model.Persons

@@ -3,15 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>soa.api</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>81cd05f4-14e1-42c9-b4b4-472ae202b9bb</UserSecretsId>
-    <AssemblyName>soa.api</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="0.Docs\readme.md" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="3.1.1" />
@@ -52,9 +46,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\soa-common.infrastructure\soa-common.infrastructure.csproj" />
-    <ProjectReference Include="..\soa.contracts\soa.contracts.csproj" />
-    <ProjectReference Include="..\soa.services\soa.services.csproj" />
+    <ProjectReference Include="..\..\common\soa-common.dtos\soa-common.dtos.csproj" />
+    <ProjectReference Include="..\..\common\soa-common.infrastructure\soa-common.infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="0.Docs" />
   </ItemGroup>
 
   <PropertyGroup> 
@@ -62,7 +59,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>soa.api.xml</DocumentationFile>
+    <DocumentationFile>soa.statistics.api.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

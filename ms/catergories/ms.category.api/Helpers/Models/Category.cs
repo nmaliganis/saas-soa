@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.Domain;
-using soa.qa.model.Questions;
 
-namespace soa.qa.model.Categories
+namespace ms.category.api.Helpers.Models
 {
   public class Category : EntityBase<int>, IAggregateRoot
   {
@@ -15,13 +13,11 @@ namespace soa.qa.model.Categories
     public virtual string Name { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
-    public virtual ISet<Question> Questions { get; set; }
 
     private void OnCreated()
     {
       this.Active = true;
       this.CreatedDate = DateTime.Now;
-      this.Questions = new HashSet<Question>();
     }
 
 

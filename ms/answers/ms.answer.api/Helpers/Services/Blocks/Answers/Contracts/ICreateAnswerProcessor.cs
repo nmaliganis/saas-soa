@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using soa.common.dtos.Vms.Answers;
 
-namespace soa.qa.contracts.Answers
+namespace ms.answer.api.Helpers.Services.Blocks.Answers.Contracts
 {
   public interface ICreateAnswerProcessor
   {

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.person.api.Helpers.Models;
+using ms.person.api.Helpers.Repositories;
+using ms.person.api.Helpers.Services.Blocks.Persons.Contracts;
 using Serilog;
 using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.Exceptions.Domain.Persons;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.qa.contracts.Persons;
-using soa.qa.model.Persons;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Persons
+namespace ms.person.api.Helpers.Services.Blocks.Persons.Impls
 {
   public class DeletePersonProcessor : IDeletePersonProcessor
   {

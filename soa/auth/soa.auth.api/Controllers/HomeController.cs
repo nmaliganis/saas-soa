@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace soa.api.Controllers
+namespace soa.auth.api.Controllers
 {
   public class HomeController : Controller
   {

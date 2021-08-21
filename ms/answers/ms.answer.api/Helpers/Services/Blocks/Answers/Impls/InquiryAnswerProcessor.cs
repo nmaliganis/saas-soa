@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.answer.api.Helpers.Repositories;
+using ms.answer.api.Helpers.Services.Blocks.Answers.Contracts;
 using soa.common.dtos.Vms.Answers;
 using soa.common.infrastructure.TypeMappings;
-using soa.qa.contracts.Answers;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Answers
+namespace ms.answer.api.Helpers.Services.Blocks.Answers.Impls
 {
   public class InquiryAnswerProcessor : IInquiryAnswerProcessor
   {

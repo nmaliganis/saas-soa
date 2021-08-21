@@ -1,11 +1,11 @@
-﻿using soa.common.infrastructure.Domain;
-using soa.qa.model.Tags;
+﻿using ms.tag.api.Helpers.Models;
+using soa.common.infrastructure.Domain;
 
-namespace soa.qa.repository.ContractRepositories
+namespace ms.tag.api.Helpers.Repositories
 {
     public interface ITagRepository : IRepository<Tag, int>
     {
         int FindCountTotals();
-        Tag FindTagByNumPlate(string numPlate);
+        Tag FindTagByTitle(string title);
     }
 }

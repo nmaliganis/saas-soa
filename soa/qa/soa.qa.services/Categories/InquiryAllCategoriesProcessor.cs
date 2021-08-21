@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.TypeMappings;
-using soa.common.infrastructure.Vms.Categories;
 using soa.qa.contracts.Categories;
 using soa.qa.repository.ContractRepositories;
 

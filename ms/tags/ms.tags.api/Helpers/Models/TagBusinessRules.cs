@@ -1,6 +1,6 @@
 ﻿using soa.common.infrastructure.Domain;
 
-namespace soa.qa.model.Tags
+namespace ms.tag.api.Helpers.Models
 {
     public class TagBusinessRules
     {

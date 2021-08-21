@@ -1,6 +1,6 @@
-﻿using soa.qa.contracts.Questions;
+﻿using ms.question.api.Helpers.Services.Blocks.Question.Contracts;
 
-namespace soa.qa.contracts.V1
+namespace ms.question.api.Helpers.Services.Blocks.Question
 {
   public interface IQuestionsControllerDependencyBlock
   {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 
-namespace soa.api
+namespace ms.tag.api
 {
   public class Program
   {
@@ -15,7 +15,7 @@ namespace soa.api
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
       WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseUrls(urls: "http://0.0.0.0:9200")
+        .UseUrls(urls: "http://0.0.0.0:9330")
         .UseSerilog();
   }
 }

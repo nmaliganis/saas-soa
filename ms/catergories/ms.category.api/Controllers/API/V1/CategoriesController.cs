@@ -3,21 +3,21 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ms.category.api.Helpers.Services.Blocks.Categories;
+using ms.category.api.Helpers.Services.Blocks.Categories.Contracts;
+using ms.category.api.Validators;
 using Serilog;
-using soa.api.Validators;
 using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.PropertyMappings.TypeHelpers;
-using soa.qa.api.Controllers.API.Base;
-using soa.qa.contracts.Categories;
-using soa.qa.contracts.V1;
+using soa.statistics.api.Controllers.API.Base;
 
-namespace soa.qa.api.Controllers.API.V1
+namespace ms.category.api.Controllers.API.V1
 {
   [Produces("application/json")]
   [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
   [Route("api/[controller]")]
   [ApiController]
-  //[Authorize]
+  [Authorize]
   public class CategoriesController : BaseController
   {
     private readonly IUrlHelper _urlHelper;

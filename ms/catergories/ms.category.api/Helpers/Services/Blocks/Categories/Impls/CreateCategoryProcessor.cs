@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ms.category.api.Helpers.Models;
+using ms.category.api.Helpers.Repositories;
+using ms.category.api.Helpers.Services.Blocks.Categories.Contracts;
 using Serilog;
 using soa.common.dtos.Vms.Categories;
 using soa.common.infrastructure.Exceptions.Domain.Categories;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.qa.contracts.Categories;
-using soa.qa.model.Categories;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Categories
+namespace ms.category.api.Helpers.Services.Blocks.Categories.Impls
 {
   public class CreateCategoryProcessor : ICreateCategoryProcessor
   {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.TypeMappings;
-using soa.common.infrastructure.Vms.Questions;
 using soa.qa.contracts.Questions;
 using soa.qa.repository.ContractRepositories;
 

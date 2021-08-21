@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 
-namespace soa.api.Controllers.API.Base
+namespace soa.statistics.api.Controllers.API.Base
 {
     public abstract class BaseController : ControllerBase
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ms.common.dtos.Vms.Questions;
+using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.Domain;
 using soa.qa.model.Categories;
 using soa.qa.model.Persons;

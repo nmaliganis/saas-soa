@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:9200",
+      "applicationUrl": "http://localhost:9210",
       "sslPort": 0
     }
   },
@@ -17,19 +17,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "soa.api": {
+    "soa.qa.api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:9201;http://localhost:9200"
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values"
+      "applicationUrl": "https://localhost:9211;http://localhost:9210"
     }
   }
 }

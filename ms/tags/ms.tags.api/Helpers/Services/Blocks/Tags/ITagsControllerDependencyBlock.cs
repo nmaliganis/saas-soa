@@ -1,7 +1,10 @@
-﻿using soa.qa.contracts.Tags;
+﻿using ms.tag.api.Helpers.Services.Blocks.Tags.Contracts;
 
-namespace soa.qa.contracts.V1
+namespace ms.tag.api.Helpers.Services.Blocks.Tags
 {
+  /// <summary>
+  /// 
+  /// </summary>
   public interface ITagsControllerDependencyBlock
   {
     ICreateTagProcessor CreateTagProcessor { get; }

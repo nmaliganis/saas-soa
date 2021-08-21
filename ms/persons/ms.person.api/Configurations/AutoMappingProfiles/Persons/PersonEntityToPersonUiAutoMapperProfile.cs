@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using ms.person.api.Helpers.Models;
 using soa.common.dtos.Vms.Persons;
-using soa.qa.model.Persons;
 
-namespace soa.qa.api.Configurations.AutoMappingProfiles.Persons
+namespace ms.person.api.Configurations.AutoMappingProfiles.Persons
 {
   public class PersonEntityToPersonUiAutoMapperProfile : Profile
   {

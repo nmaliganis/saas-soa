@@ -2,8 +2,8 @@ using System;
 using NHibernate;
 using NHibernate.Criterion;
 using Serilog;
-using soa.qa.repository.Repositories.Base;
 using soa.statistics.api.Helpers.Models;
+using soa.statistics.api.Helpers.Repositories.Base;
 
 namespace soa.statistics.api.Helpers.Repositories
 {

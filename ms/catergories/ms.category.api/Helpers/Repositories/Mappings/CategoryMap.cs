@@ -1,8 +1,8 @@
 ﻿using FluentNHibernate.Mapping;
+using ms.category.api.Helpers.Models;
 using soa.qa.model.Categories;
-using soa.qa.model.Questions;
 
-namespace soa.qa.repository.Mappings.Categories
+namespace ms.category.api.Helpers.Repositories.Mappings
 {
   public class CategoryMap : ClassMap<Category>
   {
@@ -46,18 +46,6 @@ namespace soa.qa.repository.Mappings.Categories
         .Default("true")
         .CustomSqlType("boolean")
         .Not.Nullable()
-        ;
-
-      HasMany<Question>(x => x.Questions)
-        .Access.Property()
-        .AsSet()
-        .Cascade.All()
-        .LazyLoad()
-        .Inverse()
-        .Generic()
-        .KeyColumns.Add("`category_id`", mapping => mapping.Name("`category_id`")
-          .SqlType("uuid")
-          .Not.Nullable())
         ;
     }
   }

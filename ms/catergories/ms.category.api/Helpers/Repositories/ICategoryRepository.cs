@@ -1,7 +1,8 @@
-﻿using soa.common.infrastructure.Domain;
+﻿using ms.category.api.Helpers.Models;
+using soa.common.infrastructure.Domain;
 using soa.qa.model.Categories;
 
-namespace soa.qa.repository.ContractRepositories
+namespace ms.category.api.Helpers.Repositories
 {
     public interface ICategoryRepository : IRepository<Category, int>
     {

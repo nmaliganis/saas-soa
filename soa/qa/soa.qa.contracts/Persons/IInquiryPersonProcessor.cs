@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using soa.common.infrastructure.Vms.Persons;
+using soa.common.dtos.Vms.Persons;
 
 namespace soa.qa.contracts.Persons
 {

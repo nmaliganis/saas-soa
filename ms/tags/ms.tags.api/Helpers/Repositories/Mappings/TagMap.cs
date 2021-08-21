@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using soa.qa.model.Tags;
+using ms.tag.api.Helpers.Models;
 
-namespace soa.qa.repository.Mappings.Tags
+namespace ms.tag.api.Helpers.Repositories.Mappings
 {
   public class TagMap : ClassMap<Tag>
   {

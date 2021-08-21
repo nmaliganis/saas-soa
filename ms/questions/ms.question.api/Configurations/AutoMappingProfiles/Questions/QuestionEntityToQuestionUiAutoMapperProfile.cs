@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using ms.question.api.Helpers.Models;
 using soa.common.dtos.Vms.Questions;
-using soa.qa.model.Questions;
 
-namespace soa.qa.api.Configurations.AutoMappingProfiles.Questions
+namespace ms.question.api.Configurations.AutoMappingProfiles.Questions
 {
   public class QuestionEntityToQuestionUiAutoMapperProfile : Profile
   {
@@ -22,8 +22,6 @@ namespace soa.qa.api.Configurations.AutoMappingProfiles.Questions
         .ForMember(dest => dest.Flags, opt => opt.MapFrom(src => src.Flags))
         .ForMember(dest => dest.Active, opt => opt.MapFrom(src => src.Active))
         .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate))
-        .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Id))
-        .ForMember(dest => dest.PersonId, opt => opt.MapFrom(src => src.Person.Id))
         .MaxDepth(1)
         .PreserveReferences()
         ;

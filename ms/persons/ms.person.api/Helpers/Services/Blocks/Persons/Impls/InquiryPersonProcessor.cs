@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
+using ms.person.api.Helpers.Repositories;
+using ms.person.api.Helpers.Services.Blocks.Persons.Contracts;
 using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.TypeMappings;
-using soa.qa.contracts.Persons;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Persons
+namespace ms.person.api.Helpers.Services.Blocks.Persons.Impls
 {
   public class InquiryPersonProcessor : IInquiryPersonProcessor
   {

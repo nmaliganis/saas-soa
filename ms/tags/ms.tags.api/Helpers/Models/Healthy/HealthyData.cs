@@ -1,4 +1,4 @@
-﻿namespace soa.api.Helpers.Models.Healthy
+﻿namespace soa.statistics.api.Helpers.Models.Healthy
 {
   public class PostgreSQLdatabase
   {

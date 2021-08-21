@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using soa.common.dtos.Vms.Categories;
 
-namespace soa.qa.contracts.Categories
+namespace ms.category.api.Helpers.Services.Blocks.Categories.Contracts
 {
     public interface IInquiryAllCategoriesProcessor
     {

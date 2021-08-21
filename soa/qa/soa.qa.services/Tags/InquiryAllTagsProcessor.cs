@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.TypeMappings;
-using soa.common.infrastructure.Vms.Tags;
 using soa.qa.contracts.Tags;
 using soa.qa.repository.ContractRepositories;
 

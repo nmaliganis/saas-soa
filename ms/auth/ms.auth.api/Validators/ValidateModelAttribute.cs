@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace soa.api.Validators
+namespace ms.auth.api.Validators
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

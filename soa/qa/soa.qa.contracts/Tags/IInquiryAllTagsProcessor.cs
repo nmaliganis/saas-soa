@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using soa.common.infrastructure.Vms.Tags;
+using soa.common.dtos.Vms.Tags;
 
 namespace soa.qa.contracts.Tags
 {

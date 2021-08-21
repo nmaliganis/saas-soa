@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ms.question.api.Helpers.Repositories;
+using ms.question.api.Helpers.Services.Blocks.Question.Contracts;
 using Serilog;
 using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.Exceptions.Domain.Categories;
@@ -8,37 +10,30 @@ using soa.common.infrastructure.Exceptions.Domain.Persons;
 using soa.common.infrastructure.Exceptions.Domain.Questions;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.qa.contracts.Questions;
-using soa.qa.model.Questions;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Questions
+namespace ms.question.api.Helpers.Services.Blocks.Question.Impls
 {
   public class CreateQuestionProcessor : ICreateQuestionProcessor
   {
     private readonly IUnitOfWork _uOf;
     private readonly IQuestionRepository _questionRepository;
-    private readonly IPersonRepository _personRepository;
-    private readonly ICategoryRepository _categoryRepository;
     private readonly IAutoMapper _autoMapper;
 
     public CreateQuestionProcessor(IUnitOfWork uOf, IAutoMapper autoMapper,
-      IQuestionRepository questionRepository, IPersonRepository personRepository, ICategoryRepository categoryRepository)
+      IQuestionRepository questionRepository)
     {
       _uOf = uOf;
       _questionRepository = questionRepository;
-      _personRepository = personRepository;
-      _categoryRepository = categoryRepository;
       _autoMapper = autoMapper;
     }
 
-    private void MakeQuestionPersistent(Question questionToBeMadePersistence)
+    private void MakeQuestionPersistent(Models.Question questionToBeMadePersistence)
     {
       _questionRepository.Save(questionToBeMadePersistence);
       _uOf.Commit();
     }
     
-    private void ThrowExcIfThisQuestionAlreadyExist(Question questionToBeCreated)
+    private void ThrowExcIfThisQuestionAlreadyExist(Models.Question questionToBeCreated)
     {
       var questionRetrieved = _questionRepository.FindQuestionByTitle(questionToBeCreated.Title);
       if (questionRetrieved != null)
@@ -48,7 +43,7 @@ namespace soa.qa.services.Questions
       }
     }
 
-    private QuestionUiModel ThrowExcIfQuestionWasNotBeMadePersistent(Question questionToBeCreated)
+    private QuestionUiModel ThrowExcIfQuestionWasNotBeMadePersistent(Models.Question questionToBeCreated)
     {
       var retrievedQuestion = _questionRepository.FindQuestionByTitle(questionToBeCreated.Title);
       if (retrievedQuestion != null)
@@ -56,7 +51,7 @@ namespace soa.qa.services.Questions
       throw new QuestionDoesNotExistAfterMadePersistentException(retrievedQuestion.Title);
     }
     
-    private void ThrowExcIfQuestionCannotBeCreated(Question questionToBeCreated)
+    private void ThrowExcIfQuestionCannotBeCreated(Models.Question questionToBeCreated)
     {
       bool canBeCreated = !questionToBeCreated.GetBrokenRules().Any();
       if (!canBeCreated)
@@ -79,26 +74,7 @@ namespace soa.qa.services.Questions
 
       try
       {
-        var questionToBeCreated = new Question();
-
-        questionToBeCreated.InjectWithInitialAttributes(newQuestionUiModel);
-
-        var categoryToBeInjected = _categoryRepository.FindBy(newQuestionUiModel.CategoryId);
-
-        if (categoryToBeInjected == null)
-          throw new CategoryDoesNotExistException(newQuestionUiModel.CategoryId);
-
-        questionToBeCreated.InjectWithCategory(categoryToBeInjected);
-        
-        var personToBeInjected = _personRepository.FindBy(newQuestionUiModel.PersonId);
-
-        if (personToBeInjected == null)
-          throw new PersonDoesNotExistException(newQuestionUiModel.PersonId);
-        
-        questionToBeCreated.InjectWithPerson(personToBeInjected);
-        
-        ThrowExcIfQuestionCannotBeCreated(questionToBeCreated);
-        ThrowExcIfThisQuestionAlreadyExist(questionToBeCreated);
+        var questionToBeCreated = new Models.Question();
 
         Log.Debug(
           $"Create Question: {newQuestionUiModel.Title}" +

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using NHibernate;
 using soa.common.infrastructure.Domain;
 
-namespace soa.auth.api.Helpers.Repositories
+namespace soa.auth.api.Helpers.Repositories.Base
 {
     public abstract class RepositoryBase<T, TEntityKey>
         where T : IAggregateRoot

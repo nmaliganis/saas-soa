@@ -1,12 +1,11 @@
 ﻿using System;
+using ms.person.api.Helpers.Models;
+using ms.person.api.Helpers.Repositories.Base;
 using NHibernate;
 using NHibernate.Criterion;
 using Serilog;
-using soa.qa.model.Persons;
-using soa.qa.repository.ContractRepositories;
-using soa.qa.repository.Repositories.Base;
 
-namespace soa.qa.repository.Repositories
+namespace ms.person.api.Helpers.Repositories
 {
   public class PersonRepository : RepositoryBase<Person, int>, IPersonRepository
   {

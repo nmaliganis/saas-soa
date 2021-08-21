@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using ms.category.api.Helpers.Models;
 using soa.common.dtos.Vms.Categories;
 
-namespace soa.qa.api.Configurations.AutoMappingProfiles.Category
+namespace ms.category.api.Configurations.AutoMappingProfiles.Categories
 {
   public class CategoryEntityToCategoryUiAutoMapperProfile : Profile
   {
@@ -12,7 +13,7 @@ namespace soa.qa.api.Configurations.AutoMappingProfiles.Category
 
     public void ConfigureMapping()
     {
-      CreateMap<qa.model.Categories.Category, CategoryUiModel>()
+      CreateMap<Category, CategoryUiModel>()
         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
         .MaxDepth(1)

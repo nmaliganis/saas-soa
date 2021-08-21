@@ -1,6 +1,6 @@
 ﻿using soa.common.infrastructure.Domain;
 
-namespace soa.qa.model.Persons
+namespace ms.person.api.Helpers.Models
 {
     public class PersonBusinessRules
     {

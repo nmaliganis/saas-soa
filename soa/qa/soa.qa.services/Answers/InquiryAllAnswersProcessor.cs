@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using soa.common.dtos.Vms.Answers;
 using soa.common.infrastructure.TypeMappings;
-using soa.common.infrastructure.Vms.Answers;
 using soa.qa.contracts.Answers;
 using soa.qa.repository.ContractRepositories;
 

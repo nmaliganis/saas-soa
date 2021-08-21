@@ -64,7 +64,7 @@ namespace soa.qa.api
       Log.Logger = new LoggerConfiguration()
         .ReadFrom.Configuration(Configuration)
         .MinimumLevel.Debug()
-        .MinimumLevel.Override("soa.api", LogEventLevel.Information)
+        .MinimumLevel.Override("soa.qa99.api", LogEventLevel.Information)
         .Enrich.FromLogContext()
         .Enrich.WithMachineName()
         .Enrich.WithProperty("Assembly", $"{name.Name}")
@@ -160,9 +160,9 @@ namespace soa.qa.api
       {
         c.SwaggerDoc("v1", new OpenApiInfo()
         {
-          Title = "soa.api - HTTP API",
+          Title = "soa.qa99.api - HTTP API",
           Version = "v1",
-          Description = "The Catalog Microservice HTTP API for soa.api service",
+          Description = "The Catalog Microservice HTTP API for soa.qa99.api service",
         });
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
         {
@@ -255,7 +255,7 @@ namespace soa.qa.api
       });
 
       app.UseSwagger()
-        .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "soa.api - API V1"); });
+        .UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "soa.qa99.api - API V1"); });
 
       app.UseCors(CorsPolicyName);
       app.UseResponseCaching();

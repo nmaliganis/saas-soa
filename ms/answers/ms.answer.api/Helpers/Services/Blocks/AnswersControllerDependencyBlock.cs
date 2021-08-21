@@ -1,7 +1,6 @@
-﻿using soa.qa.contracts.Answers;
-using soa.qa.contracts.V1;
+﻿using ms.answer.api.Helpers.Services.Blocks.Answers.Contracts;
 
-namespace soa.services.V1
+namespace ms.answer.api.Helpers.Services.Blocks
 {
     public class AnswersControllerDependencyBlock : IAnswersControllerDependencyBlock
     {

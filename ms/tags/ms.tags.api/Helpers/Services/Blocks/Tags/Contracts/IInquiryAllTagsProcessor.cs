@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using soa.common.dtos.Vms.Tags;
 
-namespace soa.qa.contracts.Tags
+namespace ms.tag.api.Helpers.Services.Blocks.Tags.Contracts
 {
     public interface IInquiryAllTagsProcessor
     {

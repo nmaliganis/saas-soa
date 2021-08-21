@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Serilog;
+using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.Exceptions.Domain.Tags;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.common.infrastructure.Vms.Tags;
 using soa.qa.contracts.Tags;
 using soa.qa.model.Tags;
 using soa.qa.repository.ContractRepositories;

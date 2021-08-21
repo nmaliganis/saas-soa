@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ms.question.api.Helpers.Repositories;
+using ms.question.api.Helpers.Services.Blocks.Question.Contracts;
 using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.TypeMappings;
-using soa.qa.contracts.Questions;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Questions
+namespace ms.question.api.Helpers.Services.Blocks.Question.Impls
 {
     public class InquiryQuestionProcessor : IInquiryQuestionProcessor
     {

@@ -4,7 +4,7 @@
         <name>soa.qa.api</name>
     </assembly>
     <members>
-        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.PostAnswerRouteAsync(soa.common.infrastructure.Vms.Answers.AnswerForCreationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.PostAnswerRouteAsync(soa.common.dtos.Vms.Answers.AnswerForCreationUiModel)">
             <summary>
             POST : Create a New Answer.
             </summary>
@@ -25,7 +25,7 @@
             <response code="404">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.UpdateAnswerAsync(System.Int32,soa.common.infrastructure.Vms.Answers.AnswerForModificationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.UpdateAnswerAsync(System.Int32,soa.common.dtos.Vms.Answers.AnswerForModificationUiModel)">
             <summary>
             PUT : Update Answer with New Answer Name
             </summary>
@@ -66,11 +66,11 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.CategoriesController.PostCategoryRouteAsync(soa.common.infrastructure.Vms.Categories.CategoryForCreationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.CategoriesController.PostCategoryRouteAsync(soa.common.dtos.Vms.Categories.CategoryForCreationUiModel)">
             <summary>
             POST : Create a New Category.
             </summary>
-            <param name="CategoryForCreationDto">CategoryForCreationDto the Request Model for Creation</param>
+            <param name="categoryForCreationDto">CategoryForCreationDto the Request Model for Creation</param>
             <remarks> return a ResponseEntity with status 201 (Created) if the new Category is created, 400 (Bad Request), 500 (Server Error) </remarks>
             <response code="201">Created (if the Category is created)</response>
             <response code="400">Bad Request</response>
@@ -87,7 +87,7 @@
             <response code="404">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.CategoriesController.UpdateCategoryAsync(System.Int32,soa.common.infrastructure.Vms.Categories.CategoryForModificationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.CategoriesController.UpdateCategoryAsync(System.Int32,soa.common.dtos.Vms.Categories.CategoryForModificationUiModel)">
             <summary>
             PUT : Update Category with New Category Name
             </summary>
@@ -128,7 +128,7 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.PersonsController.PostPersonRouteAsync(soa.common.infrastructure.Vms.Persons.PersonForCreationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.PersonsController.PostPersonRouteAsync(soa.common.dtos.Vms.Persons.PersonForCreationUiModel)">
             <summary>
             POST : Create a New Person.
             </summary>
@@ -149,7 +149,7 @@
             <response code="404">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.PersonsController.UpdatePersonAsync(System.Int32,soa.common.infrastructure.Vms.Persons.PersonForModificationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.PersonsController.UpdatePersonAsync(System.Int32,soa.common.dtos.Vms.Persons.PersonForModificationUiModel)">
             <summary>
             PUT : Update Person with New Person Name
             </summary>
@@ -190,7 +190,7 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.PostQuestionRouteAsync(soa.common.infrastructure.Vms.Questions.QuestionForCreationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.PostQuestionRouteAsync(soa.common.dtos.Vms.Questions.QuestionForCreationUiModel)">
             <summary>
             POST : Create a New Question.
             </summary>
@@ -211,7 +211,7 @@
             <response code="404">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.UpdateQuestionAsync(System.Int32,soa.common.infrastructure.Vms.Questions.QuestionForModificationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.UpdateQuestionAsync(System.Int32,soa.common.dtos.Vms.Questions.QuestionForModificationUiModel)">
             <summary>
             PUT : Update Question with New Question Name
             </summary>
@@ -252,7 +252,7 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.TagsController.PostTagRouteAsync(soa.common.infrastructure.Vms.Tags.TagForCreationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.TagsController.PostTagRouteAsync(soa.common.dtos.Vms.Tags.TagForCreationUiModel)">
             <summary>
             POST : Create a New Tag.
             </summary>
@@ -273,7 +273,7 @@
             <response code="404">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.TagsController.UpdateTagAsync(System.Int32,soa.common.infrastructure.Vms.Tags.TagForModificationUiModel)">
+        <member name="M:soa.qa.api.Controllers.API.V1.TagsController.UpdateTagAsync(System.Int32,soa.common.dtos.Vms.Tags.TagForModificationUiModel)">
             <summary>
             PUT : Update Tag with New Tag Name
             </summary>

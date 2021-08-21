@@ -1,12 +1,11 @@
 ﻿using System;
+using ms.tag.api.Helpers.Models;
+using ms.tag.api.Helpers.Repositories.Base;
 using NHibernate;
 using NHibernate.Criterion;
 using Serilog;
-using soa.qa.model.Tags;
-using soa.qa.repository.ContractRepositories;
-using soa.qa.repository.Repositories.Base;
 
-namespace soa.qa.repository.Repositories
+namespace ms.tag.api.Helpers.Repositories
 {
   public class TagRepository : RepositoryBase<Tag, int>, ITagRepository
   {
@@ -38,12 +37,12 @@ namespace soa.qa.repository.Repositories
       return count;
     }
 
-    public Tag FindTagByNumPlate(string numPlate)
+    public Tag FindTagByTitle(string title)
     {
       return
         (Tag)
         Session.CreateCriteria(typeof(Tag))
-          .Add(Expression.Eq("NumPlate", numPlate))
+          .Add(Expression.Eq("NumPlate", title))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.Domain;
-using soa.qa.model.Questions;
 
-namespace soa.qa.model.Persons
+namespace ms.person.api.Helpers.Models
 {
   public class Person : EntityBase<int>, IAggregateRoot
   {
@@ -20,7 +18,6 @@ namespace soa.qa.model.Persons
     public virtual int Voted { get; set; }
     public virtual DateTime CreatedDate { get; set; }
     public virtual bool Active { get; set; }
-    public virtual ISet<Question> Questions { get; set; }
 
     private void OnCreated()
     {
@@ -28,7 +25,6 @@ namespace soa.qa.model.Persons
       this.Flaged = 0;
       this.Voted = 0;
       this.CreatedDate = DateTime.Now;
-      this.Questions = new HashSet<Question>();
     }
 
 

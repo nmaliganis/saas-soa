@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Serilog;
+using soa.common.dtos.Vms.Questions;
 using soa.common.infrastructure.Exceptions.Domain.Categories;
 using soa.common.infrastructure.Exceptions.Domain.Persons;
 using soa.common.infrastructure.Exceptions.Domain.Questions;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.common.infrastructure.Vms.Questions;
 using soa.qa.contracts.Questions;
 using soa.qa.model.Questions;
 using soa.qa.repository.ContractRepositories;
@@ -56,11 +56,11 @@ namespace soa.qa.services.Questions
       throw new QuestionDoesNotExistAfterMadePersistentException(retrievedQuestion.Title);
     }
     
-    private void ThrowExcIfQuestionCannotBeCreated(Question QuestionToBeCreated)
+    private void ThrowExcIfQuestionCannotBeCreated(Question questionToBeCreated)
     {
-      bool canBeCreated = !QuestionToBeCreated.GetBrokenRules().Any();
+      bool canBeCreated = !questionToBeCreated.GetBrokenRules().Any();
       if (!canBeCreated)
-        throw new InvalidQuestionException(QuestionToBeCreated.GetBrokenRulesAsString());
+        throw new InvalidQuestionException(questionToBeCreated.GetBrokenRulesAsString());
     }
     
     public Task<QuestionUiModel> CreateQuestionAsync(QuestionForCreationUiModel newQuestionUiModel)

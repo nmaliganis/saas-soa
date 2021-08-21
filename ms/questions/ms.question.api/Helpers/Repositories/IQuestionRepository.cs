@@ -1,7 +1,7 @@
-﻿using soa.common.infrastructure.Domain;
-using soa.qa.model.Questions;
+﻿using ms.question.api.Helpers.Models;
+using soa.common.infrastructure.Domain;
 
-namespace soa.qa.repository.ContractRepositories
+namespace ms.question.api.Helpers.Repositories
 {
     public interface IQuestionRepository : IRepository<Question, int>
     {

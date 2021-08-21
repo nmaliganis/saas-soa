@@ -12,30 +12,18 @@ using NHibernate.Driver;
 using NHibernate.Spatial.Dialect;
 using NHibernate.Spatial.Mapping;
 using NHibernate.Spatial.Metadata;
+using soa.auth.api.Helpers.Repositories;
+using soa.auth.api.Helpers.Repositories.Mappings;
+using soa.auth.api.Helpers.Services.Blocks;
+using soa.auth.api.Helpers.Services.Blocks.Statistics.Contracts;
+using soa.auth.api.Helpers.Services.Blocks.Statistics.Impls;
 using soa.common.infrastructure.Exceptions.Repositories;
 using soa.common.infrastructure.PropertyMappings.TypeHelpers;
 using soa.common.infrastructure.Serializers;
 using soa.common.infrastructure.TypeMappings;
 using soa.common.infrastructure.UnitOfWorks;
-using soa.contracts.Answers;
-using soa.contracts.Categories;
-using soa.contracts.Persons;
-using soa.contracts.Questions;
-using soa.contracts.Tags;
-using soa.contracts.V1;
-using soa.repository.ContractRepositories;
-using soa.repository.Mappings.Questions;
-using soa.repository.NhUnitOfWork;
-using soa.repository.Repositories;
-using soa.services.Answers;
-using soa.services.Categories;
-using soa.services.Categorys;
-using soa.services.Persons;
-using soa.services.Questions;
-using soa.services.Tags;
-using soa.services.V1;
 
-namespace soa.api.Configurations
+namespace soa.auth.api.Configurations
 {
   public static class Config
   {
@@ -62,45 +50,11 @@ namespace soa.api.Configurations
 
       services.AddSingleton<IJsonSerializer, JSONsSerializer>();
 
-      services.AddScoped<IInquiryQuestionProcessor, InquiryQuestionProcessor>();
-      services.AddScoped<IInquiryAllQuestionsProcessor, InquiryAllQuestionsProcessor>();
-      services.AddScoped<ICreateQuestionProcessor, CreateQuestionProcessor>();
-      services.AddScoped<IUpdateQuestionProcessor, UpdateQuestionProcessor>();
-      services.AddScoped<IDeleteQuestionProcessor, DeleteQuestionProcessor>();
-      services.AddScoped<IQuestionRepository, QuestionRepository>();
-      services.AddScoped<IQuestionsControllerDependencyBlock, QuestionsControllerDependencyBlock>();
-
-      services.AddScoped<IInquiryAnswerProcessor, InquiryAnswerProcessor>();
-      services.AddScoped<IInquiryAllAnswersProcessor, InquiryAllAnswersProcessor>();
-      services.AddScoped<ICreateAnswerProcessor, CreateAnswerProcessor>();
-      services.AddScoped<IUpdateAnswerProcessor, UpdateAnswerProcessor>();
-      services.AddScoped<IDeleteAnswerProcessor, DeleteAnswerProcessor>();
-      services.AddScoped<IAnswerRepository, AnswerRepository>();
-      services.AddScoped<IAnswersControllerDependencyBlock, AnswersControllerDependencyBlock>();
-
-      services.AddScoped<IInquiryCategoryProcessor, InquiryCategoryProcessor>();
-      services.AddScoped<IInquiryAllCategoriesProcessor, InquiryAllCategoriesProcessor>();
-      services.AddScoped<ICreateCategoryProcessor, CreateCategoryProcessor>();
-      services.AddScoped<IUpdateCategoryProcessor, UpdateCategoryProcessor>();
-      services.AddScoped<IDeleteCategoryProcessor, DeleteCategoryProcessor>();
-      services.AddScoped<ICategoryRepository, CategoryRepository>();
-      services.AddScoped<ICategoriesControllerDependencyBlock, CategoriesControllerDependencyBlock>();
-      
-      services.AddScoped<IInquiryPersonProcessor, InquiryPersonProcessor>();
-      services.AddScoped<IInquiryAllPersonsProcessor, InquiryAllPersonsProcessor>();
-      services.AddScoped<ICreatePersonProcessor, CreatePersonProcessor>();
-      services.AddScoped<IUpdatePersonProcessor, UpdatePersonProcessor>();
-      services.AddScoped<IDeletePersonProcessor, DeletePersonProcessor>();
-      services.AddScoped<IPersonRepository, PersonRepository>();
-      services.AddScoped<IPersonsControllerDependencyBlock, PersonsControllerDependencyBlock>();
-      
-      services.AddScoped<IInquiryTagProcessor, InquiryTagProcessor>();
-      services.AddScoped<IInquiryAllTagsProcessor, InquiryAllTagsProcessor>();
-      services.AddScoped<ICreateTagProcessor, CreateTagProcessor>();
-      services.AddScoped<IUpdateTagProcessor, UpdateTagProcessor>();
-      services.AddScoped<IDeleteTagProcessor, DeleteTagProcessor>();
-      services.AddScoped<ITagRepository, TagRepository>();
-      services.AddScoped<ITagsControllerDependencyBlock, TagsControllerDependencyBlock>();
+      services.AddScoped<IInquiryAccountProcessor, InquiryAccountProcessor>();
+      services.AddScoped<IInquiryAllAccountsProcessor, InquiryAllAccountsProcessor>();
+      services.AddScoped<ICreateAccountProcessor, CreateAccountProcessor>();
+      services.AddScoped<IAccountRepository, AccountRepository>();
+      services.AddScoped<IAccountsControllerDependencyBlock, AccountsControllerDependencyBlock>();
     }
 
     public static void ConfigureAutoMapper(IServiceCollection services)
@@ -123,7 +77,7 @@ namespace soa.api.Configurations
             .Raw("transaction.use_connection_on_system_prepare", "true")
             .AdoNetBatchSize(100)
           )
-          .Mappings(x => x.FluentMappings.AddFromAssemblyOf<QuestionMap>())
+          .Mappings(x => x.FluentMappings.AddFromAssemblyOf<AccountMap>())
           .Cache(c => c.UseSecondLevelCache().UseQueryCache()
             .ProviderClass(typeof(NHibernate.Caches.RtMemoryCache.RtMemoryCacheProvider)
               .AssemblyQualifiedName)

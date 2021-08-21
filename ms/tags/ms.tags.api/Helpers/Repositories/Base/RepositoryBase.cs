@@ -2,7 +2,7 @@
 using NHibernate;
 using soa.common.infrastructure.Domain;
 
-namespace soa.qa.repository.Repositories.Base
+namespace ms.tag.api.Helpers.Repositories.Base
 {
   public abstract class RepositoryBase<T, TEntityKey>
     where T : IAggregateRoot

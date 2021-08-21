@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="0.Docs\readme.md" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="3.1.1" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="3.1.2" />
     <PackageReference Include="AspNetCoreRateLimit" Version="3.0.5" />
@@ -53,8 +49,6 @@
     <ProjectReference Include="..\..\common\soa-common.dtos\soa-common.dtos.csproj" />
     <ProjectReference Include="..\..\common\soa-common.infrastructure\soa-common.infrastructure.csproj" />
     <ProjectReference Include="..\soa.qa.contracts\soa.qa.contracts.csproj" />
-    <ProjectReference Include="..\soa.qa.model\soa.qa.model.csproj" />
-    <ProjectReference Include="..\soa.qa.repository\soa.qa.repository.csproj" />
     <ProjectReference Include="..\soa.qa.services\soa.qa.services.csproj" />
   </ItemGroup>
 

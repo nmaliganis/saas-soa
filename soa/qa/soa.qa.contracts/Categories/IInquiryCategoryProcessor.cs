@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using soa.common.infrastructure.Vms.Categories;
+using soa.common.dtos.Vms.Categories;
 
 namespace soa.qa.contracts.Categories
 {

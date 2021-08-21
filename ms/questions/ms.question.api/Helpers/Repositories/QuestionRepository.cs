@@ -1,12 +1,11 @@
 ﻿using System;
+using ms.question.api.Helpers.Models;
+using ms.question.api.Helpers.Repositories.Base;
 using NHibernate;
 using NHibernate.Criterion;
 using Serilog;
-using soa.qa.model.Questions;
-using soa.qa.repository.ContractRepositories;
-using soa.qa.repository.Repositories.Base;
 
-namespace soa.qa.repository.Repositories
+namespace ms.question.api.Helpers.Repositories
 {
   public class QuestionRepository : RepositoryBase<Question, int>, IQuestionRepository
   {

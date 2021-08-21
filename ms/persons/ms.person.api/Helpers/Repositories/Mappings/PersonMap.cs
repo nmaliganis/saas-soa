@@ -1,8 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using soa.qa.model.Persons;
-using soa.qa.model.Questions;
+using ms.person.api.Helpers.Models;
 
-namespace soa.qa.repository.Mappings.Persons
+namespace ms.person.api.Helpers.Repositories.Mappings
 {
   public class PersonMap : ClassMap<Person>
   {
@@ -80,18 +79,6 @@ namespace soa.qa.repository.Mappings.Persons
         .Default("true")
         .CustomSqlType("boolean")
         .Not.Nullable()
-        ;
-      
-      HasMany<Question>(x => x.Questions)
-        .Access.Property()
-        .AsSet()
-        .Cascade.All()
-        .LazyLoad()
-        .Inverse()
-        .Generic()
-        .KeyColumns.Add("`person_id`", mapping => mapping.Name("`person_id`")
-          .SqlType("int")
-          .Not.Nullable())
         ;
     }
   }

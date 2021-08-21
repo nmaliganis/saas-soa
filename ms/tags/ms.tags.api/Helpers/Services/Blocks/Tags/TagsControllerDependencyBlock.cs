@@ -1,7 +1,6 @@
-﻿using soa.qa.contracts.Tags;
-using soa.qa.contracts.V1;
+﻿using ms.tag.api.Helpers.Services.Blocks.Tags.Contracts;
 
-namespace soa.services.V1
+namespace ms.tag.api.Helpers.Services.Blocks.Tags
 {
     public class TagsControllerDependencyBlock : ITagsControllerDependencyBlock
     {

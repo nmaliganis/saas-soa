@@ -4,21 +4,21 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ms.person.api.Helpers.Services.Blocks.Persons;
+using ms.person.api.Helpers.Services.Blocks.Persons.Contracts;
+using ms.person.api.Validators;
 using Serilog;
-using soa.api.Validators;
 using soa.common.dtos.Vms.Persons;
 using soa.common.infrastructure.PropertyMappings.TypeHelpers;
-using soa.qa.api.Controllers.API.Base;
-using soa.qa.contracts.Persons;
-using soa.qa.contracts.V1;
+using soa.statistics.api.Controllers.API.Base;
 
-namespace soa.qa.api.Controllers.API.V1
+namespace ms.person.api.Controllers.API.V1
 {
   [Produces("application/json")]
   [ResponseCache(Duration = 0, NoStore = true, VaryByHeader = "*")]
   [Route("api/[controller]")]
   [ApiController]
-  //[Authorize]
+  [Authorize]
   public class PersonsController : BaseController
   {
     private readonly IUrlHelper _urlHelper;

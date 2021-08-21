@@ -144,3 +144,6 @@ ms/questions/ms.questions.api/obj
 ms/tags/ms.tags.model/obj
 soa/qa/soa.qa.services/obj
 soa/statistics/soa.statistics.services/obj
+soa/statistics/soa.statistics.api/obj/Debug/netcoreapp3.1
+soa/statistics/soa.statistics.api/obj
+soa/statistics/soa.statistics.api/bin/Debug

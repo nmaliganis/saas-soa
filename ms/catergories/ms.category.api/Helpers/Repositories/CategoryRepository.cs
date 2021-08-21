@@ -1,12 +1,12 @@
 ﻿using System;
+using ms.category.api.Helpers.Models;
+using ms.category.api.Helpers.Repositories.Base;
 using NHibernate;
 using NHibernate.Criterion;
 using Serilog;
 using soa.qa.model.Categories;
-using soa.qa.repository.ContractRepositories;
-using soa.qa.repository.Repositories.Base;
 
-namespace soa.qa.repository.Repositories
+namespace ms.category.api.Helpers.Repositories
 {
   public class CategoryRepository : RepositoryBase<Category, int>, ICategoryRepository
   {

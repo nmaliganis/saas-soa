@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ms.tag.api.Helpers.Repositories;
+using ms.tag.api.Helpers.Services.Blocks.Tags.Contracts;
 using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.TypeMappings;
-using soa.qa.contracts.Tags;
-using soa.qa.repository.ContractRepositories;
 
-namespace soa.qa.services.Tags
+namespace ms.tag.api.Helpers.Services.Blocks.Tags.Impls
 {
   public class InquiryAllTagsProcessor : IInquiryAllTagsProcessor
   {

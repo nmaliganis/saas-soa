@@ -1,6 +1,6 @@
-﻿using soa.qa.contracts.Persons;
+﻿using ms.person.api.Helpers.Services.Blocks.Persons.Contracts;
 
-namespace soa.qa.contracts.V1
+namespace ms.person.api.Helpers.Services.Blocks.Persons
 {
   public interface IPersonsControllerDependencyBlock
   {
