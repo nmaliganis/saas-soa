@@ -1,6 +1,6 @@
 @page "/vehicles"
 @using smart.charger.webui.Models.DTOs.Vehicles
-@inherits smart.charger.webui.Pages.Vehicles.VehiclesViewModel
+@inherits VehiclesViewModel
 @if (!AuthState.Value.IsLoggedOn)
 {
     NavigateToSignin();

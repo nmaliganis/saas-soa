@@ -443,17 +443,25 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+
     #app-title {
         font-size: 4em;
+        color: $black;
     }
+
     #app-subtitle {
         font-size: 1em;
+        color: $black;
     }
 }
 
 .signin-form {
     width: 360px;
-    background-color: inherit;
+    background-color: $white;
+
+    h1 .h1color {
+        color: #862E06;
+    }
 }
 
 

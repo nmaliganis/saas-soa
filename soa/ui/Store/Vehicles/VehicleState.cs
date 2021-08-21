@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using smart.charger.webui.Models.DTOs.Vehicles;
 
-namespace smart.charger.webui.Store.Vehicles
+namespace soa.ui.Store.Vehicles
 {
   public class VehicleState
   {

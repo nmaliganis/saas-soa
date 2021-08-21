@@ -10,9 +10,10 @@ using smart.charger.webui.Models.DTOs.Vehicles;
 using smart.charger.webui.Store.Auth;
 using smart.charger.webui.Store.Vehicles;
 using smart.charger.webui.Store.Vehicles.Actions.FetchVehicles;
+using soa.ui.Store.Vehicles;
 using Telerik.Blazor.Components;
 
-namespace smart.charger.webui.Pages.Vehicles
+namespace soa.ui.Pages.Vehicles
 {
   public class VehiclesViewModel : FluxorComponent
   {

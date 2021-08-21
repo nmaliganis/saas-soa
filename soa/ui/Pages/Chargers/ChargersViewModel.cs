@@ -13,7 +13,7 @@ using smart.charger.webui.Store.Chargers;
 using smart.charger.webui.Store.Chargers.Actions.FetchCharger;
 using Telerik.Blazor.Components;
 
-namespace smart.charger.webui.Pages.Chargers
+namespace soa.ui.Pages.Chargers
 {
   public class ChargersViewModel : FluxorComponent
   {

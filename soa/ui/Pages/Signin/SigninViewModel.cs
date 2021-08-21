@@ -13,7 +13,7 @@ using smart.charger.webui.Store.Auth.Actions.ClearAuth;
 using smart.charger.webui.Store.Auth.Actions.SetAuth;
 using Telerik.Blazor.Components;
 
-namespace smart.charger.webui.Pages.Signin
+namespace soa.ui.Pages.Signin
 {
   public class SigninViewModel : FluxorComponent
   {

@@ -1,6 +1,7 @@
 ﻿using Fluxor;
 using smart.charger.webui.Store.Vehicles.Actions.FetchVehicle;
 using smart.charger.webui.Store.Vehicles.Actions.FetchVehicles;
+using soa.ui.Store.Vehicles;
 
 namespace smart.charger.webui.Store.Vehicles.Reducers.FetchVehicles
 {

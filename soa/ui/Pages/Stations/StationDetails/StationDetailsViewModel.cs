@@ -5,7 +5,7 @@ using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using smart.charger.webui.Store.Stations;
 
-namespace smart.charger.webui.Pages.Stations.StationDetails
+namespace soa.ui.Pages.Stations.StationDetails
 {
   public class StationDetailsViewModel : FluxorComponent
   {

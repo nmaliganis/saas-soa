@@ -1,0 +1,150 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>soa-ui</AssemblyName>
+    <RootNamespace>soa.ui</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Store\Categories\Effects\CreateVehicle\**" />
+    <Compile Remove="Store\Categories\Effects\DeleteVehicle\**" />
+    <Compile Remove="Store\Categories\Effects\FetchVehicle\**" />
+    <Compile Remove="Store\Categories\Effects\UpdateVehicle\**" />
+    <Compile Remove="Store\Categories\Reducers\CreateVehicle\**" />
+    <Compile Remove="Store\Categories\Reducers\DeleteVehicle\**" />
+    <Compile Remove="Store\Categories\Reducers\FetchVehicle\**" />
+    <Compile Remove="Store\Categories\Reducers\InitVehicle\**" />
+    <Compile Remove="Store\Categories\Reducers\UpdateVehicle\**" />
+    <Compile Remove="Store\Tags\Effects\CreateVehicle\**" />
+    <Compile Remove="Store\Tags\Effects\DeleteVehicle\**" />
+    <Compile Remove="Store\Tags\Effects\FetchVehicle\**" />
+    <Compile Remove="Store\Tags\Effects\UpdateVehicle\**" />
+    <Compile Remove="Store\Tags\Reducers\CreateVehicle\**" />
+    <Compile Remove="Store\Tags\Reducers\DeleteVehicle\**" />
+    <Compile Remove="Store\Tags\Reducers\FetchVehicle\**" />
+    <Compile Remove="Store\Tags\Reducers\InitVehicle\**" />
+    <Compile Remove="Store\Tags\Reducers\UpdateVehicle\**" />
+    <Content Remove="Store\Categories\Effects\CreateVehicle\**" />
+    <Content Remove="Store\Categories\Effects\DeleteVehicle\**" />
+    <Content Remove="Store\Categories\Effects\FetchVehicle\**" />
+    <Content Remove="Store\Categories\Effects\UpdateVehicle\**" />
+    <Content Remove="Store\Categories\Reducers\CreateVehicle\**" />
+    <Content Remove="Store\Categories\Reducers\DeleteVehicle\**" />
+    <Content Remove="Store\Categories\Reducers\FetchVehicle\**" />
+    <Content Remove="Store\Categories\Reducers\InitVehicle\**" />
+    <Content Remove="Store\Categories\Reducers\UpdateVehicle\**" />
+    <Content Remove="Store\Tags\Effects\CreateVehicle\**" />
+    <Content Remove="Store\Tags\Effects\DeleteVehicle\**" />
+    <Content Remove="Store\Tags\Effects\FetchVehicle\**" />
+    <Content Remove="Store\Tags\Effects\UpdateVehicle\**" />
+    <Content Remove="Store\Tags\Reducers\CreateVehicle\**" />
+    <Content Remove="Store\Tags\Reducers\DeleteVehicle\**" />
+    <Content Remove="Store\Tags\Reducers\FetchVehicle\**" />
+    <Content Remove="Store\Tags\Reducers\InitVehicle\**" />
+    <Content Remove="Store\Tags\Reducers\UpdateVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Effects\CreateVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Effects\DeleteVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Effects\FetchVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Effects\UpdateVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Reducers\CreateVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Reducers\DeleteVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Reducers\FetchVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Reducers\InitVehicle\**" />
+    <EmbeddedResource Remove="Store\Categories\Reducers\UpdateVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Effects\CreateVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Effects\DeleteVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Effects\FetchVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Effects\UpdateVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Reducers\CreateVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Reducers\DeleteVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Reducers\FetchVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Reducers\InitVehicle\**" />
+    <EmbeddedResource Remove="Store\Tags\Reducers\UpdateVehicle\**" />
+    <None Remove="Store\Categories\Effects\CreateVehicle\**" />
+    <None Remove="Store\Categories\Effects\DeleteVehicle\**" />
+    <None Remove="Store\Categories\Effects\FetchVehicle\**" />
+    <None Remove="Store\Categories\Effects\UpdateVehicle\**" />
+    <None Remove="Store\Categories\Reducers\CreateVehicle\**" />
+    <None Remove="Store\Categories\Reducers\DeleteVehicle\**" />
+    <None Remove="Store\Categories\Reducers\FetchVehicle\**" />
+    <None Remove="Store\Categories\Reducers\InitVehicle\**" />
+    <None Remove="Store\Categories\Reducers\UpdateVehicle\**" />
+    <None Remove="Store\Tags\Effects\CreateVehicle\**" />
+    <None Remove="Store\Tags\Effects\DeleteVehicle\**" />
+    <None Remove="Store\Tags\Effects\FetchVehicle\**" />
+    <None Remove="Store\Tags\Effects\UpdateVehicle\**" />
+    <None Remove="Store\Tags\Reducers\CreateVehicle\**" />
+    <None Remove="Store\Tags\Reducers\DeleteVehicle\**" />
+    <None Remove="Store\Tags\Reducers\FetchVehicle\**" />
+    <None Remove="Store\Tags\Reducers\InitVehicle\**" />
+    <None Remove="Store\Tags\Reducers\UpdateVehicle\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Chargers\Sessions.razor~RFc3d1759.TMP" />
+    <None Remove="Services\Contracts\IVehicleService.cs~RF54b1a8e.TMP" />
+    <None Remove="Shared\Layouts\AuthLayout.razor~RFeee5ecb.TMP" />
+    <None Remove="Store\Dashboard\Actions\FetchDashboards\FetchDashboardListAction.cs~RF161235.TMP" />
+    <None Remove="Store\Sessions\SessionFeature.cs~RF507e606.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
+    <PackageReference Include="Fluxor" Version="4.0.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="4.0.0" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Enrichers.AspnetcoreHttpcontext" Version="1.1.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+    <PackageReference Include="Syncfusion.Blazor" Version="18.4.0.30" />
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+    <PackageReference Include="Telerik.UI.for.Blazor" Version="2.24.1" />
+    <PackageReference Include="Westwind.AspnetCore.LiveReload" Version="0.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Store\Chargers\Effects\InitCharger\" />
+    <Folder Include="Store\Chargers\Effects\UpdateCharger\" />
+    <Folder Include="Store\Chargers\Reducers\CreateCharger\" />
+    <Folder Include="Store\Chargers\Reducers\DeleteCharger\" />
+    <Folder Include="Store\Chargers\Reducers\FetchCharger\" />
+    <Folder Include="Store\Chargers\Reducers\InitCharger\" />
+    <Folder Include="Store\Chargers\Reducers\UpdateCharger\" />
+    <Folder Include="Store\Sessions\Effects\CreateSession\" />
+    <Folder Include="Store\Sessions\Effects\DeleteSession\" />
+    <Folder Include="Store\Sessions\Effects\FetchSession\" />
+    <Folder Include="Store\Sessions\Effects\UpdateSession\" />
+    <Folder Include="Store\Sessions\Reducers\CreateSession\" />
+    <Folder Include="Store\Sessions\Reducers\DeleteSession\" />
+    <Folder Include="Store\Sessions\Reducers\FetchSession\" />
+    <Folder Include="Store\Sessions\Reducers\InitSession\" />
+    <Folder Include="Store\Sessions\Reducers\UpdateSession\" />
+    <Folder Include="Store\Stations\Effects\CreateVehicle\" />
+    <Folder Include="Store\Stations\Effects\DeleteVehicle\" />
+    <Folder Include="Store\Stations\Effects\FetchVehicle\" />
+    <Folder Include="Store\Stations\Effects\UpdateVehicle\" />
+    <Folder Include="Store\Stations\Reducers\CreateStation\" />
+    <Folder Include="Store\Stations\Reducers\DeleteStation\" />
+    <Folder Include="Store\Stations\Reducers\FetchStation\" />
+    <Folder Include="Store\Stations\Reducers\InitVehicle\" />
+    <Folder Include="Store\Stations\Reducers\UpdateVehicle\" />
+    <Folder Include="Store\Vehicles\Effects\CreateVehicle\" />
+    <Folder Include="Store\Vehicles\Effects\DeleteVehicle\" />
+    <Folder Include="Store\Vehicles\Effects\FetchVehicle\" />
+    <Folder Include="Store\Vehicles\Effects\UpdateVehicle\" />
+    <Folder Include="Store\Vehicles\Reducers\CreateVehicle\" />
+    <Folder Include="Store\Vehicles\Reducers\DeleteVehicle\" />
+    <Folder Include="Store\Vehicles\Reducers\FetchVehicle\" />
+    <Folder Include="Store\Vehicles\Reducers\InitVehicle\" />
+    <Folder Include="Store\Vehicles\Reducers\UpdateVehicle\" />
+    <Folder Include="wwwroot\assets\images\maps\" />
+  </ItemGroup>
+
+</Project>

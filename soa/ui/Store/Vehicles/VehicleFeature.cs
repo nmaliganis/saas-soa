@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Fluxor;
 using smart.charger.webui.Models.DTOs.Vehicles;
+using soa.ui.Store.Vehicles;
 
 namespace smart.charger.webui.Store.Vehicles
 {

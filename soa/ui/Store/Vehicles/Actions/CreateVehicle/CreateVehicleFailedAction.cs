@@ -1,4 +1,4 @@
-﻿namespace smart.charger.webui.Store.Vehicles.Actions.CreateVehicle
+﻿namespace soa.ui.Store.Vehicles.Actions.CreateVehicle
 {
   public class CreateVehicleFailedAction
   {

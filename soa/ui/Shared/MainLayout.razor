@@ -11,7 +11,7 @@
 				<span id="nav-toggle" class="nav-toggle d-md-none" @onclick="@ToggleNavMenu">
 					<span class="k-icon k-i-hamburger"></span>
 				</span>
-				<h1 id="app-title">SH-360</h1>
+				<h1 id="app-title">Q&A-99</h1>
 				<p id="app-subtitle">Powered by NTUA</p>
 				<hr />
 				<p class="h4 mt-5">Project</p>
@@ -20,23 +20,26 @@
 						<NavLink class="@(IsAtRoot() ? "nav-link active" : "nav-link")" href="dashboard">Dashboard</NavLink>
 					</li>
 					<li class="nav-item" id="history">
-						<NavLink class="nav-link" href="sessions">Sessions</NavLink>
+						<NavLink class="nav-link" href="sessions">Ask A Question</NavLink>
 					</li>
-					<li class="nav-item" id="videos">
-						<NavLink class="nav-link" href="vehicles">Vehicles</NavLink>
-					</li>
-                    <li class="nav-item" id="publish">
-                        <NavLink class="nav-link" href="chargers">Chargers</NavLink>
+                    <li class="nav-item" id="videos">
+                        <NavLink class="nav-link" href="vehicles">Questions</NavLink>
+                    </li>
+                    <li class="nav-item" id="videos">
+                        <NavLink class="nav-link" href="vehicles">Unanswered</NavLink>
                     </li>
                     <li class="nav-item" id="publish">
-                        <NavLink class="nav-link" href="stations">Stations</NavLink>
+                        <NavLink class="nav-link" href="chargers">Tags</NavLink>
+                    </li>
+                    <li class="nav-item" id="publish">
+                        <NavLink class="nav-link" href="categories">Categories</NavLink>
                     </li>
 				</ul>
 				<p class="h4 mt-5">Account</p>
 				<ul class="nav nav-pills flex-column">
-					@* <li class="nav-item" id="profile"> *@
-					@* 	<NavLink class="nav-link" href="profile">My Profile</NavLink> *@
-					@* </li> *@
+					 <li class="nav-item" id="profile"> 
+					 	<NavLink class="nav-link" href="profile">Users</NavLink> 
+					 </li> 
 					<li class="nav-item" id="signin">
 						<NavLink class="nav-link" href="signin">Sign Out</NavLink>
 					</li>
@@ -46,7 +49,7 @@
 					<p>
 						Copyright
 						&copy;
-						@DateTime.Now.Year,<br /><a href="https://github.com/ntua/TL20-29">Smart-cHarger360</a>
+						@DateTime.Now.Year,<br /><a href="https://github.com/saas-99">Q&A - 99</a>
 					</p>
 					<p>All Rights Reserved.</p>
 				</div>

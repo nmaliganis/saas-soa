@@ -17,10 +17,18 @@ using smart.charger.webui.Services.Impls.Chargers;
 using smart.charger.webui.Services.Impls.Sessions;
 using smart.charger.webui.Services.Impls.Stations;
 using smart.charger.webui.Services.Impls.Vehicles;
+using soa.ui.Services.Contracts.Answers;
+using soa.ui.Services.Contracts.Categories;
+using soa.ui.Services.Contracts.Questions;
+using soa.ui.Services.Contracts.Tags;
+using soa.ui.Services.Impls.Answers;
+using soa.ui.Services.Impls.Categories;
+using soa.ui.Services.Impls.Questions;
+using soa.ui.Services.Impls.Tags;
 using Syncfusion.Blazor;
 using Westwind.AspNetCore.LiveReload;
 
-namespace smart.charger.webui
+namespace soa.ui
 {
   public class Startup
   {
@@ -66,6 +74,10 @@ namespace smart.charger.webui
       services.AddScoped<IChargerDataService, ChargerDataService>();
       services.AddScoped<IVehicleDataService, VehicleDataService>();
       services.AddScoped<ISessionDataService, SessionDataService>();
+      services.AddScoped<ICategoryDataService, CategoryDataService>();
+      services.AddScoped<ITagDataService, TagDataService>();   
+      services.AddScoped<IAnswerDataService, AnswerDataService>();
+      services.AddScoped<IQuestionDataService, QuestionDataService>();
       services.AddScoped<IStationDataService, StationDataService>();
       services.AddScoped<IAccountService, AccountService>();
     }

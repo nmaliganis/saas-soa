@@ -5,7 +5,7 @@ using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using smart.charger.webui.Store.Chargers;
 
-namespace smart.charger.webui.Pages.Chargers.ChargerDetails
+namespace soa.ui.Pages.Chargers.ChargerDetails
 {
   public class ChargerDetailsViewModel : FluxorComponent
   {
