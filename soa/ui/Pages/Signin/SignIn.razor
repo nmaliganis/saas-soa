@@ -1,0 +1,75 @@
+@page "/"
+@page "/signin"
+@layout AuthLayout
+@using smart.charger.webui.Shared.Layouts
+@inherits SigninViewModel
+
+<div id="signin" class="signin">
+    @if (IsLoggedOn)
+    {
+
+    }
+    <TelerikNotification @ref="NotificationComponent"
+                          Class="toastr-notification"
+                          VerticalPosition="NotificationVerticalPosition.Top"
+                          HorizontalPosition="NotificationHorizontalPosition.Center">
+    </TelerikNotification>
+    <div class="signin-form p-5">
+        <h1 id="app-title">SH-360</h1>
+        <p id="app-subtitle">Powered by NTUA</p>
+        <EditForm Model="@AccountState.Value.Login"
+                  OnValidSubmit="@HandleValidEditSubmit">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <div class="form-group">
+                <div class="k-form-field">
+                    <div class="k-form-field-wrap">
+                        <div class="k-form-field-wrap">
+                            <TelerikTextBox Width="100%"
+                                            PlaceHolder="Email or Username"
+                                            Enabled="UsernameEnabled"
+                                            @bind-Value="@AccountState.Value.Login.Login" Id="login" />
+                            <ValidationMessage For="@(() => AccountState.Value.Login.Login)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="k-form-field">
+                    <div class="k-form-field-wrap">
+                        <div class="k-form-field-wrap">
+                            <TelerikTextBox Width="100%"
+                                            PlaceHolder="Password"
+                                            Enabled="PasswordEnabled"
+                                            Password="HidePassword"
+                                            @bind-Value="@AccountState.Value.Login.Password" Id="pass" />
+                            <ValidationMessage For="@(() => AccountState.Value.Login.Password)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <TelerikButton Primary="true" Class="k-primary form-control"
+                               Enabled="SubmitEnabled"
+                               Icon="@IconName.Login">Log in</TelerikButton>
+            </div>
+            @if (SubmitValidated)
+            {
+                @if (AccountState.Value.IsloggedInSucceeded)
+                {
+                    ShowSuccessLogin();
+                    DispatcherInitLogin();
+                    StoreCredentialToStorage();
+                }
+
+                @if (AccountState.Value.IsloggedInFailed)
+                {
+                    ShowErrorLogin();
+                    DispatcherInitLogin();
+                }
+            }
+        </EditForm>
+    </div>
+</div>
+

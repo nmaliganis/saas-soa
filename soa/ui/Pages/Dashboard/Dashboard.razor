@@ -1,0 +1,108 @@
+@page "/dashboard"
+
+@using System.Threading
+@using Syncfusion.Blazor.Maps
+@using smart.charger.webui.DataRetrieval
+@using smart.charger.webui.Models.DTOs.Stations
+@inherits smart.charger.webui.Pages.Dashboard.DashboardViewModel
+
+@if (!AuthState.Value.IsLoggedOn)
+{
+    NavigateToSignin();
+}
+
+@if (AuthState.Value.IsLoggedOn)
+{
+    <div class="dashboard">
+        @* <div class="row mb-4"> *@
+        @*     <div class="col-sm"> *@
+        @*         <h2> *@
+        @*             <span class="small text-uppercase text-muted d-block">Statistics</span> *@
+        @*             @IssuesFilter.GetRangeFromNumber(timeRange).ToString("ddd, dd MMM yyyy") *@
+        @*             - @DateTime.Now.ToString("ddd, dd MMM yyyy") *@
+        @*         </h2> *@
+        @*     </div> *@
+        @*     <div class="col-sm text-sm-right"> *@
+        @*         <TelerikDropDownList Data="@DateFilterData" TextField="Text" ValueField="Value" Value="timeRange" *@
+        @*                              ValueChanged="@((int v) => LoadIssuesData(v))" PopupHeight="120"> *@
+        @*         </TelerikDropDownList> *@
+        @*     </div> *@
+        @* </div> *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h3 class="card-header">Charging Sessions</h3>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-6 col-lg active-issues">
+                                <span class="comp-label">
+                                    <strong>@DashboardState.Value.ActiveSessionCount</strong>
+                                    <small>Active charging sessions</small>
+                                </span>
+                                @*<IssuesBreakDownCharts ChartData="@IssuesList" SeriesColor="#888"></IssuesBreakDownCharts>*@
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg text-success closed-issues">
+                                <span class="comp-label">
+                                    <strong>@DashboardState.Value.FinishedSessionCount</strong>
+                                    <small>Finished charging sessions</small>
+                                </span>
+                                @*<IssuesBreakDownCharts ChartData="@ClosedIssues" SeriesColor="#27c46d"></IssuesBreakDownCharts>*@
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg text-danger open-issues">
+                                <span class="comp-label">
+                                    <strong>@DashboardState.Value.AvailableChargersCount</strong>
+                                    <small>Available chargers</small>
+                                </span>
+                                @*<IssuesBreakDownCharts ChartData="@OpenIssues" SeriesColor="#CF3268"></IssuesBreakDownCharts>*@
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg close-rate">
+                                <span class="comp-label">
+                                    <strong>@DashboardState.Value.ChargersInUseCount</strong>
+                                    <small>Chargers in use</small>
+                                </span>
+                                @*<CloseRateChart Open="@OpenIssues.Count()" Closed="@ClosedIssues.Count()"></CloseRateChart>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card issue-types">
+                    <h4 class="card-header">Chargers</h4>
+                    <div class="card-body">
+                        <SfMaps>
+                            <MapsZoomSettings Enable="true" EnablePanning="true" Toolbars="@ZoomToolbar" ZoomOnClick="true" PinchZooming="false"
+                                              MouseWheelZoom="true" DoubleClickZoom="false" />
+                            <MapsLayers>
+                                <MapsLayer LayerType="ShapeLayerType.OSM" BingMapType="BingMapType.CanvasLight"
+                                           TValue="string">
+                                    <MapsMarkerSettings>
+                                        <MapsMarker Visible="true" DataSource="@StationState.Value.StationList" TValue="StationDto">
+                                            <ChildContent>
+                                                <MapsMarkerTooltipSettings Visible="true" ValuePath="Name"/>
+                                            </ChildContent>
+                                            <MarkerTemplate>
+                                                @{
+                                                    <div>
+                                                        <img class="markerTemplate" style="margin-top: -10px; margin-left: -10px;" src="assets/images/maps/ballon.png"/>
+                                                    </div>
+                                                }
+                                            </MarkerTemplate>
+                                        </MapsMarker>
+                                    </MapsMarkerSettings>
+                                </MapsLayer>
+                            </MapsLayers>
+                            <MapsZoomSettings ZoomFactor="14"></MapsZoomSettings>
+                            <MapsCenterPosition Latitude="40.6562959" Longitude="22.9092506"></MapsCenterPosition>
+                        </SfMaps>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

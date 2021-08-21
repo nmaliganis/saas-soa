@@ -1,0 +1,109 @@
+﻿@page "/vehicle-details/{Id:guid}"
+@inherits VehicleDetailsViewModel
+
+<div class="vehicle-details-container">
+    <header>
+        <div class="detail-header-title">
+            <TelerikButton class="btn-success" OnClick="@OnBackIconClick"><em class="=fa fa-angle-left"></em>
+            </TelerikButton>
+            <div class="module-title">
+                <div class='title'>VEHICLE DETAILS</div>
+                <div class='underline'></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="col-md-6">
+        <div class="card" id="vehicle-details">
+            <h3 class="card-header">@HeaderLabel vehicle</h3>
+        @if (string.IsNullOrEmpty(SuccessMessage))
+        {
+            <EditForm Model="@ValidationModel" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+                <DataAnnotationsValidator />
+
+                <div class="k-validation-summary k-messagebox k-messagebox-error p-0" role="alert">
+                    <ValidationSummary />
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <label for="brand" class="k-label k-form-label">Brand</label>
+                                <div class="k-form-field-wrap">
+                                    <TelerikTextBox Width="100%" @bind-Value="@VehicleState.Value.Vehicle.Brand" Id="brand"/>
+                                </div>
+                            </div>
+                            <ValidationMessage For="@(() => ValidationModel.Brand)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <label for="numplate" class="k-label k-form-label">Plate Number</label>
+                                <div class="k-form-field-wrap">
+                                    <TelerikTextBox Width="100%" @bind-Value="@VehicleState.Value.Vehicle.NumPlate" Id="numplate"/>
+                                </div>
+                                <ValidationMessage For="@(() => ValidationModel.NumPlate)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <label for="numplate" class="k-label k-form-label">Battery Value</label>
+                                <div class="k-form-field-wrap">
+                                    <TelerikNumericTextBox Width="100%" 
+                                                           Enabled="BatteryValueEnabled"
+                                                           @bind-Value="@VehicleState.Value.Vehicle.BatValue" Id="bat-value"></TelerikNumericTextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <label for="numplate" class="k-label k-form-label">Current Km</label>
+                                <div class="k-form-field-wrap">
+                                    <TelerikNumericTextBox Width="100%" @bind-Value="@VehicleState.Value.Vehicle.CurrentKm" Id="current-km-value"></TelerikNumericTextBox>
+                                </div>
+                            </div>
+                            <ValidationMessage For="@(() => ValidationModel.CurrentKm)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <label for="numplate" class="k-label k-form-label">Connection Type</label>
+                                <div class="k-form-field-wrap">
+                                    <TelerikComboBox Data="@ConnectionTypeData"
+                                                     @bind-Value="@SelectedConnectionType"
+                                                     TextField="Type"
+                                                     ValueField="Type"
+                                                     Placeholder="Select connection type of the Electric charger"
+                                                     PopupHeight=""
+                                                     Id="connection-type"
+                                                     Width="100%">
+                                    </TelerikComboBox>
+                                </div>
+                            </div>
+                            <ValidationMessage For="@(() => ValidationModel.ConnectionType)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="k-form-field">
+                            <div class="k-form-field-wrap">
+                                <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="save" OnClick="@OnSaveClickHandler">Save</TelerikButton>
+                                <TelerikButton Icon="cancel" OnClick="@OnCancelClickHandler">Cancel</TelerikButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        }  
+        else
+        {
+        }
+        </div>
+    </div>
+</div>
+
