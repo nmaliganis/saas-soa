@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using soa.common.dtos.Vms.Tags;
 using soa.common.infrastructure.Domain;
 
 namespace soa.qa.model.Tags
@@ -33,6 +34,18 @@ namespace soa.qa.model.Tags
     protected override void Validate()
     {
     }
+
+    public virtual void InjectWithInitialAttributes(TagForCreationUiModel newTagUiModel)
+    {
+        this.Title = newTagUiModel.Title;
+        this.Description = newTagUiModel.Description;
+    }
+
+    public virtual void InjectWithInitialModifiedAttributes(TagForModificationUiModel updatedTag)
+    {
+        this.Title = updatedTag.Title;
+        this.Description = updatedTag.Description;
+        }
   }
 }
 

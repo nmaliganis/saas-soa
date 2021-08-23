@@ -16,7 +16,7 @@ namespace soa.ui.Store.Categories
       new CategoryDto(), 
       new CategoryForCreationDto(), 
       new CategoryForModificationDto(), 
-      Guid.Empty
+      0
     );
   }
 }

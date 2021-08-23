@@ -4,10 +4,10 @@ namespace soa.ui.Store.Categories.Actions.DeleteCategory
 {
   public class DeleteCategorySuccessAction
   {
-    public Guid CategoryHaveBeenDeletedId { get; private set; }
+    public int CategoryHaveBeenDeletedId { get; private set; }
     public string CategoryDeletionStatus { get; private set; }
 
-    public DeleteCategorySuccessAction(Guid categoryHaveBeenDeletedId, string categoryDeletionStatus)
+    public DeleteCategorySuccessAction(int categoryHaveBeenDeletedId, string categoryDeletionStatus)
     {
       CategoryHaveBeenDeletedId = categoryHaveBeenDeletedId;
       CategoryDeletionStatus = categoryDeletionStatus;

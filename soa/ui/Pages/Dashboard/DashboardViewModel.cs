@@ -109,9 +109,19 @@ namespace soa.ui.Pages.Dashboard
             NavigationManager.NavigateTo($"recent-questions");
         }
 
+        public async Task OnAskAQuestionRecentQuestionsClickHandler()
+        {
+            NavigationManager.NavigateTo($"unanswered-questions");
+        }
+
         #endregion
 
         #region Unanswerwed Questions
+
+        public async Task OnGiveAnAnswerUnansweredQuestionsClickHandler()
+        {
+            NavigationManager.NavigateTo($"unanswered-questions");
+        }
 
         public async Task OnCheckUnansweredQuestionsClickHandler()
         {

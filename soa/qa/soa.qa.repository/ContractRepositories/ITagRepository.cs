@@ -6,6 +6,6 @@ namespace soa.qa.repository.ContractRepositories
     public interface ITagRepository : IRepository<Tag, int>
     {
         int FindCountTotals();
-        Tag FindTagByNumPlate(string numPlate);
+        Tag FindTagByTitle(string title);
     }
 }

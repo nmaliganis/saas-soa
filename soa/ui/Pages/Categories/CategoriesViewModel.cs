@@ -6,23 +6,23 @@ using Fluxor;
 using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Configuration;
-using smart.charger.webui.Models.DTOs.Sessions;
 using smart.charger.webui.Models.DTOs.Vehicles;
 using smart.charger.webui.Store.Auth;
-using smart.charger.webui.Store.Sessions;
-using smart.charger.webui.Store.Sessions.Actions.FetchSessions;
-using smart.charger.webui.Store.Vehicles;
-using smart.charger.webui.Store.Vehicles.Actions.FetchVehicles;
-using soa.ui.Store.Vehicles;
+using soa.ui.Models.DTOs.Categories;
+using soa.ui.Store.Categories;
+using soa.ui.Store.Categories.Actions.CreateCategory;
+using soa.ui.Store.Categories.Actions.DeleteCategory;
+using soa.ui.Store.Categories.Actions.FetchCategories;
+using soa.ui.Store.Categories.Actions.UpdateCategory;
 using Telerik.Blazor.Components;
+using Telerik.DataSource;
 
 namespace soa.ui.Pages.Categories
 {
     public class CategoriesViewModel : FluxorComponent
     {
         [Inject] public IDispatcher Dispatcher { get; set; }
-        [Inject] public IState<SessionState> SessionState { get; set; }
-        [Inject] public IState<VehicleState> VehicleState { get; set; }
+        [Inject] public IState<CategoryState> CategoryState { get; set; }
         [Inject] public IState<AuthState> AuthState { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IConfiguration Configuration { get; set; }
@@ -67,8 +67,7 @@ namespace soa.ui.Pages.Categories
 
         protected override Task OnInitializedAsync()
         {
-            Dispatcher.Dispatch(new FetchSessionListAction(AuthState.Value.JwtToken));
-            Dispatcher.Dispatch(new FetchVehicleListAction(AuthState.Value.JwtToken));
+            Dispatcher.Dispatch(new FetchCategoryListAction(AuthState.Value.JwtToken));
             StateHasChanged();
             return base.OnInitializedAsync();
         }
@@ -93,72 +92,94 @@ namespace soa.ui.Pages.Categories
 
         }
 
-        public SessionDto SelectedSessionItem { get; set; }
-        private IEnumerable<SessionDto> _selectedItems;
-
-        public IEnumerable<SessionDto> SelectedItems
+        public CategoryDto SelectedCategoryItem { get; set; }
+        private IEnumerable<CategoryDto> _selectedItems;
+        public IEnumerable<CategoryDto> SelectedCategoryItems
         {
             get
             {
-                if (_selectedItems != null && !Equals(_selectedItems, Enumerable.Empty<VehicleDto>()))
+                if (_selectedItems != null && !Equals(_selectedItems, Enumerable.Empty<CategoryDto>()))
                     return _selectedItems;
 
-                // if(Store.Sessions.SessionState.Value.SessionList == null)
-                //   return _selectedItems = Enumerable.Empty<SessionDto>();
-                // SelectedSessionItem = Store.Sessions.SessionState.Value.SessionList.FirstOrDefault();
-                return _selectedItems = new List<SessionDto> {SelectedSessionItem};
+                if (CategoryState.Value.CategoryList == null)
+                    return _selectedItems = Enumerable.Empty<CategoryDto>();
+                SelectedCategoryItem = CategoryState.Value.CategoryList.FirstOrDefault();
+                return _selectedItems = new List<CategoryDto> { SelectedCategoryItem };
             }
             set => _selectedItems = value;
         }
 
-        protected void OnSelect(IEnumerable<SessionDto> vehicleItems)
+        protected void OnCategorySelect(IEnumerable<CategoryDto> categoryItems)
         {
-            SelectedSessionItem = vehicleItems.FirstOrDefault();
-            SelectedItems = new List<SessionDto> {SelectedSessionItem};
+            SelectedCategoryItem = categoryItems.FirstOrDefault();
+            SelectedCategoryItems = new List<CategoryDto> { SelectedCategoryItem };
         }
 
         #endregion
 
-        #region Commands
-
-        protected void AddCommandFromToolbar(GridCommandEventArgs args)
-        {
-            NavigationManager.NavigateTo($"session-details/{Guid.Empty}");
-            StateHasChanged();
-        }
-
-        protected void EditCommandFromToolbar(GridCommandEventArgs args)
-        {
-            NavigationManager.NavigateTo($"session-details/{SelectedItems?.FirstOrDefault()?.Id}");
-            StateHasChanged();
-        }
-
-        protected void DeleteCommandFromToolbar(GridCommandEventArgs args)
-        {
-            StateHasChanged();
-        }
-
-        #endregion
 
         #region Buttons
 
         [Parameter] public bool SaveBtnEnabled { get; set; } = true;
 
-        protected async Task OnAddCategoryClickHandler()
+        protected async Task OnAddCategoryClickHandler(GridCommandEventArgs args)
         {
-            NavigationManager.NavigateTo($"category-details/{Guid.Empty}");
-            StateHasChanged();
-        }
-        protected async Task OnEditCategoryClickHandler()
-        {
-            NavigationManager.NavigateTo($"category-details/{SelectedItems?.FirstOrDefault()?.Id}");
+            var addCategory = (CategoryDto)args.Item;
+
+            if (addCategory.Id == 0)
+            {
+                Dispatcher.Dispatch(new CreateCategoryAction(new CategoryForCreationDto()
+                {
+                    Name = addCategory.Name,
+                }));
+            }
+
             StateHasChanged();
         }
 
-        protected async Task OnDeleteCategoryClickHandler()
+        protected async Task OnEditCategoryClickHandler(GridCommandEventArgs args)
         {
-            NavigationManager.NavigateTo($"category-details/{Guid.Empty}");
+            var editCategory = (CategoryDto)args.Item;
+
+            if (editCategory.Id != 0)
+            {
+                Dispatcher.Dispatch(new UpdateCategoryAction( editCategory.Id, new CategoryForModificationDto()
+                {
+                    Id = editCategory.Id,
+                    Name = editCategory.Name,
+                }));
+            }
             StateHasChanged();
+        }
+
+        protected async Task OnDeleteCategoryClickHandler(GridCommandEventArgs args)
+        {
+            var deleteCategory = (CategoryDto)args.Item;
+
+            if (deleteCategory.Id != 0)
+            {
+                Dispatcher.Dispatch(new DeleteCategoryAction(deleteCategory.Id));
+            }
+            StateHasChanged();
+        }
+
+        #endregion
+
+
+        #region Grid
+
+        public TelerikGrid<CategoryDto> CategoriesGrid { get; set; }
+
+        public void OnStateInit(GridStateEventArgs<CategoryDto> args)
+        {
+            args.GridState.GroupDescriptors = new List<GroupDescriptor>()
+            {
+                new GroupDescriptor()
+                {
+                    Member = nameof(CategoryDto.Name),
+                    MemberType = typeof(string)
+                }
+            };
         }
 
         #endregion

@@ -4,9 +4,9 @@ namespace soa.ui.Store.Tags.Actions.DeleteTag
 {
   public class DeleteTagAction
   {
-    public Guid TagToBeDeletedId { get; private set; }
+    public int TagToBeDeletedId { get; private set; }
 
-    public DeleteTagAction(Guid tagToBeDeletedId)
+    public DeleteTagAction(int tagToBeDeletedId)
     {
       TagToBeDeletedId = tagToBeDeletedId;
     }

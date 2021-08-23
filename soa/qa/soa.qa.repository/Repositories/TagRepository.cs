@@ -38,12 +38,12 @@ namespace soa.qa.repository.Repositories
       return count;
     }
 
-    public Tag FindTagByNumPlate(string numPlate)
+    public Tag FindTagByTitle(string title)
     {
       return
         (Tag)
         Session.CreateCriteria(typeof(Tag))
-          .Add(Expression.Eq("NumPlate", numPlate))
+          .Add(Expression.Eq("Title", title))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)

@@ -1,14 +1,17 @@
 ﻿using System;
+using soa.ui.Models.DTOs.Categories;
 
 namespace soa.ui.Store.Categories.Actions.UpdateCategory
 {
   public class UpdateCategoryAction
   {
-    public Guid CategoryToBeUpdateId { get; private set; }
+    public int CategoryToBeUpdateId { get; private set; }
+    public CategoryForModificationDto CategoryForModification { get; private set; }
 
-    public UpdateCategoryAction(Guid categoryToBeUpdateId)
+    public UpdateCategoryAction(int categoryToBeUpdateId, CategoryForModificationDto categoryForModification)
     {
-      CategoryToBeUpdateId = categoryToBeUpdateId;
+        CategoryToBeUpdateId = categoryToBeUpdateId;
+        CategoryForModification = categoryForModification;
     }
   }
 }

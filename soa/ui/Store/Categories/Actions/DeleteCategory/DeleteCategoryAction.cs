@@ -4,9 +4,9 @@ namespace soa.ui.Store.Categories.Actions.DeleteCategory
 {
   public class DeleteCategoryAction
   {
-    public Guid CategoryToBeDeletedId { get; private set; }
+    public int CategoryToBeDeletedId { get; private set; }
 
-    public DeleteCategoryAction(Guid categoryToBeDeletedId)
+    public DeleteCategoryAction(int categoryToBeDeletedId)
     {
       CategoryToBeDeletedId = categoryToBeDeletedId;
     }

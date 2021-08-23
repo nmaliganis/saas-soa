@@ -6,11 +6,16 @@ using Fluxor;
 using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Configuration;
+using smart.charger.webui.Models.DTOs.Vehicles;
 using smart.charger.webui.Store.Auth;
 using soa.ui.Models.DTOs.Tags;
 using soa.ui.Store.Tags;
+using soa.ui.Store.Tags.Actions.CreateTag;
+using soa.ui.Store.Tags.Actions.DeleteTag;
 using soa.ui.Store.Tags.Actions.FetchTags;
+using soa.ui.Store.Tags.Actions.UpdateTag;
 using Telerik.Blazor.Components;
+using Telerik.DataSource;
 
 namespace soa.ui.Pages.Tags
 {
@@ -18,9 +23,40 @@ namespace soa.ui.Pages.Tags
     {
         [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IState<TagState> TagState { get; set; }
-        [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IState<AuthState> AuthState { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IConfiguration Configuration { get; set; }
+
+        #region List Vehicle
+
+        public DateTime? StartValue { get; set; } = DateTime.Now;
+        public DateTime? EndValue { get; set; } = DateTime.Now.AddDays(10);
+
+        protected VehicleDto BindVehicle { get; set; }
+
+        public async Task OnChangeHandler(DateRangePickerChangeEventArgs e)
+        {
+            Console.WriteLine($"The range is from {e.StartValue} to {e.EndValue}");
+        }
+
+        public void VehicleOnChangeHandler(object theUserInput)
+        {
+
+        }
+
+        #endregion
+
+        #region Dates
+
+        public DateTime FromDateInputValue { get; set; } = DateTime.Now;
+
+        public TelerikDateInput<DateTime> From;
+
+        public DateTime ToDateInputValue { get; set; } = DateTime.Now;
+
+        public TelerikDateInput<DateTime> To;
+
+        #endregion
 
         protected void NavigateToSignin()
         {
@@ -58,8 +94,7 @@ namespace soa.ui.Pages.Tags
 
         public TagDto SelectedTagItem { get; set; }
         private IEnumerable<TagDto> _selectedItems;
-
-        public IEnumerable<TagDto> SelectedItems
+        public IEnumerable<TagDto> SelectedTagItems
         {
             get
             {
@@ -69,56 +104,86 @@ namespace soa.ui.Pages.Tags
                 if (TagState.Value.TagList == null)
                     return _selectedItems = Enumerable.Empty<TagDto>();
                 SelectedTagItem = TagState.Value.TagList.FirstOrDefault();
-                return _selectedItems = new List<TagDto> {SelectedTagItem};
+                return _selectedItems = new List<TagDto> { SelectedTagItem };
             }
             set => _selectedItems = value;
         }
 
-        protected void OnSelect(IEnumerable<TagDto> tagItems)
+        protected void OnTagSelect(IEnumerable<TagDto> TagItems)
         {
-            SelectedTagItem = tagItems.FirstOrDefault();
-            SelectedItems = new List<TagDto> {SelectedTagItem};
+            SelectedTagItem = TagItems.FirstOrDefault();
+            SelectedTagItems = new List<TagDto> { SelectedTagItem };
         }
 
         #endregion
 
-        #region Commands
 
-        protected void AddCommandFromToolbar(GridCommandEventArgs args)
+        #region Buttons
+
+        [Parameter] public bool SaveBtnEnabled { get; set; } = true;
+
+        protected async Task OnAddTagClickHandler(GridCommandEventArgs args)
         {
-            NavigationManager.NavigateTo($"Tag-details/{Guid.Empty}");
+            var addTag = (TagDto)args.Item;
+
+            if (addTag.Id == 0)
+            {
+                Dispatcher.Dispatch(new CreateTagAction(new TagForCreationDto()
+                {
+                    Title = addTag.Title,
+                    Description = addTag.Description,
+                }));
+            }
+
             StateHasChanged();
         }
 
-        protected void EditCommandFromToolbar(GridCommandEventArgs args)
+        protected async Task OnEditTagClickHandler(GridCommandEventArgs args)
         {
-            NavigationManager.NavigateTo($"Tag-details/{SelectedItems?.FirstOrDefault()?.Id}");
+            var editTag = (TagDto)args.Item;
+
+            if (editTag.Id != 0)
+            {
+                Dispatcher.Dispatch(new UpdateTagAction( editTag.Id, new TagForModificationDto()
+                {
+                    Id = editTag.Id,
+                    Title = editTag.Title,
+                    Description = editTag.Description
+                }));
+            }
             StateHasChanged();
         }
 
-        protected void DeleteCommandFromToolbar(GridCommandEventArgs args)
+        protected async Task OnDeleteTagClickHandler(GridCommandEventArgs args)
         {
+            var deleteTag = (TagDto)args.Item;
+
+            if (deleteTag.Id != 0)
+            {
+                Dispatcher.Dispatch(new DeleteTagAction(deleteTag.Id));
+            }
             StateHasChanged();
         }
 
         #endregion
 
-        public bool SaveBtnEnabled { get; set; } = true;
 
-        protected async Task OnAddClickHandler()
+        #region Grid
+
+        public TelerikGrid<TagDto> TagsGrid { get; set; }
+
+        public void OnStateInit(GridStateEventArgs<TagDto> args)
         {
-            NavigationManager.NavigateTo($"Tag-details/{Guid.Empty}");
-            StateHasChanged();
+            args.GridState.GroupDescriptors = new List<GroupDescriptor>()
+            {
+                new GroupDescriptor()
+                {
+                    Member = nameof(TagDto.Title),
+                    MemberType = typeof(string)
+                }
+            };
         }
 
-        protected async Task OnUpdateClickHandler()
-        {
-            NavigationManager.NavigateTo($"Tag-details/{SelectedItems?.FirstOrDefault()?.Id}");
-            StateHasChanged();
-        }
-
-        protected async Task OnDeleteClickHandler()
-        {
-        }
+        #endregion
     }
 }

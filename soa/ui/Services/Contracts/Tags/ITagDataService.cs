@@ -12,7 +12,7 @@ namespace soa.ui.Services.Contracts.Tags
     Task<int> GetTotalTagCount();
 
     Task<TagDto> CreateTag(TagForCreationDto tagToBeCreated);
-    Task<TagDto> UpdateTag(Guid tagIdToBeUpdated, TagForModificationDto tagToBeUpdated);
-    Task<TagDto> DeleteTag(Guid tagIdToBeDeleted);
+    Task<TagDto> UpdateTag(int tagIdToBeUpdated, TagForModificationDto tagToBeUpdated);
+    Task<TagDto> DeleteTag(int tagIdToBeDeleted);
   }
 }

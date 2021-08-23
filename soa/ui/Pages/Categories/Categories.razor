@@ -1,7 +1,5 @@
 @page "/categories"
-@using smart.charger.webui.Models.DTOs.Sessions
-@using smart.charger.webui.Models.DTOs.Stations
-@using smart.charger.webui.Models.DTOs.Vehicles
+@using soa.ui.Models.DTOs.Categories
 @inherits CategoriesViewModel
 
 @if (!AuthState.Value.IsLoggedOn)
@@ -18,34 +16,51 @@
                     <h3 class="card-header">Categories</h3>
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group"> 
-                                <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add" 
-                                               OnClick="@OnAddCategoryClickHandler">Add</TelerikButton> 
-                                <TelerikButton Icon="edit" OnClick="@OnEditCategoryClickHandler">Edit</TelerikButton> 
-                                <TelerikButton Icon="delete" Class="dangerButton" OnClick="@OnDeleteCategoryClickHandler">Delete</TelerikButton> 
-                            </div> 
-                        </div>
-                        <div class="row">
-                            <TelerikGrid Data="@SessionState.Value.SessionList" Pageable="true" PageSize="10" Height="900px"
-                                PageChanged="@PageChangedHandler" Sortable="true" SelectionMode="GridSelectionMode.Single"
-                                SelectedItemsChanged="@((IEnumerable<SessionDto> sessionList) => OnSelect(sessionList))"
-                                SelectedItems="@SelectedItems" Reorderable="true" Resizable="true" Groupable="false"
-                                FilterMode="GridFilterMode.FilterRow">
+                            <TelerikGrid 
+                                @ref="@CategoriesGrid"
+                                Data="@CategoryState.Value.CategoryList" 
+                                OnUpdate="@OnEditCategoryClickHandler"
+                                OnDelete="@OnDeleteCategoryClickHandler"
+                                OnCreate="@OnAddCategoryClickHandler"
+                                Pageable="true" 
+                                Groupable="false"
+                                Sortable="true"
+                                FilterMode="GridFilterMode.FilterRow"
+                                Resizable="true"
+                                Reorderable="true"
+                                PageSize="10" 
+                                Height="1100px"
+                                EditMode="GridEditMode.Inline"
+                                PageChanged="@PageChangedHandler" 
+                                SelectionMode="GridSelectionMode.Single"
+                                SelectedItemsChanged="@((IEnumerable<CategoryDto> categoryList) => OnCategorySelect(categoryList))"
+                                SelectedItems="@SelectedCategoryItems" 
+                                Navigable="true"
+                                OnStateInit="@((GridStateEventArgs<CategoryDto> args) => OnStateInit(args))"
+                            >
                                 <GridColumns>
-                                    <GridColumn Field="@(nameof(SessionDto.Id))" Title="Id" Visible="false"
-                                        Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.Started))" Title="Date - Time Started"
-                                        Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.Ended))" Title="Date - Time Ended"
-                                        Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.VehicleComputedInfo))" Title="Vehicle"
-                                        Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.ChargerSerial))" Title="Charger"
-                                        Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.Status))" Title="Status" Groupable="false" />
-                                    <GridColumn Field="@(nameof(SessionDto.VehicleOwnerComputedInfo))" Title="Owner"
-                                        Groupable="false" />
+                                    <GridColumn Field="@(nameof(CategoryDto.Id))" Title="Id" Visible="false"
+                                                Groupable="false" />
+                                    <GridColumn Field="@(nameof(CategoryDto.Name))" Title="Name"
+                                                Groupable="false" />
+                                    <GridColumn Field="@(nameof(CategoryDto.Count))" Title="Count - Questions"
+                                                Groupable="false" />
+                                    
+                                    <GridColumn Field="@nameof(CategoryDto.CreatedDate)" Title="Date - Created">
+                                        <Template>
+                                            @((context as CategoryDto).CreatedDate.ToString("MMMM dd, yyyy"))
+                                        </Template>
+                                    </GridColumn>
+                                    <GridCommandColumn Width="190px">
+                                        <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Update</GridCommandButton>
+                                        <GridCommandButton Command="Edit" Icon="edit">Edit</GridCommandButton>
+                                        <GridCommandButton Command="Delete" Icon="delete">Delete</GridCommandButton>
+                                        <GridCommandButton Command="Cancel" Icon="cancel" ShowInEdit="true">Cancel</GridCommandButton>
+                                    </GridCommandColumn>
                                 </GridColumns>
+                                <GridToolBar>
+                                    <GridCommandButton Command="Add" Icon="add">Add Category</GridCommandButton>
+                                </GridToolBar>
                             </TelerikGrid>
                         </div>
                     </div>

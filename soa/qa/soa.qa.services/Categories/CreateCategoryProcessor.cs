@@ -26,35 +26,35 @@ namespace soa.qa.services.Categories
       _autoMapper = autoMapper;
     }
 
-    private void MakeCategoryPersistent(Category CategoryToBeMadePersistence)
+    private void MakeCategoryPersistent(Category categoryToBeMadePersistence)
     {
-      _categoryRepository.Save(CategoryToBeMadePersistence);
+      _categoryRepository.Save(categoryToBeMadePersistence);
       _uOf.Commit();
     }
     
-    private void ThrowExcIfThisCategoryAlreadyExist(Category CategoryToBeCreated)
+    private void ThrowExcIfThisCategoryAlreadyExist(Category categoryToBeCreated)
     {
-      var categoryRetrieved = _categoryRepository.FindCategoryByName(CategoryToBeCreated.Name);
+      var categoryRetrieved = _categoryRepository.FindCategoryByName(categoryToBeCreated.Name);
       if (categoryRetrieved != null)
       {
-        throw new CategoryAlreadyExistsException(CategoryToBeCreated.Name,
+        throw new CategoryAlreadyExistsException(categoryToBeCreated.Name,
           categoryRetrieved.GetBrokenRulesAsString());
       }
     }
 
-    private CategoryUiModel ThrowExcIfCategoryWasNotBeMadePersistent(Category CategoryToBeCreated)
+    private CategoryUiModel ThrowExcIfCategoryWasNotBeMadePersistent(Category categoryToBeCreated)
     {
-      var retrievedCategory = _categoryRepository.FindCategoryByName(CategoryToBeCreated.Name);
+      var retrievedCategory = _categoryRepository.FindCategoryByName(categoryToBeCreated.Name);
       if (retrievedCategory != null)
         return _autoMapper.Map<CategoryUiModel>(retrievedCategory);
       throw new CategoryDoesNotExistAfterMadePersistentException(retrievedCategory.Name);
     }
     
-    private void ThrowExcIfCategoryCannotBeCreated(Category CategoryToBeCreated)
+    private void ThrowExcIfCategoryCannotBeCreated(Category categoryToBeCreated)
     {
-      bool canBeCreated = !CategoryToBeCreated.GetBrokenRules().Any();
+      bool canBeCreated = !categoryToBeCreated.GetBrokenRules().Any();
       if (!canBeCreated)
-        throw new InvalidCategoryException(CategoryToBeCreated.GetBrokenRulesAsString());
+        throw new InvalidCategoryException(categoryToBeCreated.GetBrokenRulesAsString());
     }
     
     public Task<CategoryUiModel> CreateCategoryAsync(CategoryForCreationUiModel newCategoryUiModel)

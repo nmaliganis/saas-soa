@@ -4,9 +4,9 @@ namespace soa.ui.Store.Categories.Actions.FetchCategory
 {
   public class FetchCategoryAction
   {
-    public Guid CategoryToBeFetchedId { get; private set; }
+    public int CategoryToBeFetchedId { get; private set; }
 
-    public FetchCategoryAction(Guid categoryToBeFetchedId)
+    public FetchCategoryAction(int categoryToBeFetchedId)
     {
       CategoryToBeFetchedId = categoryToBeFetchedId;
     }

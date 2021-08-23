@@ -1,16 +1,17 @@
 ﻿using System;
+using soa.ui.Models.DTOs.Tags;
 
 namespace soa.ui.Store.Tags.Actions.UpdateTag
 {
   public class UpdateTagSuccessAction
   {
-    public Guid TagHaveBeenUpdateId { get; private set; }
-    public string TagDeletionStatus { get; private set; }
+    public int TagHaveBeenUpdateId { get; private set; }
+    public TagDto TagHaveBeenUpdated { get; private set; }
 
-    public UpdateTagSuccessAction(Guid tagHaveBeenUpdateId, string tagDeletionStatus)
+    public UpdateTagSuccessAction(int tagHaveBeenUpdateId, TagDto tagHaveBeenUpdated)
     {
       TagHaveBeenUpdateId = tagHaveBeenUpdateId;
-      TagDeletionStatus = tagDeletionStatus;
+      TagHaveBeenUpdated = tagHaveBeenUpdated;
     }
   }
 }

@@ -1,7 +1,7 @@
 ﻿using Fluxor;
 using soa.ui.Store.Categories.Actions.FetchCategories;
 
-namespace soa.ui.Store.Categories.Reducers.FetchVehicles
+namespace soa.ui.Store.Categories.Reducers.FetchCategories
 {
   public class FetchCategoryListReducerSuccessActionReducer : Reducer<CategoryState, FetchCategoryListSuccessAction>
   {

@@ -12,7 +12,7 @@ namespace soa.ui.Store.Tags
     public TagDto Tag { get; private set; }
     public TagForCreationDto TagToBeCreatedPayload { get; private set; }
     public TagForModificationDto TagToBeUpdatePayload { get; }
-    public Guid TagId { get; }
+    public int TagId { get; }
 
     public TagState(
       List<TagDto> tagList, 
@@ -21,7 +21,7 @@ namespace soa.ui.Store.Tags
       TagDto tag, 
       TagForCreationDto tagToBeCreatedPayload, 
       TagForModificationDto tagToBeUpdatePayload, 
-      Guid tagId
+      int tagId
     )
     {
       TagList  = tagList;

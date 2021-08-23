@@ -16,7 +16,7 @@ namespace soa.ui.Store.Tags
       new TagDto(), 
       new TagForCreationDto(), 
       new TagForModificationDto(), 
-      Guid.Empty
+      0
     );
   }
 }

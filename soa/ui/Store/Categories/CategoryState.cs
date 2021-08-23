@@ -12,7 +12,7 @@ namespace soa.ui.Store.Categories
     public CategoryDto Category { get; private set; }
     public CategoryForCreationDto CategoryToBeCreatedPayload { get; private set; }
     public CategoryForModificationDto CategoryToBeUpdatePayload { get; }
-    public Guid CategoryId { get; }
+    public int CategoryId { get; }
 
     public CategoryState(
       List<CategoryDto> categoryList, 
@@ -21,7 +21,7 @@ namespace soa.ui.Store.Categories
       CategoryDto category, 
       CategoryForCreationDto categoryToBeCreatedPayload, 
       CategoryForModificationDto categoryToBeUpdatePayload, 
-      Guid categoryId
+      int categoryId
     )
     {
       CategoryList  = categoryList;

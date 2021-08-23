@@ -25,9 +25,10 @@ using Serilog;
 using Serilog.Events;
 using soa.qa.api.Configurations;
 using soa.qa.api.Configurations.AutoMappingProfiles.Answers;
-using soa.qa.api.Configurations.AutoMappingProfiles.Category;
+using soa.qa.api.Configurations.AutoMappingProfiles.Categories;
 using soa.qa.api.Configurations.AutoMappingProfiles.Persons;
 using soa.qa.api.Configurations.AutoMappingProfiles.Questions;
+using soa.qa.api.Configurations.AutoMappingProfiles.Tags;
 
 namespace soa.qa.api
 {
@@ -273,6 +274,7 @@ namespace soa.qa.api
         cfg.AddProfile<AnswerEntityToAnswerUiAutoMapperProfile>();
         cfg.AddProfile<QuestionEntityToQuestionUiAutoMapperProfile>();
         cfg.AddProfile<CategoryEntityToCategoryUiAutoMapperProfile>();
+        cfg.AddProfile<TagEntityToTagUiAutoMapperProfile>();
         cfg.AddProfile<PersonEntityToPersonUiAutoMapperProfile>();
       });
 

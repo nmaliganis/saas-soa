@@ -12,7 +12,7 @@ namespace soa.ui.Services.Contracts.Categories
     Task<int> GetTotalCategoryCount();
 
     Task<CategoryDto> CreateCategory(CategoryForCreationDto categoryToBeCreated);
-    Task<CategoryDto> UpdateCategory(Guid categoryIdToBeUpdated, CategoryForModificationDto categoryToBeUpdated);
-    Task<CategoryDto> DeleteCategory(Guid categoryIdToBeDeleted);
+    Task<CategoryDto> UpdateCategory(int categoryIdToBeUpdated, CategoryForModificationDto categoryToBeUpdated);
+    Task<CategoryDto> DeleteCategory(int categoryIdToBeDeleted);
   }
 }

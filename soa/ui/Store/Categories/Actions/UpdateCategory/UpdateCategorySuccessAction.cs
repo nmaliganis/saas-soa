@@ -1,16 +1,17 @@
 ﻿using System;
+using soa.ui.Models.DTOs.Categories;
 
 namespace soa.ui.Store.Categories.Actions.UpdateCategory
 {
   public class UpdateCategorySuccessAction
   {
-    public Guid CategoryHaveBeenUpdateId { get; private set; }
-    public string CategoryDeletionStatus { get; private set; }
+    public int CategoryHaveBeenUpdateId { get; private set; }
+    public CategoryDto CategoryModification { get; private set; }
 
-    public UpdateCategorySuccessAction(Guid categoryHaveBeenUpdateId, string categoryDeletionStatus)
+    public UpdateCategorySuccessAction(int categoryHaveBeenUpdateId, CategoryDto categoryModification)
     {
       CategoryHaveBeenUpdateId = categoryHaveBeenUpdateId;
-      CategoryDeletionStatus = categoryDeletionStatus;
+      CategoryModification = categoryModification;
     }
   }
 }

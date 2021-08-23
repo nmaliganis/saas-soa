@@ -57,36 +57,35 @@
                 </div>
             </div>
 
-
-
             <div class="col-md-12">
                 <div class="card issue-types">
                     <h4 class="card-header">Recent questions and answers</h4>
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group">
+                                <TelerikButton Primary="true" Icon="add" OnClick="@OnAskAQuestionRecentQuestionsClickHandler">Ask A Question</TelerikButton>
                                 <TelerikButton Icon="edit" OnClick="@OnCheckRecentQuestionsClickHandler">Check</TelerikButton>
                             </div>
                         </div>
                         <div class="row">
                             @*<TelerikGrid Data="@CustomerState.Value.CustomerList" Pageable="true" PageSize="10" Height="300px"
-                                         PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
-                                         SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
-                                         SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
-                                         FilterMode="GridFilterMode.FilterRow">
-                                <GridColumns>
-                                    <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
-                                                Groupable="false" />
-                                </GridColumns>
-                            </TelerikGrid>*@
+                                     PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                     SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
+                                     SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
+                                     FilterMode="GridFilterMode.FilterRow">
+                            <GridColumns>
+                                <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
+                                            Groupable="false" />
+                            </GridColumns>
+                        </TelerikGrid>*@
                         </div>
                     </div>
                 </div>
@@ -99,28 +98,29 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group">
+                                <TelerikButton Primary="true" Icon="add" OnClick="@OnGiveAnAnswerUnansweredQuestionsClickHandler">Give an Amswer</TelerikButton>
                                 <TelerikButton Icon="edit" OnClick="@OnCheckUnansweredQuestionsClickHandler">Check</TelerikButton>
                             </div>
                         </div>
                         <div class="row">
                             @*<TelerikGrid Data="@CustomerState.Value.CustomerList" Pageable="true" PageSize="10" Height="300px"
-                                         PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
-                                         SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
-                                         SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
-                                         FilterMode="GridFilterMode.FilterRow">
-                                <GridColumns>
-                                    <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
-                                                Groupable="false" />
-                                </GridColumns>
-                            </TelerikGrid>*@
+                                     PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                     SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
+                                     SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
+                                     FilterMode="GridFilterMode.FilterRow">
+                            <GridColumns>
+                                <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
+                                            Groupable="false" />
+                            </GridColumns>
+                        </TelerikGrid>*@
                         </div>
                     </div>
                 </div>

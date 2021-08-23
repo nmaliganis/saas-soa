@@ -1,6 +1,8 @@
 @page "/tags"
-@using smart.charger.webui.Models.DTOs.Vehicles
-@inherits soa.ui.Pages.Vehicles.VehiclesViewModel
+@using soa.ui.Models.DTOs.Categories
+@using soa.ui.Models.DTOs.Tags
+@inherits TagsViewModel
+
 @if (!AuthState.Value.IsLoggedOn)
 {
     NavigateToSignin();
@@ -12,36 +14,56 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header">Registered Vehicles</h3>
+                    <h3 class="card-header">Tags</h3>
                     <div class="card-body">
                         <div class="row">
-                            @* <div class="form-group"> *@
-                            @*     <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add" OnClick="@OnAddClickHandler">Add</TelerikButton> *@
-                            @*     <TelerikButton Icon="edit" OnClick="@OnUpdateClickHandler">Edit</TelerikButton> *@
-                            @*     <TelerikButton Icon="delete" OnClick="@OnDeleteClickHandler">Delete</TelerikButton> *@
-                            @* </div> *@
-                        </div>
-                        <div class="row">
-                            <TelerikGrid Data="@VehicleState.Value.VehicleList"
-                                         Pageable="true"
-                                         PageSize="10"
-                                         Height="600px"
-                                         PageChanged="@PageChangedHandler"
-                                         Sortable="true"
-                                         SelectionMode="GridSelectionMode.Single"
-                                         SelectedItemsChanged="@((IEnumerable<VehicleDto> vehicleList) => OnSelect(vehicleList))"
-                                         SelectedItems="@SelectedItems"
-                                         Reorderable="true"
-                                         Resizable="true"
-                                         Groupable="false"
-                                         FilterMode="GridFilterMode.FilterRow">
+                            <TelerikGrid 
+                                @ref="@TagsGrid"
+                                Data="@TagState.Value.TagList" 
+                                OnUpdate="@OnEditTagClickHandler"
+                                OnDelete="@OnDeleteTagClickHandler"
+                                OnCreate="@OnAddTagClickHandler"
+                                Pageable="true" 
+                                Groupable="false"
+                                Sortable="true"
+                                FilterMode="GridFilterMode.FilterRow"
+                                Resizable="true"
+                                Reorderable="true"
+                                PageSize="10" 
+                                Height="1100px"
+                                EditMode="GridEditMode.Inline"
+                                PageChanged="@PageChangedHandler" 
+                                SelectionMode="GridSelectionMode.Single"
+                                SelectedItemsChanged="@((IEnumerable<TagDto> TagList) => OnTagSelect(TagList))"
+                                SelectedItems="@SelectedTagItems" 
+                                Navigable="true"
+                                OnStateInit="@((GridStateEventArgs<TagDto> args) => OnStateInit(args))"
+                            >
                                 <GridColumns>
-                                    <GridColumn Field="@(nameof(VehicleDto.Brand))" Title="Brand" Groupable="false"/>
-                                    <GridColumn Field="@(nameof(VehicleDto.NumPlate))" Title="Plate Number" Groupable="false"/>
-                                    <GridColumn Field="@(nameof(VehicleDto.ConnectionType))" Title="Type Of Connection" Groupable="false"/>
-                                    <GridColumn Field="@(nameof(VehicleDto.BatValue))" Title="Battery" Groupable="false"/>
-                                    <GridColumn Field="@(nameof(VehicleDto.CurrentKm))" Title="Km" Groupable="false"/>
+                                    <GridColumn Field="@(nameof(TagDto.Id))" Title="Id" Visible="false"
+                                                Groupable="false" />
+                                    <GridColumn Field="@(nameof(TagDto.Title))" Title="Title"
+                                                Groupable="false" />
+                                    <GridColumn Field="@(nameof(TagDto.Description))" Title="Description"
+                                                Groupable="false" />
+                                    <GridColumn Field="@(nameof(TagDto.Count))" Title="Count - Questions"
+                                                Groupable="false" />
+                                    
+                                    <GridColumn Field="@nameof(TagDto.CreatedDate)" Title="Date - Created">
+                                        <Template>
+                                            @((context as TagDto).CreatedDate.ToString("MMMM dd, yyyy"))
+                                        </Template>
+                                    </GridColumn>
+                                    <GridCommandColumn Width="190px">
+                                        <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Update</GridCommandButton>
+                                        <GridCommandButton Command="Edit" Icon="edit">Edit</GridCommandButton>
+                                        <GridCommandButton Command="Delete" Icon="delete">Delete</GridCommandButton>
+                                        <GridCommandButton Command="Cancel" Icon="cancel" ShowInEdit="true">Cancel</GridCommandButton>
+                                    </GridCommandColumn>
                                 </GridColumns>
+                                <GridToolBar>
+                                    <GridCommandButton Command="Add" Icon="add">Add Tag</GridCommandButton>
+                                </GridToolBar>
                             </TelerikGrid>
                         </div>
                     </div>

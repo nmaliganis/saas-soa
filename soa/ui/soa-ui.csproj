@@ -110,6 +110,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Store\Categories\Reducers\FetchCategory\" />
     <Folder Include="Store\Chargers\Effects\InitCharger\" />
     <Folder Include="Store\Chargers\Effects\UpdateCharger\" />
     <Folder Include="Store\Chargers\Reducers\CreateCharger\" />

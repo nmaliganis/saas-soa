@@ -4,9 +4,9 @@ namespace soa.ui.Store.Tags.Actions.FetchTag
 {
   public class FetchTagAction
   {
-    public Guid TagToBeFetchedId { get; private set; }
+    public int TagToBeFetchedId { get; private set; }
 
-    public FetchTagAction(Guid tagToBeFetchedId)
+    public FetchTagAction(int tagToBeFetchedId)
     {
       TagToBeFetchedId = tagToBeFetchedId;
     }

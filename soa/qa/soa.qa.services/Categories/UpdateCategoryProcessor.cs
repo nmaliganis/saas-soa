@@ -64,31 +64,31 @@ namespace soa.qa.services.Categories
 
       if (updatedCategory == null)
       {
-        response.Message = "ERROR_INVALID_Category_MODEL";
+        response.Message = "ERROR_INVALID_CATEGORY_MODEL";
         return Task.Run(() => response);
       }
 
       try
       {
-        var CategoryToBeModified = _categoryRepository.FindCategoryByName(updatedCategory.Name);
+        var categoryToBeModified = _categoryRepository.FindBy(idCategoryToBeUpdated);
 
-        CategoryToBeModified.InjectWithInitialModifiedAttributes(updatedCategory);
+        categoryToBeModified.InjectWithInitialModifiedAttributes(updatedCategory);
         
-        ThrowExcIfCategoryCannotBeModified(CategoryToBeModified);
-        ThrowExcIfThisCategoryAlreadyExist(CategoryToBeModified);
+        ThrowExcIfCategoryCannotBeModified(categoryToBeModified);
+        ThrowExcIfThisCategoryAlreadyExist(categoryToBeModified);
 
         Log.Debug(
           $"Modify Category: {updatedCategory.Name}" +
           "--CreateCategory--  @NotComplete@ [CreateCategoryProcessor]. " +
           "Message: Just Before MakeItPersistence");
 
-        MakeCategoryPersistent(CategoryToBeModified);
+        MakeCategoryPersistent(categoryToBeModified);
 
         Log.Debug(
           $"Modify Category: {updatedCategory.Name}" +
           "--CreateCategory--  @NotComplete@ [CreateCategoryProcessor]. " +
           "Message: Just After MakeItPersistence");
-        response = ThrowExcIfCategoryWasNotBeMadePersistent(CategoryToBeModified);
+        response = ThrowExcIfCategoryWasNotBeMadePersistent(categoryToBeModified);
         response.Message = "SUCCESS_MODIFY";
       }
       catch (InvalidCategoryException e)

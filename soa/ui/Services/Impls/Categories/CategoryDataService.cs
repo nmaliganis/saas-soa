@@ -28,7 +28,8 @@ namespace soa.ui.Services.Impls.Categories
 
         private void OnCreated()
         {
-            BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
+            //BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
+            BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
             Version = Configuration["version"];
         }
 
@@ -68,7 +69,7 @@ namespace soa.ui.Services.Impls.Categories
         {
             CategoryDto result = new CategoryDto();
 
-            var client = new RestClient($"{BaseAddr}/api/{Version}/categories/{id}");
+            var client = new RestClient($"{BaseAddr}/api/categories/{id}");
             var request = new RestRequest(Method.GET);
 
             request.AddHeader("Content-Type", "application/json");
@@ -91,7 +92,7 @@ namespace soa.ui.Services.Impls.Categories
         {
             int result = 0;
 
-            var client = new RestClient($"{BaseAddr}/api/{Version}/categories/count-total");
+            var client = new RestClient($"{BaseAddr}/api/categories/count-total");
             var request = new RestRequest(Method.GET);
 
             request.AddHeader("Content-Type", "application/json");
@@ -110,20 +111,76 @@ namespace soa.ui.Services.Impls.Categories
             return result;
         }
 
-        public Task<CategoryDto> CreateCategory(CategoryForCreationDto categoryToBeCreated)
+        public async Task<CategoryDto> CreateCategory(CategoryForCreationDto categoryToBeCreated)
         {
-            throw new System.NotImplementedException();
+            CategoryDto result = new CategoryDto();
+
+            var client = new RestClient($"{BaseAddr}/api/categories");
+            var request = new RestRequest("", Method.POST);
+
+            request.AddJsonBody(categoryToBeCreated);
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                result = JsonConvert.DeserializeObject<CategoryDto>(response.Content);
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                CategoryErrorModel resultError = JsonConvert.DeserializeObject<CategoryErrorModel>(response.Content);
+                throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+            }
+
+            return result;
         }
 
-        public Task<CategoryDto> UpdateCategory(Guid categoryIdToBeUpdated,
+        public async Task<CategoryDto> UpdateCategory(int categoryIdToBeUpdated,
             CategoryForModificationDto categoryToBeUpdated)
         {
-            throw new System.NotImplementedException();
+            CategoryDto result = new CategoryDto();
+
+            var client = new RestClient($"{BaseAddr}/api/categories/{categoryIdToBeUpdated}");
+            var request = new RestRequest("", Method.PUT);
+
+            request.AddJsonBody(categoryToBeUpdated);
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                result = JsonConvert.DeserializeObject<CategoryDto>(response.Content);
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                CategoryErrorModel resultError = JsonConvert.DeserializeObject<CategoryErrorModel>(response.Content);
+                throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+            }
+
+            return result;
         }
 
-        public Task<CategoryDto> DeleteCategory(Guid categoryIdToBeDeleted)
+        public async Task<CategoryDto> DeleteCategory(int categoryIdToBeDeleted)
         {
-            throw new System.NotImplementedException();
+            CategoryDto result = new CategoryDto();
+
+            var client = new RestClient($"{BaseAddr}/api/categories/{categoryIdToBeDeleted}");
+            var request = new RestRequest("", Method.DELETE);
+
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                result = JsonConvert.DeserializeObject<CategoryDto>(response.Content);
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                CategoryErrorModel resultError = JsonConvert.DeserializeObject<CategoryErrorModel>(response.Content);
+                throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+            }
+
+            return result;
         }
     }
 }
