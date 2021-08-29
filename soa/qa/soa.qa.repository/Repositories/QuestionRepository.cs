@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.SqlCommand;
 using Serilog;
 using soa.qa.model.Questions;
 using soa.qa.repository.ContractRepositories;
@@ -23,7 +22,6 @@ namespace soa.qa.repository.Repositories
       try
       {
         count = Session
-          // .CreateCriteria<NotImplementedException>()
           .CreateCriteria<Question>("Q")
           .Add(Expression.Eq("Q.Active", true))
           .SetProjection(
@@ -46,9 +44,9 @@ namespace soa.qa.repository.Repositories
       try
       {
         count = Session
-          .CreateCriteria<Question>("Q")
-          .CreateCriteria("Q.QuestionAnswers", "QA", JoinType.InnerJoin)
-          .Add(Expression.Eq("Q.Active", true))
+            .CreateCriteria<Question>("Q")
+            .Add(Expression.Eq("Q.Active", true))
+            .Add(Expression.Eq("Q.Answered", false))
           .SetProjection(
             Projections.Count(Projections.Id())
           )
@@ -80,7 +78,19 @@ namespace soa.qa.repository.Repositories
     {
       var selection = Session.QueryOver<Question>()
         .Where(t => t.Active)
-        .Where(t=>t.CreatedDate < DateTime.Today)
+        .Where(t=>t.CreatedDate <= DateTime.Today)
+        .Where(t=>t.CreatedDate >= DateTime.Today.AddDays(-1))
+        .List();
+      ;
+
+      return selection;
+    }
+
+    public IList<Question> FindAllByUnanswered()
+    {
+        var selection = Session.QueryOver<Question>()
+        .Where(t => t.Active)
+        .Where(t => t.Answered == false)
         .List();
       ;
 

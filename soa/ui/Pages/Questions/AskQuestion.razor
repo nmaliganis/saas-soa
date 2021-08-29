@@ -1,0 +1,101 @@
+﻿@page "/askquestion"
+
+@using System.Threading
+@using Syncfusion.Blazor.Maps
+@using smart.charger.webui.DataRetrieval
+@using smart.charger.webui.Models.DTOs.Stations
+@using soa.ui.Models.DTOs.Categories
+@using soa.ui.Models.DTOs.Questions
+@using soa.ui.Models.DTOs.Tags
+@inherits AskQuestionViewModel
+
+<div class="dashboard">
+    
+    <header>
+        <div class="detail-header-title">
+            <div class="module-title">
+                <div class='title'>Ask A Question</div>
+                <div class='underline'></div>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <h4 class="card-header">The question in one sentence:</h4>
+                <div class="card-body">
+                    <TelerikTextBox Width="100%" 
+                                    @bind-Value="QuestionToBeAsked.Title" Id="question-title" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <h4 class="card-header">Category:</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="k-form-field-wrap">
+                                <TelerikComboBox Data="@CategoryState.Value.CategoryList" Placeholder="Select Category"
+                                                 TextField="@nameof(CategoryDto.Name)" 
+                                                 ValueField="@nameof(CategoryDto.Id)" 
+                                                 Filterable="true"
+                                                 Id="category" Width="100%"
+                                                 ValueChanged="@( (int? c) => CategorySelected(c) )"
+                                                 >
+                                </TelerikComboBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <h4 class="card-header">More information for the question:</h4>
+                <div class="card-body">
+                    <TelerikTextArea Id="question-body"
+                                     @bind-Value="@QuestionToBeAsked.Body"
+                                     AutoSize="true"
+                                     Width="100%"
+                                     PlaceHolder="Enter your QUESTION here">
+                    </TelerikTextArea>
+                </div>
+            </div>
+        </div>       
+        
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <h4 class="card-header">Tags - use hyphens to combine words:</h4>
+                <div class="card-body">
+                    <TelerikMultiSelect Data="@TagState.Value.TagList"
+                                        @bind-Value="@SelectedTagIds"
+                                        ValueField="@nameof(TagDto.Id)"
+                                        TextField="@nameof(TagDto.Title)"
+                                        OnChange="@PopulateSelectedTags"
+                                        Placeholder="Select Tags"
+                                        Id="products-multiselect" Width="100%">
+                    </TelerikMultiSelect>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <div class="card-body">
+                    <div class="row">
+                        <TelerikButton Primary="true" Icon="save" OnClick="@OnSaveNewQuestionClickHandler">Ask The Question</TelerikButton>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

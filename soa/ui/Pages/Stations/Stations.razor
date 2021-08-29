@@ -2,49 +2,42 @@
 @using smart.charger.webui.Models.DTOs.Stations
 @inherits StationsViewModel
 
-@if (!AuthState.Value.IsLoggedOn)
-{
-    NavigateToSignin();
-}
-
-@if (AuthState.Value.IsLoggedOn)
-{
-    <div class="videos">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <h3 class="card-header">Stations</h3>
-                    <div class="card-body">
-                        @* <div class="row"> *@
-                        @*     <div class="form-group"> *@
-                        @*         <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add" OnClick="@OnSaveClickHandler">Add</TelerikButton> *@
-                        @*         <TelerikButton Icon="edit" OnClick="@OnCancelClickHandler">Edit</TelerikButton> *@
-                        @*         <TelerikButton Icon="delete" OnClick="@OnCancelClickHandler">Delete</TelerikButton> *@
-                        @*     </div> *@
-                        @*</div>*@
-                        <div class="row">
-                            <TelerikGrid Data="@StationState.Value.StationList"
-                                         Pageable="true"
-                                         PageSize="10"
-                                         Height="600px"
-                                         PageChanged="@PageChangedHandler"
-                                         Sortable="true"
-                                         SelectionMode="GridSelectionMode.Single"
-                                         SelectedItemsChanged="@((IEnumerable<StationDto> stationList) => OnSelect(stationList))"
-                                         SelectedItems="@SelectedItems"
-                                         Reorderable="true"
-                                         Resizable="true"
-                                         Groupable="false"
-                                         FilterMode="GridFilterMode.FilterRow">
-                                <GridColumns>
-                                    <GridColumn Field="@(nameof(StationDto.Name))" Title="Name" Groupable="false"/>
-                                    <GridColumn Field="@(nameof(StationDto.Rating))" Title="Rating" Groupable="false"/>
-                                </GridColumns>
-                            </TelerikGrid>
-                        </div>
-                    </div>
+<div class="videos">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <h3 class="card-header">Stations</h3>
+            <div class="card-body">
+                @* <div class="row"> *@
+                @*     <div class="form-group"> *@
+                @*         <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add" OnClick="@OnSaveClickHandler">Add</TelerikButton> *@
+                @*         <TelerikButton Icon="edit" OnClick="@OnCancelClickHandler">Edit</TelerikButton> *@
+                @*         <TelerikButton Icon="delete" OnClick="@OnCancelClickHandler">Delete</TelerikButton> *@
+                @*     </div> *@
+                @*</div>*@
+                <div class="row">
+                    <TelerikGrid Data="@StationState.Value.StationList"
+                                 Pageable="true"
+                                 PageSize="10"
+                                 Height="600px"
+                                 PageChanged="@PageChangedHandler"
+                                 Sortable="true"
+                                 SelectionMode="GridSelectionMode.Single"
+                                 SelectedItemsChanged="@((IEnumerable<StationDto> stationList) => OnSelect(stationList))"
+                                 SelectedItems="@SelectedItems"
+                                 Reorderable="true"
+                                 Resizable="true"
+                                 Groupable="false"
+                                 FilterMode="GridFilterMode.FilterRow">
+                        <GridColumns>
+                            <GridColumn Field="@(nameof(StationDto.Name))" Title="Name" Groupable="false"/>
+                            <GridColumn Field="@(nameof(StationDto.Rating))" Title="Rating" Groupable="false"/>
+                        </GridColumns>
+                    </TelerikGrid>
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
+</div>
+

@@ -2,70 +2,63 @@
 @using soa.ui.Models.DTOs.Categories
 @inherits CategoriesViewModel
 
-@if (!AuthState.Value.IsLoggedOn)
-{
-    NavigateToSignin();
-}
-
-@if (AuthState.Value.IsLoggedOn)
-{
-    <div class="videos">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <h3 class="card-header">Categories</h3>
-                    <div class="card-body">
-                        <div class="row">
-                            <TelerikGrid 
-                                @ref="@CategoriesGrid"
-                                Data="@CategoryState.Value.CategoryList" 
-                                OnUpdate="@OnEditCategoryClickHandler"
-                                OnDelete="@OnDeleteCategoryClickHandler"
-                                OnCreate="@OnAddCategoryClickHandler"
-                                Pageable="true" 
-                                Groupable="false"
-                                Sortable="true"
-                                FilterMode="GridFilterMode.FilterRow"
-                                Resizable="true"
-                                Reorderable="true"
-                                PageSize="10" 
-                                Height="1100px"
-                                EditMode="GridEditMode.Inline"
-                                PageChanged="@PageChangedHandler" 
-                                SelectionMode="GridSelectionMode.Single"
-                                SelectedItemsChanged="@((IEnumerable<CategoryDto> categoryList) => OnCategorySelect(categoryList))"
-                                SelectedItems="@SelectedCategoryItems" 
-                                Navigable="true"
-                                OnStateInit="@((GridStateEventArgs<CategoryDto> args) => OnStateInit(args))"
-                            >
-                                <GridColumns>
-                                    <GridColumn Field="@(nameof(CategoryDto.Id))" Title="Id" Visible="false"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CategoryDto.Name))" Title="Name"
-                                                Groupable="false" />
-                                    <GridColumn Field="@(nameof(CategoryDto.Count))" Title="Count - Questions"
-                                                Groupable="false" />
-                                    
-                                    <GridColumn Field="@nameof(CategoryDto.CreatedDate)" Title="Date - Created">
-                                        <Template>
-                                            @((context as CategoryDto).CreatedDate.ToString("MMMM dd, yyyy"))
-                                        </Template>
-                                    </GridColumn>
-                                    <GridCommandColumn Width="190px">
-                                        <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Update</GridCommandButton>
-                                        <GridCommandButton Command="Edit" Icon="edit">Edit</GridCommandButton>
-                                        <GridCommandButton Command="Delete" Icon="delete">Delete</GridCommandButton>
-                                        <GridCommandButton Command="Cancel" Icon="cancel" ShowInEdit="true">Cancel</GridCommandButton>
-                                    </GridCommandColumn>
-                                </GridColumns>
-                                <GridToolBar>
-                                    <GridCommandButton Command="Add" Icon="add">Add Category</GridCommandButton>
-                                </GridToolBar>
-                            </TelerikGrid>
-                        </div>
+<div class="videos">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header">Categories</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <TelerikGrid 
+                            @ref="@CategoriesGrid"
+                            Data="@CategoryState.Value.CategoryList" 
+                            OnUpdate="@OnEditCategoryClickHandler"
+                            OnDelete="@OnDeleteCategoryClickHandler"
+                            OnCreate="@OnAddCategoryClickHandler"
+                            Pageable="true" 
+                            Groupable="false"
+                            Sortable="true"
+                            FilterMode="GridFilterMode.FilterRow"
+                            Resizable="true"
+                            Reorderable="true"
+                            PageSize="10" 
+                            Height="1100px"
+                            EditMode="GridEditMode.Inline"
+                            PageChanged="@PageChangedHandler" 
+                            SelectionMode="GridSelectionMode.Single"
+                            SelectedItemsChanged="@((IEnumerable<CategoryDto> categoryList) => OnCategorySelect(categoryList))"
+                            SelectedItems="@SelectedCategoryItems" 
+                            Navigable="true"
+                            OnStateInit="@((GridStateEventArgs<CategoryDto> args) => OnStateInit(args))"
+                        >
+                            <GridColumns>
+                                <GridColumn Field="@(nameof(CategoryDto.Id))" Title="Id" Visible="false"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CategoryDto.Name))" Title="Name"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(CategoryDto.Count))" Title="Count - Questions"
+                                            Groupable="false" />
+                                
+                                <GridColumn Field="@nameof(CategoryDto.CreatedDate)" Title="Date - Created">
+                                    <Template>
+                                        @((context as CategoryDto).CreatedDate.ToString("MMMM dd, yyyy"))
+                                    </Template>
+                                </GridColumn>
+                                <GridCommandColumn Width="190px">
+                                    <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Update</GridCommandButton>
+                                    <GridCommandButton Command="Edit" Icon="edit">Edit</GridCommandButton>
+                                    <GridCommandButton Command="Delete" Icon="delete">Delete</GridCommandButton>
+                                    <GridCommandButton Command="Cancel" Icon="cancel" ShowInEdit="true">Cancel</GridCommandButton>
+                                </GridCommandColumn>
+                            </GridColumns>
+                            <GridToolBar>
+                                <GridCommandButton Command="Add" Icon="add">Add Category</GridCommandButton>
+                            </GridToolBar>
+                        </TelerikGrid>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
+

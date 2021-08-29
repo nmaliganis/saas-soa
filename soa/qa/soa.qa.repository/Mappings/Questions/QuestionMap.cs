@@ -85,7 +85,17 @@ namespace soa.qa.repository.Mappings.Questions
         .Not.Nullable()
         ;
 
-      References(x => x.Person)
+      Map(x => x.Answered)
+          .Column("answered")
+          .CustomType("bool")
+          .Access.Property()
+          .Generated.Never()
+          .Default("true")
+          .CustomSqlType("boolean")
+          .Not.Nullable()
+          ;
+
+     References(x => x.Person)
         .Class<Person>()
         .Access.Property()
         .Cascade.None()

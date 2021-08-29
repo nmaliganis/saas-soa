@@ -10,12 +10,18 @@ using Microsoft.Extensions.Configuration;
 using smart.charger.webui.DataRetrieval;
 using smart.charger.webui.Models;
 using smart.charger.webui.Models.DTOs.Stations;
+using smart.charger.webui.Models.DTOs.Vehicles;
 using smart.charger.webui.Store.Auth;
 using smart.charger.webui.Store.Dashboard;
 using smart.charger.webui.Store.Dashboard.Actions.FetchDashboards;
 using smart.charger.webui.Store.Stations;
 using smart.charger.webui.Store.Stations.Actions.FetchStation;
+using soa.ui.Models.DTOs.Questions;
 using soa.ui.Store.Dashboard;
+using soa.ui.Store.Dashboard.Actions.FetchDashboards;
+using soa.ui.Store.Questions;
+using soa.ui.Store.Questions.Actions.FetchQuestions;
+using soa.ui.Store.Questions.Effects.FetchQuestions;
 
 namespace soa.ui.Pages.Dashboard
 {
@@ -24,6 +30,7 @@ namespace soa.ui.Pages.Dashboard
         [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IState<StationState> StationState { get; set; }
         [Inject] public IState<DashboardState> DashboardState { get; set; }
+        [Inject] public IState<QuestionState> QuestionState { get; set; }
         [Inject] public IState<AuthState> AuthState { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IConfiguration Configuration { get; set; }
@@ -35,7 +42,7 @@ namespace soa.ui.Pages.Dashboard
 
         protected override Task OnInitializedAsync()
         {
-            Dispatcher.Dispatch(new FetchStationListAction(AuthState.Value.JwtToken));
+            Dispatcher.Dispatch(new FetchQuestionListAction(AuthState.Value.JwtToken));
             Dispatcher.Dispatch(new FetchDashboardAction(AuthState.Value.JwtToken));
             StateHasChanged();
             return base.OnInitializedAsync();
@@ -45,7 +52,6 @@ namespace soa.ui.Pages.Dashboard
         {
             if (!AuthState.Value.IsLoggedOn)
             {
-                NavigateToSignin();
             }
 
             return base.OnAfterRenderAsync(firstRender);
@@ -64,40 +70,74 @@ namespace soa.ui.Pages.Dashboard
 
         #endregion
 
-        #region Functions
+        #region Functions Questions
 
-        protected void NavigateToSignin()
+        protected void PageChangedHandlerQuestion(int currentPage)
         {
-            //NavigationManager.NavigateTo($"signin");
         }
 
-        protected void PageChangedHandler(int currentPage)
+        public async Task OnConfigureQuestionClickHandler()
         {
-
+            NavigationManager.NavigateTo($"questions");
         }
 
-        public StationDto SelectedStationItem { get; set; }
-
-        private IEnumerable<StationDto> _selectedItems;
-        //public IEnumerable<StationDto> SelectedItems 
-        //{
-        //  get
-        //  {
-        //    if (_selectedItems != null && !Equals(_selectedItems, Enumerable.Empty<StationDto>()))
-        //      return _selectedItems;
-
-        //    if(Store.Stations.StationState. Value.StationList == null)
-        //      return _selectedItems = Enumerable.Empty<StationDto>();
-        //    SelectedStationItem = Store.Stations.StationState.Value.StationList.FirstOrDefault();
-        //    return _selectedItems = new List<StationDto> { SelectedStationItem };
-        //  }
-        //  set => _selectedItems = value;
-        //}
-
-        protected void OnSelect(IEnumerable<StationDto> stationItems)
+        public QuestionDto SelectedQuestionItem { get; set; }
+        private IEnumerable<QuestionDto> _selectedItemsQuestion;
+        public IEnumerable<QuestionDto> SelectedItemsQuestion
         {
-            //SelectedStationItem = stationItems.FirstOrDefault();
-            //SelectedItems = new List<StationDto> { SelectedStationItem };
+            get
+            {
+                if (_selectedItemsQuestion != null && !Equals(_selectedItemsQuestion, Enumerable.Empty<QuestionDto>()))
+                    return _selectedItemsQuestion;
+
+                if (QuestionState.Value.QuestionList == null)
+                    return _selectedItemsQuestion = Enumerable.Empty<QuestionDto>();
+                SelectedQuestionItem = QuestionState.Value.QuestionList.FirstOrDefault();
+                return _selectedItemsQuestion = new List<QuestionDto> { SelectedQuestionItem };
+            }
+            set => _selectedItemsQuestion = value;
+        }
+
+        protected void OnSelectQuestion(IEnumerable<QuestionDto> questionItems)
+        {
+            SelectedQuestionItem = questionItems.FirstOrDefault();
+            SelectedItemsQuestion = new List<QuestionDto> { SelectedQuestionItem };
+        }
+
+        #endregion
+
+        #region Functions Unanswereds
+
+        protected void PageChangedHandlerUnanswered(int currentPage)
+        {
+        }
+
+        public async Task OnConfigureUnansweredClickHandler()
+        {
+            NavigationManager.NavigateTo($"unanswereds");
+        }
+
+        public QuestionDto SelectedUnansweredItem { get; set; }
+        private IEnumerable<QuestionDto> _selectedItemsUnanswered;
+        public IEnumerable<QuestionDto> SelectedItemsUnanswered
+        {
+            get
+            {
+                if (_selectedItemsUnanswered != null && !Equals(_selectedItemsUnanswered, Enumerable.Empty<QuestionDto>()))
+                    return _selectedItemsUnanswered;
+
+                if (QuestionState.Value.QuestionUnansweredList == null)
+                    return _selectedItemsUnanswered = Enumerable.Empty<QuestionDto>();
+                SelectedUnansweredItem = QuestionState.Value.QuestionUnansweredList.FirstOrDefault();
+                return _selectedItemsUnanswered = new List<QuestionDto> { SelectedUnansweredItem };
+            }
+            set => _selectedItemsUnanswered = value;
+        }
+
+        protected void OnSelectUnanswered(IEnumerable<QuestionDto> unansweredItems)
+        {
+            SelectedUnansweredItem = unansweredItems.FirstOrDefault();
+            SelectedItemsUnanswered = new List<QuestionDto> { SelectedUnansweredItem };
         }
 
         #endregion
@@ -111,7 +151,7 @@ namespace soa.ui.Pages.Dashboard
 
         protected async Task OnAskAQuestionRecentQuestionsClickHandler()
         {
-            NavigationManager.NavigateTo($"unanswered-questions");
+            NavigationManager.NavigateTo($"askquestion");
         }
 
         #endregion

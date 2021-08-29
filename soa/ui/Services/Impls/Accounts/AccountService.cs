@@ -7,6 +7,7 @@ using RestSharp;
 using smart.charger.webui.Models.DTOs.Account;
 using smart.charger.webui.Services.Base;
 using smart.charger.webui.Services.Contracts.Accounts;
+using soa.ui.Models.DTOs.Account;
 
 namespace smart.charger.webui.Services.Impls.Accounts
 {

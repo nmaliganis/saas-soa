@@ -74,7 +74,10 @@ namespace ms.question.api.Helpers.Services.Blocks.Question.Impls
 
       try
       {
-        var questionToBeCreated = new Models.Question();
+          var questionToBeCreated = new Models.Question()
+          {
+              
+          };
 
         Log.Debug(
           $"Create Question: {newQuestionUiModel.Title}" +

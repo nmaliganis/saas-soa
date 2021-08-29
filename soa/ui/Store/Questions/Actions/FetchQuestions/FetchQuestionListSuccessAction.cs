@@ -6,10 +6,15 @@ namespace soa.ui.Store.Questions.Actions.FetchQuestions
   public class FetchQuestionListSuccessAction
   {
     public List<QuestionDto> QuestionList { get; private set; }
+    public List<QuestionDto> QuestionTodayList { get; private set; }
+    public List<QuestionDto> QuestionUnansweredList { get; private set; }
 
-    public FetchQuestionListSuccessAction(List<QuestionDto> questionList)
+    public FetchQuestionListSuccessAction(List<QuestionDto> questionList,
+        List<QuestionDto> questionTodayList, List<QuestionDto> questionUnansweredList)
     {
-      QuestionList  = questionList;
+        QuestionList  = questionList;
+        QuestionTodayList = questionTodayList;
+        QuestionUnansweredList = questionUnansweredList;
     }
   }
 }

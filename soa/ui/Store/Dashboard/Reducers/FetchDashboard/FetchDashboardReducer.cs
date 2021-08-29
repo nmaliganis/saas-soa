@@ -1,5 +1,6 @@
 ﻿using Fluxor;
 using smart.charger.webui.Store.Dashboard.Actions.FetchDashboards;
+using soa.ui.Store.Dashboard.Actions.FetchDashboards;
 
 namespace soa.ui.Store.Dashboard.Reducers.FetchDashboard
 {

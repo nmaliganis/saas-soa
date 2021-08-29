@@ -266,9 +266,23 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetUnansweredQuestionsAsync">
+            <summary>
+            Get : Retrieve All Unanswered Questions 
+            </summary>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
         <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetTodaysQuestionsAsync">
             <summary>
             Get : Retrieve All Todays Questions 
+            </summary>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetCountTodaysQuestionsAsync">
+            <summary>
+            Get : Retrieve All Todays Count Questions 
             </summary>
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>

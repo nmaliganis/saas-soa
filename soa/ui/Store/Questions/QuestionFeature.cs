@@ -11,6 +11,8 @@ namespace soa.ui.Store.Questions
 
     protected override QuestionState GetInitialState() => new QuestionState(
       new List<QuestionDto>(), 
+      new List<QuestionDto>(), 
+      new List<QuestionDto>(), 
       "",
       true,
       new QuestionDto(), 

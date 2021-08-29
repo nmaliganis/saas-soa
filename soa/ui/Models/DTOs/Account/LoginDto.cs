@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace smart.charger.webui.Models.DTOs.Account
+namespace soa.ui.Models.DTOs.Account
 {
   public class LoginDto
   {

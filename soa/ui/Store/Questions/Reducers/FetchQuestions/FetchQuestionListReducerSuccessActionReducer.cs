@@ -9,6 +9,8 @@ namespace soa.ui.Store.Questions.Reducers.FetchQuestions
     {
       return new QuestionState(
         action.QuestionList,
+        action.QuestionTodayList,
+        action.QuestionUnansweredList,
         "",
         state.IsLoading,
         state.Question,

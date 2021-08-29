@@ -228,7 +228,21 @@ namespace soa.qa.api.Controllers.API.V1
       
       return Ok(questionsTotalUnanswered);
     }
-    
+
+    /// <summary>
+    /// Get : Retrieve All Unanswered Questions 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("unanswered", Name = "GetUnansweredQuestions")]
+    public async Task<IActionResult> GetUnansweredQuestionsAsync()
+    {
+        var questionsTotalUnanswered =
+            await _inquiryAllQuestionsProcessor.GetQuestionsAsyncByUnanswered();
+
+        return Ok(questionsTotalUnanswered);
+    }
+
     /// <summary>
     /// Get : Retrieve All Todays Questions 
     /// </summary>
@@ -242,5 +256,19 @@ namespace soa.qa.api.Controllers.API.V1
       
       return Ok(questionsTodayQueryable);
     }
-  }
+
+    /// <summary>
+    /// Get : Retrieve All Todays Count Questions 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("count-today", Name = "GetCountTodaysQuestions")]
+    public async Task<IActionResult> GetCountTodaysQuestionsAsync()
+    {
+        var questionsTodayQueryable =
+            await _inquiryAllQuestionsProcessor.GetQuestionsAsyncByToday();
+
+        return Ok(questionsTodayQueryable.Count);
+    }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using Fluxor;
 using smart.charger.webui.Models.DTOs.Account;
+using soa.ui.Models.DTOs.Account;
 
 namespace smart.charger.webui.Store.Account
 {

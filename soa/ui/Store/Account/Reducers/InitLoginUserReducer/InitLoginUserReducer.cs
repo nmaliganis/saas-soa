@@ -1,6 +1,7 @@
 ﻿using Fluxor;
 using smart.charger.webui.Models.DTOs.Account;
 using smart.charger.webui.Store.Account.Actions.InitLoginUser;
+using soa.ui.Models.DTOs.Account;
 
 namespace smart.charger.webui.Store.Account.Reducers.InitLoginUserReducer
 {

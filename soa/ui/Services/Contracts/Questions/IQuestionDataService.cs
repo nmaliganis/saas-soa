@@ -8,6 +8,8 @@ namespace soa.ui.Services.Contracts.Questions
   public interface IQuestionDataService
   {
     Task<List<QuestionDto>> GetQuestionList(string authorizationToken = null);
+    Task<List<QuestionDto>> GetQuestionTodayList(string authorizationToken = null);
+    Task<List<QuestionDto>> GetQuestionUnansweredList(string authorizationToken = null);
     Task<QuestionDto> GetQuestion(int actionQuestionId);
     Task<int> GetTotalQuestionCount();
 

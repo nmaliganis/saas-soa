@@ -4,130 +4,117 @@
 @using Syncfusion.Blazor.Maps
 @using smart.charger.webui.DataRetrieval
 @using smart.charger.webui.Models.DTOs.Stations
+@using soa.ui.Models.DTOs.Questions
 @inherits DashboardViewModel
 
-@if (!AuthState.Value.IsLoggedOn)
-{
-    NavigateToSignin();
-}
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header">Q&A - Information</h3>
+                <div class="card-body">
+                    <div class="row">
 
-@if (AuthState.Value.IsLoggedOn)
-{
-    <div class="dashboard">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <h3 class="card-header">Q&A - Information</h3>
-                    <div class="card-body">
-                        <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg active-issues">
+                            <span class="comp-label">
+                                <strong>@DashboardState.Value.QuestionTotalCount</strong>
+                                <small>All Questions</small>
+                            </span>
+                            @*<IssuesBreakDownCharts ChartData="@IssuesList" SeriesColor="#888"></IssuesBreakDownCharts>*@
+                        </div>
 
-                            <div class="col-sm-12 col-md-6 col-lg active-issues">
-                                <span class="comp-label">
-                                    <strong>@DashboardState.Value.ActiveSessionCount</strong>
-                                    <small>All Questions</small>
-                                </span>
-                                @*<IssuesBreakDownCharts ChartData="@IssuesList" SeriesColor="#888"></IssuesBreakDownCharts>*@
-                            </div>
+                        <div class="col-sm-12 col-md-6 col-lg text-success closed-issues">
+                            <span class="comp-label">
+                                <strong>@DashboardState.Value.QuestionTodayCount</strong>
+                                <small>Today's Questions</small>
+                            </span>
+                            @*<IssuesBreakDownCharts ChartData="@ClosedIssues" SeriesColor="#27c46d"></IssuesBreakDownCharts>*@
+                        </div>
 
-                            <div class="col-sm-12 col-md-6 col-lg text-success closed-issues">
-                                <span class="comp-label">
-                                    <strong>@DashboardState.Value.FinishedSessionCount</strong>
-                                    <small>Today's Questions</small>
-                                </span>
-                                @*<IssuesBreakDownCharts ChartData="@ClosedIssues" SeriesColor="#27c46d"></IssuesBreakDownCharts>*@
-                            </div>
+                        <div class="col-sm-12 col-md-6 col-lg text-danger open-issues">
+                            <span class="comp-label">
+                                <strong>@DashboardState.Value.QuestionUnansweredCount</strong>
+                                <small>Questions without Answers</small>
+                            </span>
+                            @*<IssuesBreakDownCharts ChartData="@OpenIssues" SeriesColor="#CF3268"></IssuesBreakDownCharts>*@
+                        </div>
 
-                            <div class="col-sm-12 col-md-6 col-lg text-danger open-issues">
-                                <span class="comp-label">
-                                    <strong>@DashboardState.Value.AvailableChargersCount</strong>
-                                    <small>Questions without Answers</small>
-                                </span>
-                                @*<IssuesBreakDownCharts ChartData="@OpenIssues" SeriesColor="#CF3268"></IssuesBreakDownCharts>*@
-                            </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg close-rate">
-                                <span class="comp-label">
-                                    <strong>@DashboardState.Value.ChargersInUseCount</strong>
-                                    <small>Active Users</small>
-                                </span>
-                                @*<CloseRateChart Open="@OpenIssues.Count()" Closed="@ClosedIssues.Count()"></CloseRateChart>*@
-                            </div>
+                        <div class="col-sm-12 col-md-6 col-lg close-rate">
+                            <span class="comp-label">
+                                <strong>@DashboardState.Value.ChargersInUseCount</strong>
+                                <small>Active Users</small>
+                            </span>
+                            @*<CloseRateChart Open="@OpenIssues.Count()" Closed="@ClosedIssues.Count()"></CloseRateChart>*@
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-12">
-                <div class="card issue-types">
-                    <h4 class="card-header">Recent questions and answers</h4>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group">
-                                <TelerikButton Primary="true" Icon="add" OnClick="@OnAskAQuestionRecentQuestionsClickHandler">Ask A Question</TelerikButton>
-                                <TelerikButton Icon="edit" OnClick="@OnCheckRecentQuestionsClickHandler">Check</TelerikButton>
-                            </div>
+        <div class="col-md-12">
+            <div class="card issue-types">
+                <h4 class="card-header">Recent questions and answers</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <TelerikButton Primary="true" Icon="add" OnClick="@OnAskAQuestionRecentQuestionsClickHandler">Ask A Question</TelerikButton>
+                            <TelerikButton Icon="edit" OnClick="@OnCheckRecentQuestionsClickHandler">Check</TelerikButton>
                         </div>
-                        <div class="row">
-                            @*<TelerikGrid Data="@CustomerState.Value.CustomerList" Pageable="true" PageSize="10" Height="300px"
-                                     PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
-                                     SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
-                                     SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
+                    </div>
+                    <div class="row">
+                        <TelerikGrid Data="@QuestionState.Value.QuestionList" Pageable="true" PageSize="10" Height="300px"
+                                 PageChanged="@PageChangedHandlerQuestion" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                 SelectedItemsChanged="@((IEnumerable<QuestionDto> questionList) => OnSelectQuestion(questionList))"
+                                 SelectedItems="@SelectedItemsQuestion" Reorderable="true" Resizable="true" Groupable="false"
+                                 FilterMode="GridFilterMode.FilterRow">
+                        <GridColumns>
+                            <GridColumn Field="@(nameof(QuestionDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                            <GridColumn Field="@(nameof(QuestionDto.Title))" Title="Title" Groupable="false" />
+                            <GridColumn Field="@(nameof(QuestionDto.Category))" Title="Category"
+                                        Groupable="false" />
+                            <GridColumn Field="@(nameof(QuestionDto.Views))" Title="Views"
+                                        Groupable="false" />
+                            <GridColumn Field="@(nameof(QuestionDto.CreatedDate))" Title="Created Date"
+                                        Groupable="false" />
+                        </GridColumns>
+                    </TelerikGrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="card issue-types">
+                <h4 class="card-header">Questions without answers</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <TelerikButton Primary="true" Icon="add" OnClick="@OnGiveAnAnswerUnansweredQuestionsClickHandler">Give an Amswer</TelerikButton>
+                            <TelerikButton Icon="edit" OnClick="@OnCheckUnansweredQuestionsClickHandler">Check</TelerikButton>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <TelerikGrid Data="@QuestionState.Value.QuestionUnansweredList" Pageable="true" PageSize="10" Height="300px"
+                                     PageChanged="@PageChangedHandlerQuestion" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                     SelectedItemsChanged="@((IEnumerable<QuestionDto> questionList) => OnSelectQuestion(questionList))"
+                                     SelectedItems="@SelectedItemsQuestion" Reorderable="true" Resizable="true" Groupable="false"
                                      FilterMode="GridFilterMode.FilterRow">
                             <GridColumns>
-                                <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
+                                <GridColumn Field="@(nameof(QuestionDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Title))" Title="Title" Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Category))" Title="Category"
                                             Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
+                                <GridColumn Field="@(nameof(QuestionDto.Views))" Title="Views"
                                             Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
-                                            Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
+                                <GridColumn Field="@(nameof(QuestionDto.CreatedDate))" Title="Created Date"
                                             Groupable="false" />
                             </GridColumns>
-                        </TelerikGrid>*@
-                        </div>
+                        </TelerikGrid>
                     </div>
                 </div>
             </div>
-
-
-            <div class="col-md-12">
-                <div class="card issue-types">
-                    <h4 class="card-header">Questions without answers</h4>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group">
-                                <TelerikButton Primary="true" Icon="add" OnClick="@OnGiveAnAnswerUnansweredQuestionsClickHandler">Give an Amswer</TelerikButton>
-                                <TelerikButton Icon="edit" OnClick="@OnCheckUnansweredQuestionsClickHandler">Check</TelerikButton>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @*<TelerikGrid Data="@CustomerState.Value.CustomerList" Pageable="true" PageSize="10" Height="300px"
-                                     PageChanged="@PageChangedHandlerCustomer" Sortable="true" SelectionMode="GridSelectionMode.Single"
-                                     SelectedItemsChanged="@((IEnumerable<CustomerDto> customerList) => OnSelectCustomer(customerList))"
-                                     SelectedItems="@SelectedItemsCustomer" Reorderable="true" Resizable="true" Groupable="false"
-                                     FilterMode="GridFilterMode.FilterRow">
-                            <GridColumns>
-                                <GridColumn Field="@(nameof(CustomerDto.Id))" Visible="false" Title="Id" Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Firstname))" Title="Firstname" Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Lastname))" Title="LastName"
-                                            Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Email))" Title="Email"
-                                            Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.CreatedDate))" Title="Created Date"
-                                            Groupable="false" />
-                                <GridColumn Field="@(nameof(CustomerDto.Nfc))" Title="NFC Bruchelet"
-                                            Groupable="false" />
-                            </GridColumns>
-                        </TelerikGrid>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
-}
+</div>
 

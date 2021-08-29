@@ -10,5 +10,6 @@ namespace soa.qa.repository.ContractRepositories
         int FindUnansweredCountTotals();
         Question FindQuestionByTitle(string title);
         IList<Question> FindAllByToday();
+        IList<Question> FindAllByUnanswered();
     }
 }

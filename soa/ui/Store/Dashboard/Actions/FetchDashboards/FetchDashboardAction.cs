@@ -1,4 +1,4 @@
-﻿namespace smart.charger.webui.Store.Dashboard.Actions.FetchDashboards
+﻿namespace soa.ui.Store.Dashboard.Actions.FetchDashboards
 {
   public class FetchDashboardAction
   {
