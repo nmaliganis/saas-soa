@@ -7,5 +7,9 @@ namespace soa.qa.contracts.Questions
     public interface IInquiryAllQuestionsProcessor
     {
       Task<List<QuestionUiModel>> GetQuestionsAsync();
+      Task<List<QuestionUiModel>> GetQuestionsAsyncByToday();
+      Task<int> GetQuestionsCountTotalAsync();
+      
+      Task<int> GetUnAnsweredQuestionsCountTotalAsync();
     }
 }

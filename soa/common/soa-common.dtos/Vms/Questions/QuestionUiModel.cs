@@ -16,6 +16,8 @@ namespace soa.common.dtos.Vms.Questions
     [Editable(true)] public bool Active { get; set; }
     [Editable(true)] public int CategoryId { get; set; }
     [Editable(true)] public int PersonId { get; set; }
+    
+    [Editable(true)] public int CountAnswers { get; set; }
     [Editable(true)] public DateTime CreatedDate { get; set; }
   }
 }

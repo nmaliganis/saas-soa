@@ -119,5 +119,71 @@ namespace soa.ui.Services.Impls.Questions
     {
       throw new System.NotImplementedException();
     }
+
+    public async Task<int> FetchQuestionsTotalCount(string authorizationToken = null)
+    {
+      int result = 0;
+
+      var client = new RestClient($"{BaseAddr}/api/Questions/count-all");
+      var request = new RestRequest(Method.GET);
+
+      request.AddHeader("Content-Type", "application/json");
+
+      var response = await client.ExecuteAsync(request);
+      if (response.IsSuccessful)
+      {
+        result = JsonConvert.DeserializeObject<int>(response.Content);
+      }
+      else if (response.StatusCode == HttpStatusCode.BadRequest)
+      {
+        QuestionErrorModel resultError = JsonConvert.DeserializeObject<QuestionErrorModel>(response.Content);
+        throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+      }
+      return result;
+    }
+
+    public async Task<int> FetchQuestionsUnansweredTotalCount(string authorizationToken = null)
+    {
+      int result = 0;
+
+      var client = new RestClient($"{BaseAddr}/api/Questions/count-unanswered");
+      var request = new RestRequest(Method.GET);
+
+      request.AddHeader("Content-Type", "application/json");
+
+      var response = await client.ExecuteAsync(request);
+      if (response.IsSuccessful)
+      {
+        result = JsonConvert.DeserializeObject<int>(response.Content);
+      }
+      else if (response.StatusCode == HttpStatusCode.BadRequest)
+      {
+        QuestionErrorModel resultError = JsonConvert.DeserializeObject<QuestionErrorModel>(response.Content);
+        throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+      }
+      return result;
+    }
+
+    public async Task<int> FetchQuestionsTodayTotalCount(string authorizationToken = null)
+    {
+      int result = 0;
+
+      var client = new RestClient($"{BaseAddr}/api/Questions/today");
+      var request = new RestRequest(Method.GET);
+
+      request.AddHeader("Content-Type", "application/json");
+
+      var response = await client.ExecuteAsync(request);
+      if (response.IsSuccessful)
+      {
+        result = JsonConvert.DeserializeObject<int>(response.Content);
+      }
+      else if (response.StatusCode == HttpStatusCode.BadRequest)
+      {
+        QuestionErrorModel resultError = JsonConvert.DeserializeObject<QuestionErrorModel>(response.Content);
+        throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+      }
+      return result;
+    }
   }
 }

@@ -1,4 +1,4 @@
-﻿namespace smart.charger.webui.Store.Dashboard.Actions.FetchDashboards
+﻿namespace soa.ui.Store.Dashboard.Actions.FetchDashboards
 {
   public class FetchDashboardSuccessAction
   {
@@ -6,13 +6,22 @@
     public int ActiveSessionCount { get; private set;}
     public int AvailableChargersCount { get; private set;}
     public int ChargersInUseCount { get; private set;}
+    public int QuestionTotalCount { get; private set;}
+    public int QuestionUnansweredTotalCount { get; private set;}
+    public int QuestionTodayTotalCount { get; private set;}
 
-    public FetchDashboardSuccessAction(int finishedSessionCount, int activeSessionCount, int availableChargersCount, int chargersInUseCount)
+    public FetchDashboardSuccessAction(int finishedSessionCount, 
+      int activeSessionCount, int availableChargersCount, int chargersInUseCount,
+      int questionTotalCount, int questionUnansweredTotalCount, int questionTodayTotalCount
+      )
     {
       FinishedSessionCount = finishedSessionCount;
       ActiveSessionCount = activeSessionCount;
       AvailableChargersCount = availableChargersCount;
       ChargersInUseCount = chargersInUseCount;
+      QuestionTotalCount = questionTotalCount;
+      QuestionUnansweredTotalCount = questionUnansweredTotalCount;
+      QuestionTodayTotalCount = questionTodayTotalCount;
     }
   }
 }

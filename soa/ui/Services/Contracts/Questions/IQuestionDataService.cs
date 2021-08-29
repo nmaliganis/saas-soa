@@ -14,5 +14,9 @@ namespace soa.ui.Services.Contracts.Questions
     Task<QuestionDto> CreateQuestion(QuestionForCreationDto questionToBeCreated);
     Task<QuestionDto> UpdateQuestion(Guid questionIdToBeUpdated, QuestionForModificationDto questionToBeUpdated);
     Task<QuestionDto> DeleteQuestion(Guid questionIdToBeDeleted);
+    
+    Task<int> FetchQuestionsTotalCount(string authorizationToken = null);
+    Task<int> FetchQuestionsUnansweredTotalCount(string authorizationToken = null);
+    Task<int> FetchQuestionsTodayTotalCount(string authorizationToken = null);
   }
 }

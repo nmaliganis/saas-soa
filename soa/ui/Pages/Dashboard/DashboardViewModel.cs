@@ -15,6 +15,7 @@ using smart.charger.webui.Store.Dashboard;
 using smart.charger.webui.Store.Dashboard.Actions.FetchDashboards;
 using smart.charger.webui.Store.Stations;
 using smart.charger.webui.Store.Stations.Actions.FetchStation;
+using soa.ui.Store.Dashboard;
 
 namespace soa.ui.Pages.Dashboard
 {
@@ -101,15 +102,14 @@ namespace soa.ui.Pages.Dashboard
 
         #endregion
 
-
         #region Recent Questions
 
-        public async Task OnCheckRecentQuestionsClickHandler()
+        protected async Task OnCheckRecentQuestionsClickHandler()
         {
             NavigationManager.NavigateTo($"recent-questions");
         }
 
-        public async Task OnAskAQuestionRecentQuestionsClickHandler()
+        protected async Task OnAskAQuestionRecentQuestionsClickHandler()
         {
             NavigationManager.NavigateTo($"unanswered-questions");
         }
@@ -118,17 +118,16 @@ namespace soa.ui.Pages.Dashboard
 
         #region Unanswerwed Questions
 
-        public async Task OnGiveAnAnswerUnansweredQuestionsClickHandler()
+        protected async Task OnGiveAnAnswerUnansweredQuestionsClickHandler()
         {
             NavigationManager.NavigateTo($"unanswered-questions");
         }
 
-        public async Task OnCheckUnansweredQuestionsClickHandler()
+        protected async Task OnCheckUnansweredQuestionsClickHandler()
         {
             NavigationManager.NavigateTo($"unanswered-questions");
         }
 
         #endregion
-
     }
 }

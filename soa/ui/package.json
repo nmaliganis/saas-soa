@@ -7,7 +7,7 @@
     "build:development": "npx gulp sass",
     "build:production": "npx gulp sass && npx gulp minify-css"
   },
-  "author": "",
+  "author": "Maliganis Nikolaos",
   "license": "ISC",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.5.0",

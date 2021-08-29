@@ -252,6 +252,27 @@
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetCountAllQuestionsAsync">
+            <summary>
+            Get : Retrieve All Count Questions 
+            </summary>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetCountUnansweredQuestionsAsync">
+            <summary>
+            Get : Retrieve All Unanswered Questions 
+            </summary>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.QuestionsController.GetTodaysQuestionsAsync">
+            <summary>
+            Get : Retrieve All Todays Questions 
+            </summary>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
         <member name="M:soa.qa.api.Controllers.API.V1.TagsController.PostTagRouteAsync(soa.common.dtos.Vms.Tags.TagForCreationUiModel)">
             <summary>
             POST : Create a New Tag.

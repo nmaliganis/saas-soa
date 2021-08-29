@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 using Serilog;
 using soa.qa.model.Questions;
 using soa.qa.repository.ContractRepositories;
@@ -21,8 +23,9 @@ namespace soa.qa.repository.Repositories
       try
       {
         count = Session
-          .CreateCriteria<NotImplementedException>()
-          .Add(Expression.Eq("IsActive", true))
+          // .CreateCriteria<NotImplementedException>()
+          .CreateCriteria<Question>("Q")
+          .Add(Expression.Eq("Q.Active", true))
           .SetProjection(
             Projections.Count(Projections.Id())
           )
@@ -34,7 +37,29 @@ namespace soa.qa.repository.Repositories
           $"FindCountTotals" + $"Error Message:{e.Message}" + 
           "--QuestionRepository--  @fail@ [QuestionRepository]." + $" @inner-fault:{e?.Message} and {e?.InnerException}");
       }
+      return count;
+    }
 
+    public int FindUnansweredCountTotals()
+    {
+      int count = 0;
+      try
+      {
+        count = Session
+          .CreateCriteria<Question>("Q")
+          .CreateCriteria("Q.QuestionAnswers", "QA", JoinType.InnerJoin)
+          .Add(Expression.Eq("Q.Active", true))
+          .SetProjection(
+            Projections.Count(Projections.Id())
+          )
+          .UniqueResult<int>();
+      }
+      catch (Exception e)
+      {
+        Log.Error(
+          $"FindCountTotals" + $"Error Message:{e.Message}" + 
+          "--QuestionRepository--  @fail@ [QuestionRepository]." + $" @inner-fault:{e?.Message} and {e?.InnerException}");
+      }
       return count;
     }
 
@@ -49,6 +74,17 @@ namespace soa.qa.repository.Repositories
           .SetFlushMode(FlushMode.Never)
           .UniqueResult()
         ;
+    }
+
+    public IList<Question> FindAllByToday()
+    {
+      var selection = Session.QueryOver<Question>()
+        .Where(t => t.Active)
+        .Where(t=>t.CreatedDate < DateTime.Today)
+        .List();
+      ;
+
+      return selection;
     }
   }
 }

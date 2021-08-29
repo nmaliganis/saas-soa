@@ -1,7 +1,7 @@
 ﻿using Fluxor;
-using smart.charger.webui.Store.Dashboard.Actions.FetchDashboards;
+using soa.ui.Store.Dashboard.Actions.FetchDashboards;
 
-namespace smart.charger.webui.Store.Dashboard.Reducers.FetchDashboard
+namespace soa.ui.Store.Dashboard.Reducers.FetchDashboard
 {
   public class FetchDashboardReducerSuccessActionReducer : Reducer<DashboardState, FetchDashboardSuccessAction>
   {
@@ -12,7 +12,10 @@ namespace smart.charger.webui.Store.Dashboard.Reducers.FetchDashboard
         action.FinishedSessionCount,
         action.ActiveSessionCount,
         action.AvailableChargersCount,
-        action.ChargersInUseCount
+        action.ChargersInUseCount,
+        action.QuestionTodayTotalCount,
+        action.QuestionUnansweredTotalCount,
+        action.QuestionTotalCount
       );
     }
   }

@@ -200,5 +200,47 @@ namespace soa.qa.api.Controllers.API.V1
 
       return Ok(questionsQueryable);
     }
+    
+    /// <summary>
+    /// Get : Retrieve All Count Questions 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("count-all", Name = "GetCountAllQuestions")]
+    public async Task<IActionResult> GetCountAllQuestionsAsync()
+    {
+      var questionsTotal =
+        await _inquiryAllQuestionsProcessor.GetQuestionsCountTotalAsync();
+      
+      return Ok(questionsTotal);
+    }
+    
+    /// <summary>
+    /// Get : Retrieve All Unanswered Questions 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("count-unanswered", Name = "GetCountUnansweredQuestions")]
+    public async Task<IActionResult> GetCountUnansweredQuestionsAsync()
+    {
+      var questionsTotalUnanswered =
+        await _inquiryAllQuestionsProcessor.GetUnAnsweredQuestionsCountTotalAsync();
+      
+      return Ok(questionsTotalUnanswered);
+    }
+    
+    /// <summary>
+    /// Get : Retrieve All Todays Questions 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("today", Name = "GetTodaysQuestions")]
+    public async Task<IActionResult> GetTodaysQuestionsAsync()
+    {
+      var questionsTodayQueryable =
+        await _inquiryAllQuestionsProcessor.GetQuestionsAsyncByToday();
+      
+      return Ok(questionsTodayQueryable);
+    }
   }
 }

@@ -23,5 +23,20 @@ namespace soa.qa.services.Questions
     {
       return Task.Run(() => _questionRepository.FindAll().Select(x => _autoMapper.Map<QuestionUiModel>(x)).ToList());
     }
+
+    public Task<List<QuestionUiModel>> GetQuestionsAsyncByToday()
+    {
+      return Task.Run(() => _questionRepository.FindAllByToday().Select(x => _autoMapper.Map<QuestionUiModel>(x)).ToList());
+    }
+
+    public Task<int> GetQuestionsCountTotalAsync()
+    {
+      return Task.Run(() => _questionRepository.FindCountTotals());
+    }
+
+    public Task<int> GetUnAnsweredQuestionsCountTotalAsync()
+    {
+      return Task.Run(() => _questionRepository.FindUnansweredCountTotals());
+    }
   }
 }
