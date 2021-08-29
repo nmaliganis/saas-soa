@@ -28,8 +28,8 @@ namespace soa.ui.Services.Impls.Tags
 
         private void OnCreated()
         {
-            //BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
-            BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
+            BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
+            //BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
             Version = Configuration["version"];
         }
 

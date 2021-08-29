@@ -6,6 +6,7 @@ namespace soa.qa.contracts.Answers
 {
     public interface IInquiryAllAnswersProcessor
     {
-      Task<List<AnswerUiModel>> GetAnswersAsync();
+      Task<List<AnswerUiModel>> GetAnswersAsync(int questionId);
+      Task<int> GetAnswersCountTotalAsync();
     }
 }

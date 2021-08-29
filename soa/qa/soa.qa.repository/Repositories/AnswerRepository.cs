@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 using Serilog;
 using soa.qa.model.Answers;
 using soa.qa.repository.ContractRepositories;
@@ -21,8 +23,8 @@ namespace soa.qa.repository.Repositories
       try
       {
         count = Session
-          .CreateCriteria<NotImplementedException>()
-          .Add(Expression.Eq("IsActive", true))
+          .CreateCriteria<Answer>()
+          .Add(Expression.Eq("Active", true))
           .SetProjection(
             Projections.Count(Projections.Id())
           )
@@ -38,16 +40,17 @@ namespace soa.qa.repository.Repositories
       return count;
     }
 
-    public Answer FindAnswerByNumPlate(string numPlate)
+    public IList<Answer> FindAnswersByQuestionId(int questionId)
     {
       return
-        (Answer)
         Session.CreateCriteria(typeof(Answer))
-          .Add(Expression.Eq("NumPlate", numPlate))
+          .CreateAlias("QuestionAnswer", "qa", JoinType.InnerJoin)
+          .CreateAlias("qa.Question", "q", JoinType.InnerJoin)
+          .Add(Expression.Eq("q.Id", questionId))
           .SetCacheable(true)
           .SetCacheMode(CacheMode.Normal)
           .SetFlushMode(FlushMode.Never)
-          .UniqueResult()
+          .List<Answer>()
         ;
     }
   }

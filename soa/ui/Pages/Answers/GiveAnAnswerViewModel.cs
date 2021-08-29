@@ -14,11 +14,10 @@ using soa.ui.Store.Questions;
 using soa.ui.Store.Questions.Actions.CreateQuestion;
 using soa.ui.Store.Tags;
 using soa.ui.Store.Tags.Actions.FetchTags;
-using Telerik.Blazor.Components;
 
-namespace soa.ui.Pages.Questions
+namespace soa.ui.Pages.Answers
 {
-    public class AskQuestionViewModel : FluxorComponent
+    public class GiveAnAnswerViewModel : FluxorComponent
     {
         [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IState<QuestionState> AskQuestionState { get; set; }
@@ -92,14 +91,14 @@ namespace soa.ui.Pages.Questions
             if(String.IsNullOrEmpty(QuestionToBeAsked.Title) || String.IsNullOrEmpty(QuestionToBeAsked.Body))
                 return;
             
-            Dispatcher.Dispatch(new CreateQuestionAction(new QuestionForCreationDto()
-            {
-                Title = QuestionToBeAsked.Title,
-                Body = QuestionToBeAsked.Body,
-                CategoryId = QuestionToBeAsked.CategoryId,
-                PersonId = 1,
-                TagIds = SelectedTagIds
-            }));
+            // Dispatcher.Dispatch(new CreateQuestionAction(new QuestionForCreationDto()
+            // {
+            //     Title = QuestionToBeAsked.Title,
+            //     Body = QuestionToBeAsked.Body,
+            //     CategoryId = QuestionToBeAsked.CategoryId,
+            //     PersonId = 1,
+            //     TagIds = SelectedTagIds
+            // }));
         }
 
         #endregion

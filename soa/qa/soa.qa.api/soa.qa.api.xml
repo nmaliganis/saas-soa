@@ -58,11 +58,18 @@
             <response code="400">Resource Not Found</response>
             <response code="500">Internal Server Error.</response>
         </member>
-        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.GetAnswersAsync">
+        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.GetAnswersAsync(System.Int32)">
             <summary>
             Get : Retrieve All/or Partial Paged Stored Answers 
             </summary>
             <remarks>Retrieve paged Answers providing Paging Query</remarks>
+            <response code="200">Resource retrieved correctly.</response>
+            <response code="500">Internal Server Error.</response>
+        </member>
+        <member name="M:soa.qa.api.Controllers.API.V1.AnswersController.GetCountAllAnswersAsync">
+            <summary>
+            Get : Retrieve All Count Answers 
+            </summary>
             <response code="200">Resource retrieved correctly.</response>
             <response code="500">Internal Server Error.</response>
         </member>

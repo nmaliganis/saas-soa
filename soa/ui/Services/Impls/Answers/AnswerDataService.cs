@@ -28,20 +28,19 @@ namespace soa.ui.Services.Impls.Answers
 
         private void OnCreated()
         {
-            //BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
-            BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
+            BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
+            //BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
             Version = Configuration["version"];
         }
 
-        public async Task<List<AnswerDto>> GetAnswerList(string authorizationToken = null)
+        public async Task<List<AnswerDto>> GetAnswerList(int questionId)
         {
             List<AnswerDto> result = new List<AnswerDto>();
 
-            var client = new RestClient($"{BaseAddr}/api/Answers");
+            var client = new RestClient($"{BaseAddr}/api/answers/by-question/{questionId}");
             var request = new RestRequest(Method.GET);
 
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", $"bearer {authorizationToken}");
 
             try
             {
@@ -91,7 +90,7 @@ namespace soa.ui.Services.Impls.Answers
         {
             int result = 0;
 
-            var client = new RestClient($"{BaseAddr}/api/{Version}/answers/count-total");
+            var client = new RestClient($"{BaseAddr}/api/Answers/count-all");
             var request = new RestRequest(Method.GET);
 
             request.AddHeader("Content-Type", "application/json");

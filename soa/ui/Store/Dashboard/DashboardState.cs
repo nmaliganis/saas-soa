@@ -11,12 +11,13 @@
     public int QuestionTodayCount { get; private set;}
     public int QuestionUnansweredCount { get; private set;}
     public int QuestionTotalCount { get; private set;}
+    public int AnswerTotalCount { get; private set;}
 
     public DashboardState(string errorMessage, 
       int finishedSessionCount, int activeSessionCount,
       int availableChargersCount, int chargersInUseCount,
       int questionTodayCount, int questionUnansweredCount,
-      int questionTotalCount
+      int questionTotalCount, int answerTotalCount
       )
     {
       ErrorMessage = errorMessage;
@@ -28,6 +29,7 @@
       QuestionTodayCount = questionTodayCount;
       QuestionUnansweredCount = questionUnansweredCount;
       QuestionTotalCount = questionTotalCount;
+      AnswerTotalCount = answerTotalCount;
     }
   }
 }

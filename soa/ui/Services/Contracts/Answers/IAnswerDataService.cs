@@ -7,7 +7,7 @@ namespace soa.ui.Services.Contracts.Answers
 {
   public interface IAnswerDataService
   {
-    Task<List<AnswerDto>> GetAnswerList(string authorizationToken = null);
+    Task<List<AnswerDto>> GetAnswerList(int questionId);
     Task<AnswerDto> GetAnswer(int actionAnswerId);
     Task<int> GetTotalAnswerCount();
 

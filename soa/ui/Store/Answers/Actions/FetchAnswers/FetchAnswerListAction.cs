@@ -2,11 +2,11 @@
 {
   public class FetchAnswerListAction
   {
-    public string Auth { get; }
+    public int QuestionId { get; }
 
-    public FetchAnswerListAction(string auth)
+    public FetchAnswerListAction(int questionId)
     {
-      Auth = auth;
+      QuestionId = questionId;
     }
   }
 }

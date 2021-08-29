@@ -14,6 +14,7 @@ namespace soa.ui.Store.Dashboard
       0, 
       0, 
       0,
+      0,
       0
     );
   }

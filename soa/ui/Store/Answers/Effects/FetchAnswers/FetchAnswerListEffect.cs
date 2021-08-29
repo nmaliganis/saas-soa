@@ -18,7 +18,7 @@ namespace soa.ui.Store.Answers.Effects.FetchAnswers
     {
       try
       {
-        var Answers = await AnswerDataService.GetAnswerList(action.Auth);
+        var Answers = await AnswerDataService.GetAnswerList(action.QuestionId);
         dispatcher.Dispatch(new FetchAnswerListSuccessAction(Answers));
       }
       catch (Exception e)

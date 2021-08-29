@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace soa.ui.Models.DTOs.Questions
 {
@@ -8,5 +9,6 @@ namespace soa.ui.Models.DTOs.Questions
       [Editable(true)] public string Body { get; set; }
       [Editable(true)] public int CategoryId { get; set; }
       [Editable(true)] public int PersonId { get; set; }
+      [Editable(true)] public List<int> TagIds { get; set; }
     }
 }

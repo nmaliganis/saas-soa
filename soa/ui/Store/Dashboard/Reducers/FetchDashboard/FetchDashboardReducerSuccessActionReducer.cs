@@ -15,7 +15,8 @@ namespace soa.ui.Store.Dashboard.Reducers.FetchDashboard
         action.ChargersInUseCount,
         action.QuestionTodayTotalCount,
         action.QuestionUnansweredTotalCount,
-        action.QuestionTotalCount
+        action.QuestionTotalCount,
+        action.AnswerTotalCount
       );
     }
   }

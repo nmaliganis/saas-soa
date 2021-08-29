@@ -19,9 +19,14 @@ namespace soa.qa.services.Answers
       _autoMapper = autoMapper;
     }
 
-    public Task<List<AnswerUiModel>> GetAnswersAsync()
+    public Task<List<AnswerUiModel>> GetAnswersAsync(int questionId)
     {
       return Task.Run(() => _answerRepository.FindAll().Select(x => _autoMapper.Map<AnswerUiModel>(x)).ToList());
+    }
+
+    public Task<int> GetAnswersCountTotalAsync()
+    {
+      return Task.Run(() => _answerRepository.FindCountTotals());
     }
   }
 }

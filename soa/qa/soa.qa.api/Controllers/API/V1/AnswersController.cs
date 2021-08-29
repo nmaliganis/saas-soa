@@ -194,15 +194,29 @@ namespace soa.qa.api.Controllers.API.V1
     /// <remarks>Retrieve paged Answers providing Paging Query</remarks>
     /// <response code="200">Resource retrieved correctly.</response>
     /// <response code="500">Internal Server Error.</response>
-    [HttpGet(Name = "GetAnswers")]
-    public async Task<IActionResult> GetAnswersAsync()
+    [HttpGet("by-question/{questionId}", Name = "GetAnswers")]
+    public async Task<IActionResult> GetAnswersAsync(int questionId)
     {
       var answersQueryable =
-        await _inquiryAllAnswersProcessor.GetAnswersAsync();
+        await _inquiryAllAnswersProcessor.GetAnswersAsync(questionId);
 
       var answers = Mapper.Map<IEnumerable<AnswerUiModel>>(answersQueryable);
 
       return Ok(answers);
+    }
+    
+    /// <summary>
+    /// Get : Retrieve All Count Answers 
+    /// </summary>
+    /// <response code="200">Resource retrieved correctly.</response>
+    /// <response code="500">Internal Server Error.</response>
+    [HttpGet("count-all", Name = "GetCountAllAnswers")]
+    public async Task<IActionResult> GetCountAllAnswersAsync()
+    {
+      var answersTotal =
+        await _inquiryAllAnswersProcessor.GetAnswersCountTotalAsync();
+      
+      return Ok(answersTotal);
     }
   }
 }

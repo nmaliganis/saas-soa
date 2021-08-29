@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.SqlCommand;
 using Serilog;
 using soa.qa.model.Questions;
 using soa.qa.repository.ContractRepositories;
@@ -76,14 +77,21 @@ namespace soa.qa.repository.Repositories
 
     public IList<Question> FindAllByToday()
     {
-      var selection = Session.QueryOver<Question>()
-        .Where(t => t.Active)
-        .Where(t=>t.CreatedDate <= DateTime.Today)
-        .Where(t=>t.CreatedDate >= DateTime.Today.AddDays(-1))
-        .List();
-      ;
+      var values =
+          Session.CreateCriteria(typeof(Question))
+            .Add(Expression.Eq("Active", true))
+            .Add(
+              Expression.Conjunction()
+                .Add(Restrictions.Ge("CreatedDate", DateTime.Today.AddDays(-1)))
+                .Add(Restrictions.Lt("CreatedDate", DateTime.Today.AddDays(1)))
+            )
+            .SetCacheable(true)
+            .SetCacheMode(CacheMode.Normal)
+            .SetFlushMode(FlushMode.Never)
+            .List<Question>()
+        ;
 
-      return selection;
+      return values;
     }
 
     public IList<Question> FindAllByUnanswered()

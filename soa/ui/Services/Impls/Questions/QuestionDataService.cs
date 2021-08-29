@@ -28,8 +28,8 @@ namespace soa.ui.Services.Impls.Questions
 
         private void OnCreated()
         {
-            //BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
-            BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
+            BaseAddr = Configuration["env"] == "prod" ? Configuration["RemoteUrl"] : Configuration["LocalUrl"];
+            //BaseAddr = Configuration["env"] == "prod" ? Configuration["LocalUrl"] : Configuration["LocalUrl"];
             Version = Configuration["version"];
         }
 
@@ -61,7 +61,6 @@ namespace soa.ui.Services.Impls.Questions
             {
                 throw new ServiceHttpRequestException<string>(HttpStatusCode.Conflict, e.Message);
             }
-
             return result;
         }
 
@@ -175,9 +174,28 @@ namespace soa.ui.Services.Impls.Questions
             return result;
         }
 
-        public Task<QuestionDto> CreateQuestion(QuestionForCreationDto questionToBeCreated)
+        public async Task<QuestionDto> CreateQuestion(QuestionForCreationDto questionToBeCreated)
         {
-            throw new System.NotImplementedException();
+            QuestionDto result = new QuestionDto();
+
+            var client = new RestClient($"{BaseAddr}/api/questions");
+            var request = new RestRequest("", Method.POST);
+
+            request.AddJsonBody(questionToBeCreated);
+            request.AddHeader("Content-Type", "application/json");
+
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful)
+            {
+                result = JsonConvert.DeserializeObject<QuestionDto>(response.Content);
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                QuestionErrorModel resultError = JsonConvert.DeserializeObject<QuestionErrorModel>(response.Content);
+                throw new ServiceHttpRequestException<string>(response.StatusCode, resultError.errorMessage);
+            }
+
+            return result;
         }
 
         public Task<QuestionDto> UpdateQuestion(Guid questionIdToBeUpdated,

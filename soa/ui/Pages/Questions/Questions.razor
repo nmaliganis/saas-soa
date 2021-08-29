@@ -1,0 +1,111 @@
+@page "/questions"
+@using soa.ui.Models.DTOs.Questions
+@using soa.ui.Models.DTOs.Answers
+@inherits QuestionsViewModel
+
+<div class="videos">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header">Questions</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group"> 
+                            <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add" 
+                                           OnClick="@OnAddQuestionClickHandler">Ask A Question</TelerikButton>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <TelerikGrid Data="@QuestionState.Value.QuestionList" Pageable="true" PageSize="5" Height="400px"
+                                     PageChanged="@PageChangedHandler" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                     SelectedItemsChanged="@((IEnumerable<QuestionDto> QuestionList) => OnSelect(QuestionList))"
+                                     SelectedItems="@SelectedQuestionItems" Reorderable="true" Resizable="true" Groupable="false"
+                                     FilterMode="GridFilterMode.FilterRow">
+                            <GridColumns>
+                                <GridColumn Field="@(nameof(QuestionDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Title))" Title="Title" Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Views))" Title="Views"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Flags))" Title="Flags"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.CreatedDate))" Title="Created Date"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(QuestionDto.Category))" Title="Category"
+                                            Groupable="false" />
+                            </GridColumns>
+                        </TelerikGrid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Populate Body*@
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header">Body - Action</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add"
+                                           OnClick="@OnAddAnAnswerClickHandler">Give An Answer</TelerikButton>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <TelerikTextArea Id="question-body"
+                                             @bind-Value="@QuestionToBeAskedBody"
+                                             AutoSize="true"
+                                             Width="100%"
+                                             Enabled="false"
+                                             PlaceHolder="Body of QUESTION">
+                            </TelerikTextArea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header">Answers</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <TelerikButton Enabled="@SaveBtnEnabled" Primary="true" Icon="add"
+                                           OnClick="@OnAddQuestionClickHandler">Give An Answer</TelerikButton>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <TelerikGrid Data="@AnswerState.Value.AnswerList" Pageable="true" PageSize="5" Height="400px"
+                                     PageChanged="@PageAnswerChangedHandler" Sortable="true" SelectionMode="GridSelectionMode.Single"
+                                     SelectedItemsChanged="@((IEnumerable<AnswerDto> AnswerList) => OnAnswerSelect(AnswerList))"
+                                     SelectedItems="@SelectedAnswerItems" Reorderable="true" Resizable="true" Groupable="false"
+                                     FilterMode="GridFilterMode.FilterRow">
+                            <GridColumns>
+                                <GridColumn Field="@(nameof(AnswerDto.Id))" Visible="false" Title="Id" Groupable="false" />
+                                <GridColumn Field="@(nameof(AnswerDto.Views))" Title="Views"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(AnswerDto.Flags))" Title="Flags"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(AnswerDto.CreatedDate))" Title="Created Date"
+                                            Groupable="false" />
+                                <GridColumn Field="@(nameof(AnswerDto.Votes))" Title="Votes"
+                                            Groupable="false" />
+                            </GridColumns>
+                        </TelerikGrid>
+                    </div>
+                    <div class="row">
+                        <TelerikTextArea Id="answer-body"
+                                             @bind-Value="@AnswerToBeAskedBody"
+                                             AutoSize="true"
+                                             Width="100%"
+                                             Enabled="false"
+                                             PlaceHolder="Body of ANSWER">
+                            </TelerikTextArea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

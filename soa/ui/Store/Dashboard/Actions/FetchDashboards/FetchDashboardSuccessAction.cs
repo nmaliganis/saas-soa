@@ -9,10 +9,11 @@
     public int QuestionTotalCount { get; private set;}
     public int QuestionUnansweredTotalCount { get; private set;}
     public int QuestionTodayTotalCount { get; private set;}
+    public int AnswerTotalCount { get; private set;}
 
     public FetchDashboardSuccessAction(int finishedSessionCount, 
       int activeSessionCount, int availableChargersCount, int chargersInUseCount,
-      int questionTotalCount, int questionUnansweredTotalCount, int questionTodayTotalCount
+      int questionTotalCount, int questionUnansweredTotalCount, int questionTodayTotalCount, int answerTotalCount
       )
     {
       FinishedSessionCount = finishedSessionCount;
@@ -22,6 +23,7 @@
       QuestionTotalCount = questionTotalCount;
       QuestionUnansweredTotalCount = questionUnansweredTotalCount;
       QuestionTodayTotalCount = questionTodayTotalCount;
+      AnswerTotalCount = answerTotalCount;
     }
   }
 }

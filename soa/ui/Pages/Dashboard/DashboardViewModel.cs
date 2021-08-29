@@ -114,7 +114,7 @@ namespace soa.ui.Pages.Dashboard
 
         public async Task OnConfigureUnansweredClickHandler()
         {
-            NavigationManager.NavigateTo($"unanswereds");
+            NavigationManager.NavigateTo($"un-answered");
         }
 
         public QuestionDto SelectedUnansweredItem { get; set; }
@@ -146,7 +146,7 @@ namespace soa.ui.Pages.Dashboard
 
         protected async Task OnCheckRecentQuestionsClickHandler()
         {
-            NavigationManager.NavigateTo($"recent-questions");
+            NavigationManager.NavigateTo($"questions");
         }
 
         protected async Task OnAskAQuestionRecentQuestionsClickHandler()
@@ -160,12 +160,12 @@ namespace soa.ui.Pages.Dashboard
 
         protected async Task OnGiveAnAnswerUnansweredQuestionsClickHandler()
         {
-            NavigationManager.NavigateTo($"unanswered-questions");
+            NavigationManager.NavigateTo($"giveanswer");
         }
 
         protected async Task OnCheckUnansweredQuestionsClickHandler()
         {
-            NavigationManager.NavigateTo($"unanswered-questions");
+            NavigationManager.NavigateTo($"un-answered");
         }
 
         #endregion

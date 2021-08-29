@@ -1,0 +1,43 @@
+﻿@page "/giveanswer"
+@inherits GiveAnAnswerViewModel
+
+<div class="dashboard">
+    
+    <header>
+        <div class="detail-header-title">
+            <div class="module-title">
+                <div class='title'>Give An Answer For:</div>
+                <div class='underline'></div>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <h4 class="card-header">More information for the Answer:</h4>
+                <div class="card-body">
+                    <TelerikTextArea Id="question-body"
+                                     @bind-Value="@QuestionToBeAsked.Body"
+                                     AutoSize="true"
+                                     Width="100%"
+                                     PlaceHolder="Enter your ANSWER here">
+                    </TelerikTextArea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card issue-types">
+                <div class="card-body">
+                    <div class="row">
+                        <TelerikButton Primary="true" Icon="save" OnClick="@OnSaveNewQuestionClickHandler">Give An Answer</TelerikButton>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
